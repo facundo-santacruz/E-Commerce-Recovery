@@ -4,7 +4,7 @@ const routes = require('./routes/index.js');
 const cors = require('cors');
 
 
-require('.db.js')
+require('./db.js')
 
 const server = express();
 server.name = 'API';
