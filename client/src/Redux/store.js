@@ -1,8 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import rootReducer from "./reducer/index.js";
+import rootReducer from "./reducer.js";
 import thunk from 'redux-thunk';
-import { saveState } from './reducer/localStorage';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 

@@ -1,25 +1,38 @@
-import Axios from 'axios';
-import React, { useState, useEffect } from 'react';
+
+import React, {  useEffect, useCallback, useState } from 'react';
 // import CssBaseline from '@material-ui/core/CssBaseline';
 // import Typography from '@material-ui/core/Typography';
 // import Container from '@material-ui/core/Container';
-import { CardDeck } from 'react-bootstrap'
-import  ProductCard from '../Components/ProductCard'
+import { getProductsRequest } from '../Redux/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ProductCard from '../Components/ProductCard';
 
-export default function SimpleContainer({search}) {
-  const [ products, setProducts ] = useState([])
+
+export  function SimpleContainer({search,  getProductsRequest, products}) {
+  const [ prod, setProducts ] = useState([])
+  // const stableSetter = useCallback(() => getProductsRequest(search), [])
+const [busqueda, setBusqueda ] = useState(search)
+
   useEffect(() => {
-    Axios.get(`http://localhost:3001/api/search?search=${search}`)
-    .then(res => {
-      console.log(res.data)
-      setProducts(res.data)
-    }).catch(err => console.log(err))
-  },[])
-  if (products > 0){
+    // const searchProducts = () => {
+    //   getProductsRequest(search)
+    // }
+    // searchProducts()
+    try {
+      getProductsRequest(search);
+      
+    } catch (error) {
+      console.log(error);
+    }
+    }, [getProductsRequest, search])
+  
+      
+  console.log(products)
+  if (products && products.length > 0){
     return (
       <div>
-        {products.map((prod, i) => {
-          
+        {products.forEach((prod) => {
           <ProductCard
             key={prod.id}
             id={prod.id}
@@ -41,4 +54,24 @@ export default function SimpleContainer({search}) {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+     products:state.products
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch,
+    ...bindActionCreators({ getProductsRequest }, dispatch)
+  }
+
+}
+
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SimpleContainer)
 

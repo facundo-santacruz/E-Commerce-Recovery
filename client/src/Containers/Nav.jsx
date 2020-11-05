@@ -7,7 +7,6 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import Axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -87,9 +86,9 @@ export default function SearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
+            <Typography className={classes.title} variant="h6" noWrap>
+                Henry's Mercado Libre
+            </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -105,7 +104,7 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
             <NavLink to={`/products/search=${search}`}>
-              <Button variant="contained" color="primary" enabled={search.length > 0 ? true : false}>
+              <Button variant="contained" color="primary">
                 Search
               </Button>
             </NavLink>
