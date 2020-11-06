@@ -5,7 +5,7 @@ export default function RecipeReviewCard({title, price, id, currency_id, quantit
 
   return (
     <div className={`card ${style.cardProd}`}>
-      <img src={image} className={`card-img-top ${style.imagen}`} alt={title} />
+      <img src={image} className={`card-img-top ${style.imagen}` } alt={title} />
       <div className="card-body" >
         <h5 className="card-title">{currency_id} ${price}</h5> <span style={{backgroundColor:"green", color:"white"}}>{condition}</span>
         <p className="card-text">{title}</p>
