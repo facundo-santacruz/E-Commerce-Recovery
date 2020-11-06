@@ -1,0 +1,12 @@
+
+.display {
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    grid-gap: 30px;
+    justify-content: flex-end;
+    margin-right: 4%;
+    padding-top: 30px;
+    justify-self: flex-start;
+  }
+    
+  

@@ -1,0 +1,16 @@
+.cardProd {
+    position: relative;
+    width: 80%;
+    margin: 5px;
+    border: 1px solid black;
+  }
+  .cardProd:hover, .card.flip{  
+  }
+
+  .imagen{
+    height: 50%;
+    width: 80%;
+    padding-top: 10px;
+    justify-items: center;
+}
+  

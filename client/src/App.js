@@ -3,6 +3,7 @@ import './App.css';
 import SimpleContainer from './Containers/Catalog';
 import Nav from './Containers/Nav';
 import { BrowserRouter, Route } from "react-router-dom";
+import PermanentDrawerLeft from './Components/LeftBar';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Route path="/" component={Nav} />
         <Route exact path="/products/search=:busqueda" render={({match}) => <SimpleContainer search={match.params.busqueda}/>} />
+        <Route  path="/products" render={({}) => <PermanentDrawerLeft/>} />
       </BrowserRouter>
     </div>
   );
