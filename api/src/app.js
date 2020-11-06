@@ -1,18 +1,37 @@
-const express = require ('express');
-const bodyParser = require('body-parser');
-const routes = require('./routes/index.js');
-const cors = require('cors');
+var express = require('express')
+var http = require('http')
+var app = express()
 
+var users = ['oscar', 'juan', 'marcos']
 
-require('./db.js')
+server.get('/users', (req, res) => {
+  res.send(users)
+})
 
-const server = express();
-server.name = 'API';
+// app.get('/', (req, res) => {
+//   res.status(200).send("Welcome to API REST")
+// })
 
-server.use(bodyParser.urlencoded({ extended: true, limit: '50mb'}));
-server.use(bodyParser.json({ limit: '50mb' }));
+http.createServer(app).listen(3001, () => {
+  console.log('Server started at http://localhost:8001');
+});
 
-    server.use('/', routes);
+// server.get('/api/search', function(req, res) {    //UN SEARCH PARA BUSCAR TODOS LOS PRODUCTOS QUE MATCHEEN CON EL QUERY PARAMS
+//   console.log(req.query)
+//   const { query } = req.query
+//       Axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${query}`)
+//       then(rta => {
+//           if(!rta) {
+//               res.send('No se encontro lo que buscaba :(').status(404)
+//           }
+//           products = rta
+//           res.json(rta)
+//       }).catch(err => {
+//           console.log('D: Error: ', err)
+//           res.send('No se encontro lo que buscaba :(').status(404)
+//       })
+//   });
+  
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
@@ -22,5 +41,8 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
+// server.listen(3002, () => {            //MODIFIQUE EL PUERTO EN EL QUE SE ESCUCHA EL SERVIDOR PARA PODER TENER FRONT Y BACK ABIERTOS
 
+//   console.log('%s listening at 3002'); // eslint-disable-line no-console
+// })
 module.exports = server;
