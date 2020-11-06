@@ -4,13 +4,15 @@
     margin: 5px;
     border: 1px solid black;
   }
-  .cardProd:hover, .card.flip{  
-  }
+  /* .cardProd:hover, .card.flip{  
+  } */
 
   .imagen{
-    height: 50%;
-    width: 80%;
+    height: 192.358px;
+    width: 192.358px;
     padding-top: 10px;
     justify-items: center;
+    max-width: 192.358px;
+    max-height: 192.358px;
 }
   

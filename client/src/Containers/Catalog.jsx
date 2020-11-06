@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
 import style from './Catalog.module.css'
+import PermanentDrawerLeft from '../Components/LeftBar';
 export  function SimpleContainer({search,  getProductsRequest, products})  {
   // const [ prod, setProducts ] = useState([])
   // const stableSetter = useCallback(() => getProductsRequest(search), [])
@@ -33,16 +34,19 @@ export  function SimpleContainer({search,  getProductsRequest, products})  {
         
           {products.map((prod) => {
             return (
-              <ProductCard  
-              key={prod.id}
-              id={prod.id}
-              title= {prod.title}
-              price= {prod.price}
-              currency_id= {prod.currency_id}
-              quantity= {prod.available_quantity}
-              image= {prod.thumbnail}
-              condition= {prod.condition}
-              />
+              <div>
+                <PermanentDrawerLeft/>
+                <ProductCard  
+                key={prod.id}
+                id={prod.id}
+                title= {prod.title}
+                price= {prod.price}
+                currency_id= {prod.currency_id}
+                quantity= {prod.available_quantity}
+                image= {prod.thumbnail}
+                condition= {prod.condition}
+                />
+              </div>
             )
           })}
         </div>
