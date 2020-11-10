@@ -8,6 +8,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { NavLink } from 'react-router-dom';
+import MercadoLibre from '../Styles/Imagenes/MercadoLibre.jpg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,20 +73,15 @@ export default function SearchAppBar() {
  
   function handleChange(e) {
     setSearch(e.target.value)
+    
+    
   }
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
+            <img src={MercadoLibre} alt="Imagen MercadoLibre" style={{width:"15px", height:"10px"}}></img>
             <Typography className={classes.title} variant="h6" noWrap>
                 Henry's Mercado Libre
             </Typography>
