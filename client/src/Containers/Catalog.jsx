@@ -43,8 +43,8 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
   useEffect(() => {
     if(!condition && !order){
       try {
-        getProductsRequest(search, numero*30);
-        
+        getProductsRequest(search, numero*30)
+        // console.log(loadStorage({query: search, offset:numero*30})); 
       } catch (error) {
         console.log(error);
       }

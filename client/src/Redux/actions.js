@@ -1,9 +1,8 @@
 import { GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } from './constants';
 import axios from 'axios';
-import { addStorage, loadStorage } from './CacheStorage';
 
 export function getProducts(allproducts) {
-    console.log(allproducts)
+
     return {
         type: GET_PRODUCTS_NAME,
         payload: allproducts
@@ -14,15 +13,12 @@ export function getProducts(allproducts) {
 
 export  function getProductsRequest(search, number) {
     console.log(search)
-    let params = {query:search, offset:number}
     return (dispatch) => {
-        console.log(addStorage(`http://localhost:3001/api/search?search=${search}&number=${number}`, params))
-        //  axios.get(`http://localhost:3001/api/search?search=${search}&number=${number}`)
-        .then((resp) => { dispatch(getProducts(resp))})
+         axios.get(`http://localhost:3001/api/search?search=${search}&number=${number}`)
+        .then(response => {  dispatch(getProducts(response.data.data)
+             )
+            })
         .catch(err => {console.log(err)})
-    
-    
-    
     }
 }
 
