@@ -2,7 +2,7 @@ import { GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } f
 import axios from 'axios';
 
 export function getProducts(allproducts) {
-
+    console.log(allproducts);
     return {
         type: GET_PRODUCTS_NAME,
         payload: allproducts
@@ -15,7 +15,7 @@ export  function getProductsRequest(search, number) {
     console.log(search)
     return (dispatch) => {
          axios.get(`http://localhost:3001/api/search?search=${search}&number=${number}`)
-        .then(response => {  dispatch(getProducts(response.data.data)
+        .then(response => {  dispatch(getProducts(response.data)
              )
             })
         .catch(err => {console.log(err)})
