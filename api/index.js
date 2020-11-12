@@ -1,11 +1,20 @@
 var express = require('express')
 var http = require('http')
 var app = express()
-const Axios = require('axios')
+const axios = require('axios')
 var cors = require('cors')
+const { response } = require('express')
+const { addStorage } = require('./src/CacheStorage')
 var list = []
 
-// app.use(cors())
+const redis = require('redis');
+// make a connection to the local instance of redis
+const client = redis.createClient(6379);
+
+
+client.on("error", (error) => {
+  console.error(error);
+ });
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -19,29 +28,140 @@ app.get('/', (req, res) => {
   res.send(users)
 })
 
+//------------------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES----------------------------
 
-app.get('/api/search', function(req, res) {    //UN SEARCH PARA BUSCAR TODOS LOS PRODUCTOS QUE MATCHEEN CON EL QUERY PARAMS
-  console.log(req.query.search)
-  const { search } = req.query
-      Axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}`)
+
+ 
+app.get('/recipe/:fooditem', (req, res) => {
+  try {
+    const foodItem = req.params.fooditem;
+  
+    // Check the redis store for the data first
+    client.get(foodItem, async (err, recipe) => {
+      if (recipe) {
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for ${foodItem} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+  
+          const recipe = await axios.get(`http://www.recipepuppy.com/api/?q=${foodItem}`);
+  
+          // save the record in the cache for subsequent request
+          client.setex(foodItem, 1440, JSON.stringify(recipe.data.results));
+  
+          // return the result to the client
+          return res.status(200).send({
+            error: false,
+            message: `Recipe for ${foodItem} from the server`,
+            data: recipe.data.results
+          });
+      }
+    }) 
+  } catch (error) {
+      console.log(error)
+  }
+ });
+  
+
+
+
+
+
+
+
+app.get('/api/search', function(req, res) {    
+  console.log(req.query);
+  try {
+    const { search, number } = req.query;
+    console.log(`${search}${number}`);
+    // Check the redis store for the data first
+    client.get(`${search}${number}`, async (err, recipe) => {
+      if (recipe) {
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${search} offset:${number} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+  
+        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}`);
+
+        // save the record in the cache for subsequent request
+        client.setex(`${search}${number}`, 1440, JSON.stringify(recipe.data));
+
+        // return the result to the client
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${search} offset:${number} from the server`,
+          data: recipe.data
+        });
+    }
+  }) 
+} catch (error) {
+    console.log(error)
+}
+});
+  // var url = `https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}`
+  // // caches.match({query: search, offset: number},).then (response => res.send(response)  )
+  //   Axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}`)
+  //   // addStorage(url, rta.data)
+  //   .then(rta => {
+  //       if(!rta.data.results) {
+  //           res.send('No se encontro lo que buscaba :(').status(404)
+  //       }
+  //       // const jsonResponse = new Response(JSON.stringify(response.data), {
+  //       //   headers: {
+  //       //       'content-type': 'application/json'
+  //       //   }
+  //       // });
+  //       getCachedData()
+  //       // console.log(Response)
+  //       //  let  n= JSON.stringify(url)
+  //       //  console.log(n)
+  //       // caches.open(n).then(cache => cache.put(n, JSON.stringify(rta.data)))
+       
+  //       // .then(() =>      
+  //       // addStorage(url, rta.data)
+  //       res.json(rta.data)
+  //   }).catch(err => {
+  //       console.log('D: Error: ', err)
+  //       res.send('No se encontro lo que buscaba  2:(').status(404)
+  //   })
+  // });
+
+//----------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES Y UN ORDEN ASC/DESC ----------------------------
+
+app.get('/api/sortprice', function(req, res) {    
+console.log(req.query)
+const { search, price, number } = req.query
+    Axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&sort=${price}&offset=${number}&limit=${30}`)
+    .then(rta => {
+        if(!rta.data.results) {
+            res.send('No hay resultados').status(404)
+        }
+          
+        res.json(rta.data)
+    }).catch(err => {
+        console.log('D: Error: ', err)
+        res.send('No se encontro lo que buscaba :(').status(404)
+    })
+});
+
+
+//----------------------BUSCAR POR CONDICION (usado o no)------------------------------------------------------
+
+app.get('/api/condition', function(req, res) {    
+  console.log(req.query)
+  const { search, number, condition } = req.query
+      Axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}&condition=${condition}`)
       .then(rta => {
           if(!rta.data.results) {
-              res.send('No se encontro lo que buscaba :(').status(404)
+              res.send('No hay resultados').status(404)
           }
-          list = rta.data.results.map(prod => {
-              const producto = {
-                  id: prod.id,
-                  title: prod.title,
-                  price: prod.price,
-                  currency_id: prod.currency_id,
-                  available_quantity: prod.available_quantity,
-                  thumbnail: prod.thumbnail,
-                  condition: prod.condition
-              }
-              return producto
-          })
             
-          res.json(list)
+          res.json(rta.data)
       }).catch(err => {
           console.log('D: Error: ', err)
           res.send('No se encontro lo que buscaba :(').status(404)
