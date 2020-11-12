@@ -68,36 +68,36 @@ app.get('/api/search', function(req, res) {
 //----------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES Y UN ORDEN ASC/DESC ----------------------------
 
 app.get('/api/sortprice', function(req, res) {    
-console.log(req.query)
-const { search, price, number } = req.query
-try {
-  // Check the redis store for the data first
-  client.get(`${search}${number}${price}`, async (err, recipe) => {
-    if (recipe) {
-      console.log("si existe en la cache");
-      return res.status(200).send({
-        error: false,
-        message: `Recipe for query:${search} offset:${number} orderby:${price} from the cache`,
-        data: JSON.parse(recipe)
-      })
-    } else { // When the data is not found in the cache then we can make request to the server
-      console.log("no existe en la cache");
-      const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&sort=${price}&offset=${number}&limit=${30}`);
+  console.log(req.query)
+  const { search, price, number } = req.query
+  try {
+    // Check the redis store for the data first
+    client.get(`${search}${number}${price}`, async (err, recipe) => {
+      if (recipe) {
+        console.log("si existe en la cache");
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${search} offset:${number} orderby:${price} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+        console.log("no existe en la cache");
+        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&sort=${price}&offset=${number}&limit=${30}`);
 
-      // save the record in the cache for subsequent request
-      client.setex(`${search}${number}${price}`, 1440, JSON.stringify(recipe.data));
+        // save the record in the cache for subsequent request
+        client.setex(`${search}${number}${price}`, 1440, JSON.stringify(recipe.data));
 
-      // return the result to the client
-      return res.status(200).send({
-        error: false,
-        message: `Recipe for query:${search} offset:${number} orderby:${price} from the server`,
-        data: recipe.data
-      });
+        // return the result to the client
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${search} offset:${number} orderby:${price} from the server`,
+          data: recipe.data
+        });
+    }
+  }) 
+  } catch (error) {
+    console.log(error)
   }
-}) 
-} catch (error) {
-  console.log(error)
-}
 });
 
 //----------------------BUSCAR POR CONDICION (usado o no)------------------------------------------------------
@@ -105,19 +105,33 @@ try {
 app.get('/api/condition', function(req, res) {    
   console.log(req.query)
   const { search, number, condition } = req.query
-      Axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}&condition=${condition}`)
-      .then(rta => {
-          if(!rta.data.results) {
-              res.send('No hay resultados').status(404)
-          }
-            
-          res.json(rta.data)
-      }).catch(err => {
-          console.log('D: Error: ', err)
-          res.send('No se encontro lo que buscaba :(').status(404)
-      })
-  });
-  
+  try {
+    // Check the redis store for the data first
+    client.get(`${search}${number}${condition}`, async (err, recipe) => {
+      if (recipe) {
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${search} offset:${number} condition:${condition} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}&condition=${condition}`);
+
+        // save the record in the cache for subsequent request
+        client.setex(`${search}${number}${condition}`, 1440, JSON.stringify(recipe.data));
+
+        // return the result to the client
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${search} offset:${number} condition:${condition} from the server`,
+          data: recipe.data
+        });
+    }
+  }) 
+  } catch (error) {
+    console.log(error)
+  }
+});
 
 app.get('/', (req, res) => {
   res.status(200).send("Welcome to MERCADO LIBRE'S API REST")
