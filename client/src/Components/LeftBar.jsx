@@ -10,22 +10,27 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import {ArrowUpward, ArrowDownward} from '@material-ui/icons';
+import { bindActionCreators } from 'redux';
 
-const drawerWidth = 240;
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { useState } from 'react';
+
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'absolute',
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    zIndex:4, 
+    width: "15%"
   },
   drawerPaper: {
     width: drawerWidth,
@@ -39,15 +44,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PermanentDrawerLeft() {
+export  function PermanentDrawerLeft({search, filter, price }) {
   const classes = useStyles();
+  const [ condition ] = useState([{id: "new", name: "Nuevo"}, {id: "used", name: "Usado"}])
+  console.log(filter)
+
+
 
   return (
     <div className={classes.root} >
       <CssBaseline />
       
       <Drawer
-        className={classes.drawer} style={{zIndex:-4, width: "15%"}}
+        className={classes.drawer}
         variant="permanent"
         classes={{
           paper: classes.drawerPaper,
@@ -55,22 +64,45 @@ export default function PermanentDrawerLeft() {
         anchor="left"
       >
         <div className={classes.toolbar} />
-        <Divider />
+        
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          <h3>Buscar por Precio</h3>
+          {filter.map((text, index) => (
+            <NavLink to={`/products/${search}/order=${text.id}/${0}`}>
+
+              <ListItem button key={text} 
+              // onClick={changeProducts(text.id)}
+              >
+                <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon>
+                <ListItemText primary=
+                // {<a href={`/products/${search}/${text.id}/${0}`}>
+                  {text.name}
+                  // </a>} 
+                  />
+              </ListItem>
+              
+            </NavLink> 
           ))}
         </List>
-        <Divider />
+      
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+      
+          <h3>Buscar por Condición</h3>
+          {condition.map((text, index) => (
+            <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
+
+              <ListItem button key={text} 
+              // onClick={changeProductsCondition(text.id)}
+              >
+                {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
+                <ListItemText primary=
+                // {<a href={`/products/${search}/${text.id}/${0}`}>
+                  {text.name}
+                  // </a>} 
+                  />
+              </ListItem>
+              
+            </NavLink> 
           ))}
         </List>
       </Drawer>
@@ -81,3 +113,4 @@ export default function PermanentDrawerLeft() {
     </div>
   );
 }
+
