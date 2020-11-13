@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter >
       
         <Route path="/" component={Nav} />
-        <div style={{ display: "flex", marginLeft: "10%",  width: "80%"}}>
+        <div >
           
             <Route exact path="/products/search=:busqueda" render={({match}) => <SimpleContainer search={match.params.busqueda}/>} />
             {/* <Route  path="/products" render={({match}) => <PermanentDrawerLeft />} /> */}

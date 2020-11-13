@@ -4,7 +4,7 @@ import style from './ProductCard.module.css'
 export default function RecipeReviewCard({title, price, id, currency_id, quantity, image, condition}) {
 
   return (
-    <div className={`card `}>
+    <div className={`col col-lg-3 col-md-4 ${style.CardProd}`}  >
       <img src={image} className={`card-img-top ${style.imagen}`} alt={title} />
       <div className="card-body" >
         <div className={style.ContPrecio}>

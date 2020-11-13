@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },

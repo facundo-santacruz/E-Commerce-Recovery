@@ -49,7 +49,7 @@ app.get('/api/search', function(req, res) {
         const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}`);
 
         // save the record in the cache for subsequent request
-        client.setex(`${search}${number}`, 1440, JSON.stringify(recipe.data));
+        client.setex(`${search}${number}`, 20000, JSON.stringify(recipe.data));
 
         // return the result to the client
         return res.status(200).send({

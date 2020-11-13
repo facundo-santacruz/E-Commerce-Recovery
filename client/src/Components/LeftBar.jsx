@@ -20,31 +20,31 @@ import { useState } from 'react';
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'absolute',
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    zIndex:4, 
-    width: "15%"
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
+  // root: {
+  //   display: 'absolute',
+    
+  // },
+  // appBar: {
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  // },
+  // drawer: {
+  //   width: drawerWidth,
+  //   flexShrink: 0,
+  // },
+  // drawerPaper: {
+  //   width: drawerWidth,
+  // },
+  // // necessary for content to be below app bar
+  // toolbar: theme.mixins.toolbar,
+  // content: {
+  //   flexGrow: 1,
+  //   backgroundColor: theme.palette.background.default,
+  //   padding: theme.spacing(3),
+  // },
+
 }));
 
-export  function PermanentDrawerLeft({search, filter, price }) {
+export  function PermanentDrawerLeft({search, filter, price, filters }) {
   const classes = useStyles();
   const [ condition ] = useState([{id: "new", name: "Nuevo"}, {id: "used", name: "Usado"}])
   console.log(filter)
@@ -89,6 +89,26 @@ export  function PermanentDrawerLeft({search, filter, price }) {
       
           <h3>Buscar por Condición</h3>
           {condition.map((text, index) => (
+            <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
+
+              <ListItem button key={text} 
+              // onClick={changeProductsCondition(text.id)}
+              >
+                {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
+                <ListItemText primary=
+                // {<a href={`/products/${search}/${text.id}/${0}`}>
+                  {text.name}
+                  // </a>} 
+                  />
+              </ListItem>
+              
+            </NavLink> 
+          ))}
+        </List>
+        <List>
+      
+          <h3>Categorias</h3>
+          {filters.map((text, index) => (
             <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
 
               <ListItem button key={text} 
