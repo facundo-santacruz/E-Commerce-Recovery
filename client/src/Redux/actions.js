@@ -1,4 +1,4 @@
-import { GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } from './constants';
+import { GET_CATEGORIES, GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } from './constants';
 import axios from 'axios';
 
 export function getProducts(allproducts) {
@@ -55,5 +55,19 @@ export function getByConditionRequest(search, number, condition) {
         .catch(err => {console.log(err)})
     }
 }
+
+export function getCateg(categorias) {//va a REDUCER
+    return {
+      type: GET_CATEGORIES,
+      payload: categorias
+    }
+  }
+  export function getCategories() {//Va a Catalogo2.jsx
+    return (dispatch) => {
+      axios.get('http://localhost:3001/categories')
+        .then(response => { dispatch(getCateg(response.data)) })
+        .catch(err => { console.log(err) })
+    }
+  }
 
 

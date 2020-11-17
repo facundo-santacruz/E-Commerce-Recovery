@@ -1,0 +1,26 @@
+.cartas{
+  display: flex;
+  left: 200px;
+  position: absolute;
+  right: 10%;
+  min-width: 300px;
+  flex-direction: column;
+  overflow: visible;
+}
+
+
+.ContenedorPrincipal {
+  position: relative;
+  display: flex;
+  top: 10px;
+  width: 100%;
+  left: 5%;
+  
+}
+
+@media (max-width: 600px) {
+  .ContenedorPrincipal {
+    left: 1%;
+    top: 70px;
+  }
+}

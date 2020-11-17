@@ -1,0 +1,38 @@
+/* .Contenedor{
+    display: flex;
+    justify-content: center;
+} */
+
+.cartas{
+    display: flex;
+    position: relative;
+    width: 85%;
+    left: 7%;
+    min-width: 300px;
+    flex-direction: column;
+}
+
+
+.cardProd {
+    align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      display: flex;
+      margin: 5px;
+      height: 220px;
+      border-radius: 20px;
+      border: 1px solid black;
+      min-width: 300px;
+      /* justify-content: space-around; */
+      /* width: 100%; */
+      background: radial-gradient(gray, transparent);
+    }
+    /*
+     .cardProd:hover, .card.flip{  
+    } */
+  
+   .imagen{
+  
+    height: 100%;
+    width: 100%;
+  }
