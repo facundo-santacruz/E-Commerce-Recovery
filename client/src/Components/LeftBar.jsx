@@ -1,83 +1,131 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
-const drawerWidth = 240;
+// import { bindActionCreators } from 'redux';
+import  style  from "../Styles/Components/LeftBar.module.css";
+import { Link, NavLink } from 'react-router-dom';
+// import { connect } from 'react-redux';
+import { useState } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
-}));
 
-export default function PermanentDrawerLeft() {
-  const classes = useStyles();
+
+export  function PermanentDrawerLeft({search, filter, filters }) {
+  const [ condition ] = useState([{id: "new", name: "Nuevo"}, {id: "used", name: "Usado"}])
+  console.log(filter)
+
+
 
   return (
-    <div className={classes.root} >
-      <CssBaseline />
-      
-      <Drawer
-        className={classes.drawer} style={{zIndex:-4, width: "15%"}}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        
-      </main>
+    
+    <div className={style.Contenedor}>
+      <div className={style.listaCategorias}>
+        <div className="list-group" style={{ width: "100%"}}>
+          <h4>Buscar por Orden</h4>
+          <ul>
+            {filter.map((text, i) => {
+              return (
+                <Link to={`/products/${search}/order=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+                  <li key={`${text}${i}`} className={style.list}>{text.name}</li>      
+                </Link>
+                  )
+                })}
+
+
+          </ul>
+        </div>
+        <div>
+        <h4>Buscar por Condición</h4>
+        <ul>
+          {condition.map((text, index) => {
+            return (
+              <NavLink to={`/products/${search}/condition=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+                <li className={style.list}>{text.name}</li>      
+              </NavLink> 
+            )
+          }
+          )}
+
+        </ul>
+
+        </div>
+      </div>
     </div>
-  );
+  )
+
+
+      
+  //   <div className={style.ContenedorPrincipal}>
+      
+  //     <CssBaseline />
+      
+  //     <Drawer className={style.ContenedorPrincipal}
+  //       variant="permanent"
+  //       anchor="left"
+  //     >
+  //       <div />
+        
+  //       <List>
+  //         <h3>Buscar por Precio</h3>
+  //         {filter.map((text, index) => (
+  //           <NavLink to={`/products/${search}/order=${text.id}/${0}`}>
+
+  //             <ListItem button key={text} 
+  //             // onClick={changeProducts(text.id)}
+  //             >
+  //               <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon>
+  //               <ListItemText primary=
+  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
+  //                 {text.name}
+  //                 // </a>} 
+  //                 />
+  //             </ListItem>
+              
+  //           </NavLink> 
+  //         ))}
+  //       </List>
+      
+  //       <List>
+      
+  //         <h3>Buscar por Condición</h3>
+  //         {condition.map((text, index) => (
+  //           <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
+
+  //             <ListItem button key={text}  >
+  //               <ListItemText primary=
+  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
+  //                 {text.name}
+  //                 // </a>} 
+  //                 />
+  //             </ListItem>
+              
+  //           </NavLink> 
+  //         ))}
+  //       </List>
+  //       <List>
+      
+  //         <h3>Categorias</h3>
+  //         {filters.map((text, index) => (
+  //           <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
+
+  //             <ListItem button key={text} 
+  //             // onClick={changeProductsCondition(text.id)}
+  //             >
+  //               {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
+  //               <ListItemText primary=
+  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
+  //                 {text.name}
+  //                 // </a>} 
+  //                 />
+  //             </ListItem>
+              
+  //           </NavLink> 
+  //         ))}
+  //       </List>
+  //     </Drawer>
+  //     <main className={classes.content}>
+  //       <div className={classes.toolbar} />
+        
+  //     </main>
+  //   </div>
+  // );
 }
+

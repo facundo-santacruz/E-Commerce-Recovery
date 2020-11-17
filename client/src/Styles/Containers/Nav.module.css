@@ -1,0 +1,16 @@
+.ToolBar{
+    justify-content: space-between;
+}
+
+@media (max-width: 600px) {
+    .ToolBar {
+        height: 120px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    /* .Buscador{
+
+    } */
+  }
