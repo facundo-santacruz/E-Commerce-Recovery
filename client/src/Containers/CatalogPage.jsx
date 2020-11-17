@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
 import style from './Catalog.module.css'
-export  function SimpleContainer({search,  getProductsRequest, products})  {
+export  function CatalogPage({search,  getProductsRequest, products})  {
   // const [ prod, setProducts ] = useState([])
   // const stableSetter = useCallback(() => getProductsRequest(search), [])
 // const [busqueda, setBusqueda ] = useState(search)

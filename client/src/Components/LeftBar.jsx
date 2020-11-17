@@ -1,5 +1,5 @@
 import React from 'react';
-
+import CategoriesList from '../Containers/CategoriesList'
 // import { bindActionCreators } from 'redux';
 import  style  from "../Styles/Components/LeftBar.module.css";
 import { Link, NavLink } from 'react-router-dom';
@@ -33,20 +33,47 @@ export  function PermanentDrawerLeft({search, filter, filters }) {
           </ul>
         </div>
         <div>
-        <h4>Buscar por Condición</h4>
-        <ul>
-          {condition.map((text, index) => {
-            return (
-              <NavLink to={`/products/${search}/condition=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
-                <li className={style.list}>{text.name}</li>      
-              </NavLink> 
-            )
-          }
-          )}
+          <h4>Buscar por Condición</h4>
+          <ul>
+            {condition.map((text, index) => {
+              return (
+                <NavLink to={`/products/${search}/condition=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+                  <li className={style.list}>{text.name}</li>      
+                </NavLink> 
+              )
+            }
+            )}
 
-        </ul>
+          </ul>
 
         </div>
+        <div>
+      
+           <h3>Categorias</h3>
+            {filters.map((text, index) => (
+            //  <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
+              
+            <CategoriesList filterValues={text}/>
+
+
+
+
+
+
+              //  <button key={text} 
+              //  // onClick={changeProductsCondition(text.id)}
+              //  >
+              //    {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
+              //    <ListItemText primary=
+              //    // {<a href={`/products/${search}/${text.id}/${0}`}>
+              //      {text.name}
+              //      // </a>} 
+              //      />
+              //  />
+              
+            //  {/* </NavLink>  */}
+           ))}
+         </div>
       </div>
     </div>
   )
