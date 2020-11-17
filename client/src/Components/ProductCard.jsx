@@ -4,18 +4,10 @@ import style from '../Styles/Components/ProductCard.module.css'
 export default function RecipeReviewCard({title, price, id, currency_id, quantity, image, condition}) {
 
   return (
-<<<<<<< HEAD
-    <div className={`card ${style.cardProd}`}>
-      <img src={image} className={`card-img-top ${style.imagen}` } alt={title} />
-      <div className="card-body" >
-        <h5 className="card-title">{currency_id} ${price}</h5> <span style={{backgroundColor:"green", color:"white"}}>{condition}</span>
-        <p className="card-text">{title}</p>
-=======
     <div className={style.cardProd}  >
       <div style={{width:"160px", height:"160px", marginLeft:"10%"  }}>
         <img src={image} className={`card-img-top ${style.imagen}`} alt={title} />
 
->>>>>>> BackBranch
       </div>
       <div className="card-body" style={{marginLeft:"10%",  width: "50%"}} >
         <p className="card-text">{title}</p>
