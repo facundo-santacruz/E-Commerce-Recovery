@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import  style  from "../Styles/Components/LeftBar.module.css";
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+// import { connect } from 'react-redux';
 import { useState } from 'react';
 
 
@@ -18,14 +18,14 @@ export  function PermanentDrawerLeft({search, filter, filters }) {
     
     <div className={style.Contenedor}>
       <div className={style.listaCategorias}>
-        <div class="list-group" style={{ width: "100%"}}>
+        <div className="list-group" style={{ width: "100%"}}>
           <h4>Buscar por Orden</h4>
           <ul>
-            {filter.map(text => {
+            {filter.map((text, i) => {
               return (
-                <NavLink to={`/products/${search}/order=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
-                  <li>{text.name}</li>      
-                </NavLink>
+                <Link to={`/products/${search}/order=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+                  <li key={`${text}${i}`} className={style.list}>{text.name}</li>      
+                </Link>
                   )
                 })}
 
@@ -38,7 +38,7 @@ export  function PermanentDrawerLeft({search, filter, filters }) {
           {condition.map((text, index) => {
             return (
               <NavLink to={`/products/${search}/condition=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
-                <li>{text.name}</li>      
+                <li className={style.list}>{text.name}</li>      
               </NavLink> 
             )
           }

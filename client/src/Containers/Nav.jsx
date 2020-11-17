@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { IconButton, Button } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import {  Button } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+import {  makeStyles } from '@material-ui/core/styles';
+// import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { NavLink } from 'react-router-dom';
 import MercadoLibre from '../Styles/Imagenes/MercadoLibre.jpg'
@@ -74,6 +73,11 @@ export default function SearchAppBar() {
 
  
   function handleChange(e) {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault();
+      var boton = document.getElementById("boton");
+      boton.click();
+  }
     setSearch(e.target.value)
     
     
@@ -103,7 +107,7 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
             <NavLink to={`/products/search=${search}`}>
-              <Button variant="contained" color="primary">
+              <Button id="boton" variant="contained" color="primary">
                 Search
               </Button>
             </NavLink>

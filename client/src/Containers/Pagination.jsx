@@ -1,12 +1,12 @@
 import React from 'react';
 import { usePagination } from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { getProductsRequest } from '../Redux/actions.js';
-import style from '../Styles/Components/Pagination.module.css'
+// import { getProductsRequest } from '../Redux/actions.js';
+// import style from '../Styles/Components/Pagination.module.css'
 
 const useStyles = makeStyles({
   ul: {
@@ -54,9 +54,11 @@ export  function UsePagination({paging, search, order, condition}) {
                 );
               } else {
                 children = (
-                  <button type="button" {...item}>
-                    {type}
-                  </button>
+                  <NavLink to={`/products/${search}/condition=${condition}/${page}`}>
+                    <button type="button" {...item}>
+                      {type}
+                    </button>
+                </NavLink>
                 );
               }
     
@@ -85,9 +87,11 @@ export  function UsePagination({paging, search, order, condition}) {
               );
             } else {
               children = (
-                <button type="button" {...item}>
-                  {type}
-                </button>
+                <NavLink to={`/products/${search}/${page}`}>
+                  <button type="button" {...item}>
+                    {type}
+                  </button>
+                </NavLink>
               );
             }
   
@@ -116,9 +120,13 @@ export  function UsePagination({paging, search, order, condition}) {
               );
             } else {
               children = (
-                <button type="button" {...item}>
-                  {type}
-                </button>
+                <NavLink to={`/products/${search}/${page}`}>
+                  <button type="button" {...item}>
+                    {type}
+                  </button>
+
+                </NavLink>
+
               );
             }
   

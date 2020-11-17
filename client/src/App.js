@@ -2,13 +2,13 @@
 import './App.css';
 import SimpleContainer from './Containers/Catalog';
 import Nav from './Containers/Nav';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import PermanentDrawerLeft from './Components/LeftBar';
-import { UsePagination } from './Containers/Pagination';
-import CarouselContainer from "./Containers/Carrousel";  
+import { BrowserRouter, Route } from "react-router-dom";
+// import PermanentDrawerLeft from './Components/LeftBar';
+// import { UsePagination } from './Containers/Pagination';
+// import CarouselContainer from "./Containers/Carrousel";  
 import { Categories } from './Containers/Categories';
 
-function App() {
+function App() {  
   return (
     <div className="App" style={{background: "#ededed"}}>
       <BrowserRouter >
