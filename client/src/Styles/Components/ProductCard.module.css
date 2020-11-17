@@ -1,0 +1,59 @@
+.cardProd {
+  align-items: center;
+  /* padding-left: 10px; */
+  position: relative;
+  /* padding-right: 10px; */
+  display: flex;
+  /* right: 5%; */
+  margin: 5px;
+  height: 220px;
+  border-radius: 20px;
+  border: 1px solid black;
+  min-width: 250px;
+  /* justify-content: space-around; */
+  width: 100%;
+  background: radial-gradient(gray, transparent);
+
+  }
+  /*
+   .cardProd:hover, .card.flip{  
+  } */
+
+ .imagen{
+
+  height: 100%;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .cardProd {
+    height: 250px;
+  }
+}
+/* ContPrecio{
+  display: flex;
+
+}   */
+  
+/* .carta {
+  width: 284px;
+  height: 284px; */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* margin-top: 100px; */
+  /* width: 30%;
+  border: black 1px solid;
+  border-radius: 20px;
+  padding: 10px;
+  margin: auto; */
+/* } */
+
+
+/* .contenedorClima{
+  display: flex;
+  justify-content: space-around;
+  background: lightblue;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-size: 1.5rem;
+} */

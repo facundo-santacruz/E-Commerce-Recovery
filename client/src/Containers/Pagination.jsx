@@ -6,12 +6,15 @@ import { bindActionCreators } from 'redux';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { getProductsRequest } from '../Redux/actions.js';
-import style from './Pagination.module.css'
+import style from '../Styles/Components/Pagination.module.css'
 
 const useStyles = makeStyles({
   ul: {
     listStyle: 'none',
     display: 'flex',
+
+    justifyContent: "center"
+
   },
   nav:{
     width: '100%',
@@ -34,7 +37,7 @@ export  function UsePagination({paging, search, order, condition}) {
   if (condition){
 
       return (
-        <nav>
+        <nav style={{display: "flex", justifyContent: "center"}}>
           <ul className={classes.ul}>
             {items.map(({ page, type, selected, ...item }, index) => {
               let children = null;

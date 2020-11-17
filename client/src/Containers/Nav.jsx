@@ -9,10 +9,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { NavLink } from 'react-router-dom';
 import MercadoLibre from '../Styles/Imagenes/MercadoLibre.jpg'
+import  style  from "../Styles/Containers/Nav.module.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    height: "80px",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -27,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: "white",
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+    fontColor: "black",
     },
     marginLeft: 0,
     width: '100%',
@@ -47,11 +49,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   inputRoot: {
-    color: 'inherit',
+    color: 'black',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
+    backgroundColor: "white",
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -77,14 +80,15 @@ export default function SearchAppBar() {
   }
 
   return (
-    <div className={classes.root}>
-      <AppBar>
-        <Toolbar>
-            <img src={MercadoLibre} alt="Imagen MercadoLibre" style={{width:"15px", height:"10px"}}></img>
-            <Typography className={classes.title} variant="h6" noWrap>
-                Henry's Mercado Libre
-            </Typography>
-          <div className={classes.search}>
+    <div className={classes.root} >
+      <AppBar style={{backgroundColor: "#fff159"}}>
+        <Toolbar className={style.ToolBar}>
+            <NavLink to={"/"}>
+              <img src={MercadoLibre} alt="Imagen MercadoLibre" style={{    width: "70px",   height: "60px"}}></img>
+
+            </NavLink>
+            
+          <div className={classes.search, style.Buscador}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>

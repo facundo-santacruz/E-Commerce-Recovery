@@ -6,7 +6,7 @@ import { getByPriceRequest, getProductsRequest, getByConditionRequest } from '..
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
-import style from './Catalog.module.css'
+import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './Pagination';
 import { PermanentDrawerLeft } from '../Components/LeftBar';
 export  function SimpleContainer({search,  getProductsRequest, getByConditionRequest,getByPriceRequest, numero=0, products, paging, order, filter, condition, categories  })  {
@@ -57,9 +57,10 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
           
             <PermanentDrawerLeft filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
              
-          <div >
+          <div className={style.cartas} >
             <div >
               {products.results.map((prod) => {
+                
                 return (
                     <ProductCard  
                       key={prod.id}

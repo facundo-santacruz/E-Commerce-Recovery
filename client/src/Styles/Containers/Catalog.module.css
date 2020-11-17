@@ -1,0 +1,32 @@
+.cartas{
+  display: flex;
+  left: 200px;
+  position: absolute;
+  /* top: 64px; */
+  right: 10%;
+  min-width: 300px;
+  /* -webkit-flex-direction: column; */
+  flex-direction: column;
+  overflow: visible;
+  /* top: 10px; */
+  /* left: 5%; */
+  /* flex-direction: column; */
+  /* text-align: justify; */
+}
+
+
+.ContenedorPrincipal {
+  position: relative;
+  display: flex;
+  top: 10px;
+  /* flex-direction: column; */
+  /* text-align: justify; */
+  width: 100%;
+  left: 5%;
+}
+
+@media (max-width: 600px) {
+  .ContenedorPrincipal {
+    left: 1%;
+  }
+}

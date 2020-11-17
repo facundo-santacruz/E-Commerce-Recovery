@@ -1,6 +1,7 @@
-import { GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } from "./constants";
+import { GET_CATEGORIES, GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } from "./constants";
 
 const initialState = {
+    categories : [],
     products: []
 };
 
@@ -21,6 +22,11 @@ const reducer = (state= initialState, action ) => {
             return {
                 ...state,
                 products: action.payload
+            }
+        case GET_CATEGORIES:
+            return {
+                ...state,
+                categories:action.payload
             }
         default: 
             return state
