@@ -6,7 +6,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 // import PermanentDrawerLeft from './Components/LeftBar';
 // import { UsePagination } from './Containers/Pagination';
 // import CarouselContainer from "./Containers/Carrousel";  
-import { Categories } from './Containers/Categories';
+import { Categories } from './Containers/Categories'
+import ProductContainerDetail  from "./Containers/Producto/ProductContainerDetail";
 
 function App() {  
   return (
@@ -24,7 +25,7 @@ function App() {
             <Route exact path="/products/:busqueda/:numero" render={({match}) => <SimpleContainer search={match.params.busqueda} numero={match.params.numero}/>} />
             <Route exact path="/products/:busqueda/order=:order/:numero" render={({match}) => <SimpleContainer search={match.params.busqueda} order={match.params.order} numero={match.params.numero}/>} />
             <Route exact path="/products/:busqueda/condition=:condition/:numero" render={({match}) => <SimpleContainer search={match.params.busqueda} condition={match.params.condition} numero={match.params.numero}/>} />
-          
+            <Route exact path="/product/:title" render ={({match}) => <ProductContainerDetail id={match.params.title}/>}/>
         </div>
       </BrowserRouter>
 

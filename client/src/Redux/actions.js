@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } from './constants';
+import { GET_CATEGORIES, GET_PRODUCT, GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } from './constants';
 import axios from 'axios';
 
 export function getProducts(allproducts) {
@@ -69,5 +69,25 @@ export function getCateg(categorias) {//va a REDUCER
         .catch(err => { console.log(err) })
     }
   }
+
+
+  // -----------------ACTIONS PARA BUSCAR INFORMACION DE UN PRODUCTO-----------------------------
+
+
+export function getProductRequest(){
+    return (dispatch) => {
+        axios.get('http://localhost:3001/product')
+        .then(response => {dispatch(getProduct(response.data))})
+        .catch(err => {console.log(err)})
+    }
+}
+
+export function getProduct(product) {
+    return {
+        type: GET_PRODUCT,
+        payload: product
+    }
+}
+
 
 

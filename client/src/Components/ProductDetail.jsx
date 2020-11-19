@@ -1,12 +1,12 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import style from '../Styles/Components/ProductCard.module.css'
 
 export default function RecipeReviewCard({title, price, id, currency_id, quantity, image, condition}) {
+    useEffect(() => {
 
+    },[])
   return (
-    // <div className={style.cardProd}  >
-      <NavLink to={`product/${title}`}className={style.cardProd}>
+    <div className={style.cardProd}  >
       <div style={{width:"160px", height:"160px", marginLeft:"10%"  }}>
         <img src={image} className={`card-img-top ${style.imagen}`} alt={title} />
 
@@ -22,11 +22,8 @@ export default function RecipeReviewCard({title, price, id, currency_id, quantit
       <h3 style={{backgroundColor:"gray", color:"white"}}> Sin Stock</h3>}
       </div> 
         
-      </NavLink>
-    // </div>
+    </div>
   );
-
 }
-
 
 
