@@ -96,6 +96,8 @@ app.get('/categories', function(req,res){
 }
 });
 // })
+//------------------BUSCA UNA QUERY  1ra BUSQUEDA CON UN LIMITE DE 30 UNIDADES----------------------------
+//------------------Y LO GUARDA EN LA CACHE SI NO SE HIZO LA PETICION-----------------------
 
 
 app.get('/api/search', function(req, res) {    
@@ -192,6 +194,39 @@ app.get('/api/condition', function(req, res) {
         return res.status(200).send({
           error: false,
           message: `Recipe for query:${search} offset:${number} condition:${condition} from the server`,
+          data: recipe.data
+        });
+    }
+  }) 
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+//----------------------BUSCAR UN PRODUCTO------------------------------------------------------
+
+app.get('/api/product', function(req, res) {    
+  console.log(req.query)
+  const { id } = req.query
+  try {
+    // Check the redis store for the data first
+    client.get(`${id}`, async (err, recipe) => {
+      if (recipe) {
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${id} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+        const recipe = await axios.get(`https://api.mercadolibre.com/products/${id}`);
+
+        // save the record in the cache for subsequent request
+        client.setex(`${id}`, 1440, JSON.stringify(recipe.data));
+
+        // return the result to the client
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${id} from the server`,
           data: recipe.data
         });
     }
