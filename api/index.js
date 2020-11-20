@@ -17,13 +17,13 @@ var cat = [
   {"id": "MLA1246","name": "Belleza y Cuidado Personal","picture": "http://resources.mlstatic.com/category/images/d1c445e9-f3bb-49e8-8cd3-3cfa81e57cf9.png"},
   {"id": "MLA1051","name": "Celulares y Teléfonos", "picture": "http://resources.mlstatic.com/category/images/297acc79-be09-4446-be08-3938306e55d6.png"},
   {"id": "MLA1648","name": "Computación","picture": "http://resources.mlstatic.com/category/images/f96f9ecc-dfe6-4cf9-a270-4c0cee23f868.png"},
-  { "id": "MLA1144","name": "Consolas y Videojuegos", "picture": "http://resources.mlstatic.com/category/images/9712b6d0-1570-4edc-aea6-c1c13c9a4bfa.png"},
+  {"id": "MLA1144","name": "Consolas y Videojuegos", "picture": "http://resources.mlstatic.com/category/images/9712b6d0-1570-4edc-aea6-c1c13c9a4bfa.png"},
   {"id": "MLA1276","name": "Deportes y Fitness","picture": "http://resources.mlstatic.com/category/images/b39de702-b427-4c05-b659-c6db6b87b53f.png"},
   {"id": "MLA5726","name": "Electrodomésticos y Aires Ac.","picture": "http://resources.mlstatic.com/category/images/104bbc6d-bf5c-4e84-8e17-93b8e6d16553.png"},
   {"id": "MLA1000","name": "Electrónica, Audio y Video", "picture": "http://resources.mlstatic.com/category/images/943ec641-717e-49cb-8a34-2f40ba367f5a.png"},
   {"id": "MLA2547","name": "Entradas para Eventos","picture": "http://resources.mlstatic.com/category/images/537b9145-ac07-43ec-a281-b5bdb442192c.png"},
   {"id": "MLA407134","name": "Herramientas y Construcción", "picture": "http://resources.mlstatic.com/category/images/783e7f75-e58d-4020-a165-827ec39c21ec.png"},
-  { "id": "MLA1574","name": "Hogar, Muebles y Jardín","picture": "http://resources.mlstatic.com/category/images/5194ee98-9095-4ef6-b9a5-c78073fa60af.png"},
+  {"id": "MLA1574","name": "Hogar, Muebles y Jardín","picture": "http://resources.mlstatic.com/category/images/5194ee98-9095-4ef6-b9a5-c78073fa60af.png"},
   {"id": "MLA1499","name": "Industrias y Oficinas","picture": "http://resources.mlstatic.com/category/images/5f192852-3896-474c-8c31-1c40080fa639.png"},
   {"id": "MLA1459","name": "Inmuebles","picture": "http://resources.mlstatic.com/category/images/cc0eed64-9cfb-4b78-9258-6266475f6427.png"},
   {"id": "MLA1182","name": "Instrumentos Musicales","picture": "http://resources.mlstatic.com/category/images/ec1323d4-1ba1-4de5-a4a2-1089d2cf0953.png"},
@@ -206,8 +206,8 @@ app.get('/api/condition', function(req, res) {
 //----------------------BUSCAR UN PRODUCTO------------------------------------------------------
 
 app.get('/api/product', function(req, res) {    
-  console.log(req.query)
   const { id } = req.query
+  console.log(id)
   try {
     // Check the redis store for the data first
     client.get(`${id}`, async (err, recipe) => {
@@ -219,10 +219,10 @@ app.get('/api/product', function(req, res) {
         })
       } else { // When the data is not found in the cache then we can make request to the server
         const recipe = await axios.get(`https://api.mercadolibre.com/products/${id}`);
-
+        
         // save the record in the cache for subsequent request
-        client.setex(`${id}`, 1440, JSON.stringify(recipe.data));
-
+        client.setex(`${id}`, 14200, JSON.stringify(recipe.data));
+        console.log(response)
         // return the result to the client
         return res.status(200).send({
           error: false,
@@ -235,6 +235,107 @@ app.get('/api/product', function(req, res) {
     console.log(error)
   }
 });
+
+
+app.get('/api/category', function(req, res) {    
+  const { id, number } = req.query
+  console.log( req.query)
+  try {
+    // Check the redis store for the data first
+    client.get(`${id}`, async (err, recipe) => {
+      if (recipe) {
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for category:${id} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&offset=${number}&limit=${30}`);
+        
+        // save the record in the cache for subsequent request
+        client.setex(`category=${id}`, 14200, JSON.stringify(recipe.data));
+        // return the result to the client
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for category:${id} from the server`,
+          data: recipe.data
+        });
+    }
+  }) 
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+
+app.get('/api/sortpricecat', function(req, res) {    
+  console.log(req.query)
+  const { id, price, number } = req.query
+  try {
+    // Check the redis store for the data first
+    client.get(`${id}${number}${price}`, async (err, recipe) => {
+      if (recipe) {
+        console.log("si existe en la cache");
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${id} offset:${number} orderby:${price} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+        console.log("no existe en la cache");
+        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&sort=${price}&offset=${number}&limit=${30}`);
+
+        // save the record in the cache for subsequent request
+        client.setex(`${id}${number}${price}`, 1440, JSON.stringify(recipe.data));
+
+        // return the result to the client
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${id} offset:${number} orderby:${price} from the server`,
+          data: recipe.data
+        });
+    }
+  }) 
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+//----------------------BUSCAR POR CONDICION (usado o no) POR CATEGORIA------------------------------------------------------
+
+app.get('/api/conditioncat', function(req, res) {    
+  console.log(req.query)
+  const { id, number, condition } = req.query
+  try {
+    // Check the redis store for the data first
+    client.get(`${id}${number}${condition}`, async (err, recipe) => {
+      if (recipe) {
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${id} offset:${number} condition:${condition} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&offset=${number}&limit=${30}&condition=${condition}`);
+
+        // save the record in the cache for subsequent request
+        client.setex(`${id}${number}${condition}`, 1440, JSON.stringify(recipe.data));
+
+        // return the result to the client
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${id} offset:${number} condition:${condition} from the server`,
+          data: recipe.data
+        });
+    }
+  }) 
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+
+https://api.mercadolibre.com/sites/MLA/search?category=MLA1055
 
 app.get('/', (req, res) => {
   res.status(200).send("Welcome to MERCADO LIBRE'S API REST")
