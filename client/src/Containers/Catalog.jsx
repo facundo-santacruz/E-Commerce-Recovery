@@ -55,7 +55,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
       return (
         <div className={style.ContenedorPrincipal}>
           
-            <PermanentDrawerLeft txt="products"filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
+            <PermanentDrawerLeft txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
              
           <div className={style.cartas} >
             <div >

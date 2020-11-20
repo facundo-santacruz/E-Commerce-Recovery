@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import FilterCheckboxs from "../Components/FilterCheckboxs";
-export default function CategoriesList({filterValues, type}) {
+export default function CategoriesList({filterValues, type, search}) {
     const [values] =useState(filterValues.values)
     // console.log(values)
     return (
@@ -15,6 +15,7 @@ export default function CategoriesList({filterValues, type}) {
                         results= {cat.results}
                         filter={filterValues.id}
                         type={type}
+                        search={search}
                     />
 
                 )

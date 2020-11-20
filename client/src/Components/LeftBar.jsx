@@ -53,7 +53,7 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
             {filters.map((text, index) => (
             //  <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
               
-            <CategoriesList filterValues={text} type={txt}/>
+            <CategoriesList filterValues={text} type={txt} search={search}/>
 
 
 

@@ -23,9 +23,9 @@ import axios from 'axios';
       payload: category
     }
   }
-  export function getCategoryFilterRequest(search, number, id) {
+  export function getCategoryFilterRequest(search, number, categoria, value) {
     return (dispatch) => {
-      axios.get(`http://localhost:3001/api/filter?search=${search}&&id=${id}&&number=${number}`)
+      axios.get(`http://localhost:3001/api/filter?search=${search}&categoria=${categoria}&value=${value}&number=${number}`)
         .then(response => { dispatch(getCategoryFilter(response.data)) })
         .catch(err => { console.log(err) })
     }

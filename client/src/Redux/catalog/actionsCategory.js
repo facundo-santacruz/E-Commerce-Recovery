@@ -25,7 +25,7 @@ export function getCateg(categorias) {
   }
   export function getCategoryRequest(id, number) {
     return (dispatch) => {
-      axios.get(`http://localhost:3001/api/category?id=${id}&&number=${number}`)
+      axios.get(`http://localhost:3001/api/category?id=${id}&number=${number}`)
         .then(response => { dispatch(getCategory(response.data)) })
         .catch(err => { console.log(err) })
     }

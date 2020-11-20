@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getByCatFilterConditionRequest, getByCatFilterPriceRequest, getCategoryFilterRequest } from '../Redux/catalog/actionsCategory';
+import { getByCatFilterConditionRequest, getByCatFilterPriceRequest, getCategoryFilterRequest } from '../Redux/catalog/actionsCategoryFilter';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';

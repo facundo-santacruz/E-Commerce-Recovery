@@ -9,6 +9,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Categories } from './Containers/Categories'
 import ProductContainerDetail  from "./Containers/Producto/ProductContainerDetail";
 import CatalogCategory from './Containers/CatalogCategory';
+import CatalogCategoryFilter from './Containers/CatalogCategoryFilter';
+
 
 function App() {  
   return (
@@ -31,7 +33,7 @@ function App() {
             <Route exact path="/category/:busqueda/order=:order/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} order={match.params.order} numero={match.params.numero}/>} />
             <Route exact path="/category/:busqueda/condition=:condition/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} condition={match.params.condition} numero={match.params.numero}/>} />
             
-            <Route exact path="/:busqueda/:category=:id/:numero" render ={({match}) => <CatalogCategory search={match.params.busqueda} categoria={match.params.category} value={match.params.id} numero={match.params.numero}/>} />
+            <Route exact path="/products/:busqueda/:category=:id/:numero" render ={({match}) => <CatalogCategoryFilter search={match.params.busqueda} categoria={match.params.category} value={match.params.id} numero={match.params.numero}/>} />
             {/* <Route exact path="/category/:busqueda/order=:order/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} order={match.params.order} numero={match.params.numero}/>} />
             <Route exact path="/category/:busqueda/condition=:condition/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} condition={match.params.condition} numero={match.params.numero}/>} />
              */}
