@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 
-import { getProductRequest } from '../../Redux/actions';
+import { getProductRequest } from '../../Redux/catalog/actionsSearch';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import style from './Catalog.module.css'
 export  function ProductContainerDetail({id,  getProductRequest, product})  {
  
-//   useEffect(() => {
+  useEffect(() => {
 
-//     try {
-//       getProductRequest(id);
+    try {
+      getProductRequest(id);
       
-//     } catch (error) {
-//       console.log(error);
-//     }
-//     }, [getProductRequest, id])
+    } catch (error) {
+      console.log(error);
+    }
+    }, [getProductRequest, id])
   
     
        return (
@@ -30,12 +30,12 @@ const mapStateToProps = state => {
     }
   }
   const mapDispatchToProps = dispatch => {
-    // return {
-    //   dispatch,
-    //   ...bindActionCreators({ getProductRequest }, dispatch)
+    return {
+      dispatch,
+      ...bindActionCreators({ getProductRequest }, dispatch)
     }
   
-//   }
+  }
   
   
   

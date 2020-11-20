@@ -106,7 +106,7 @@ export default function SearchAppBar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-            <NavLink to={`/products/search=${search}`}>
+            <NavLink to={`/products/${search}/0`}>
               <Button id="boton" variant="contained" color="primary">
                 Search
               </Button>

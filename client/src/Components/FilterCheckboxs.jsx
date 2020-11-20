@@ -1,13 +1,17 @@
 import React, {useEffect} from "react";
 
-export default function FilterCheckboxs({id, name, results}) {
+import { Link, NavLink } from 'react-router-dom';
+export default function FilterCheckboxs({id, name, results, type,search}) {
     
     console.log(name)
     return (
         <div>
-            <label style={{    fontSize: "smaller"}}>
-                <input type="checkbox" id={id} value={id}/> {name} ({results})
+                {/* <Link to={`/products/${search}/${name}=${id}/0`}> */}
+            <label style={{     textUnderlinePosition: "under",  fontSize: "smaller"}}>
+                    {/* <input type="checkbox" id={id} value={id}/>  */}
+                    {name} ({results})
             </label>
+                {/* </Link> */}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, GET_PRODUCT, GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME } from './constants';
+import { GET_PRODUCT, GET_PRODUCTS_NAME, GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE,  } from './constants';
 import axios from 'axios';
 
 export function getProducts(allproducts) {
@@ -56,38 +56,30 @@ export function getByConditionRequest(search, number, condition) {
     }
 }
 
-export function getCateg(categorias) {//va a REDUCER
-    return {
-      type: GET_CATEGORIES,
-      payload: categorias
-    }
-  }
-  export function getCategories() {//Va a Catalogo2.jsx
-    return (dispatch) => {
-      axios.get('http://localhost:3001/categories')
-        .then(response => { dispatch(getCateg(response.data)) })
-        .catch(err => { console.log(err) })
-    }
-  }
 
 
   // -----------------ACTIONS PARA BUSCAR INFORMACION DE UN PRODUCTO-----------------------------
-
-
-export function getProductRequest(){
+  
+  export function getProduct(product) {
+      return {
+          type: GET_PRODUCT,
+          payload: product
+      }
+  }
+  
+export function getProductRequest(id){
+    console.log(id)
     return (dispatch) => {
-        axios.get('http://localhost:3001/product')
-        .then(response => {dispatch(getProduct(response.data))})
-        .catch(err => {console.log(err)})
+        axios.get(`http://localhost:3001/api/product?id=${id}`)
+            .then(response => {dispatch(getProduct(response.data))})
+            .catch(err => {console.log(err)})
     }
 }
 
-export function getProduct(product) {
-    return {
-        type: GET_PRODUCT,
-        payload: product
-    }
-}
+
+
+
+
 
 
 

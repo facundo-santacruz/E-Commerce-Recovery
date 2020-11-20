@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getCategories } from '../Redux/actions';
+import { getCategories } from '../Redux/catalog/actionsCategory';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import style from '../Styles/Containers/Categories.module.css'

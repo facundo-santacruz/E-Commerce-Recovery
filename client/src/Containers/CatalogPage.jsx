@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { getProductsRequest } from '../Redux/actions';
+import { getProductsRequest } from '../Redux/actionsSearch';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
-import style from './Catalog.module.css'
+import style from './Catalog.module.css';
+
 export  function CatalogPage({search,  getProductsRequest, products})  {
   // const [ prod, setProducts ] = useState([])
   // const stableSetter = useCallback(() => getProductsRequest(search), [])

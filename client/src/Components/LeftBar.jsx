@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 
 
-export  function PermanentDrawerLeft({search, filter, filters }) {
+export  function PermanentDrawerLeft({txt, search, filter, filters }) {
   const [ condition ] = useState([{id: "new", name: "Nuevo"}, {id: "used", name: "Usado"}])
   console.log(filter)
 
@@ -23,9 +23,9 @@ export  function PermanentDrawerLeft({search, filter, filters }) {
           <ul>
             {filter.map((text, i) => {
               return (
-                <Link to={`/products/${search}/order=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+                <NavLink to={`/${txt}/${search}/order=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
                   <li key={`${text}${i}`} className={style.list}>{text.name}</li>      
-                </Link>
+                </NavLink>
                   )
                 })}
 
@@ -37,7 +37,7 @@ export  function PermanentDrawerLeft({search, filter, filters }) {
           <ul>
             {condition.map((text, index) => {
               return (
-                <NavLink to={`/products/${search}/condition=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+                <NavLink to={`/${txt}/${search}/condition=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
                   <li className={style.list}>{text.name}</li>      
                 </NavLink> 
               )
@@ -53,7 +53,7 @@ export  function PermanentDrawerLeft({search, filter, filters }) {
             {filters.map((text, index) => (
             //  <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
               
-            <CategoriesList filterValues={text}/>
+            <CategoriesList filterValues={text} type={txt} search={search}/>
 
 
 
