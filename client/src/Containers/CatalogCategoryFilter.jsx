@@ -6,7 +6,7 @@ import ProductCard from '../Components/ProductCard';
 import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './Pagination';
 import { PermanentDrawerLeft } from '../Components/LeftBar';
-export  function CatalogCategoryFilterContainer({search,  getCategoryFilterRequest,getByCatFilterPriceRequest, getByCatFilterConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
+export  function CatalogCategoryFilterContainer({search, value, categoria, getCategoryFilterRequest,getByCatFilterPriceRequest, getByCatFilterConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
 
   useEffect(() => {
       console.log(search)
@@ -36,14 +36,14 @@ export  function CatalogCategoryFilterContainer({search,  getCategoryFilterReque
   useEffect(() => {
     if(!condition && !order){
       try {
-        getCategoryFilterRequest(search, numero*30)
+        getCategoryFilterRequest(search, numero*30, categoria ,value)
         // console.log(loadStorage({query: search, offset:numero*30})); 
       } catch (error) {
         console.log(error);
       }
 
     }
-}, [getCategoryFilterRequest, numero, search])
+}, [getCategoryFilterRequest, numero, search, value])
 
 
     if (products && products.results.length > 0){

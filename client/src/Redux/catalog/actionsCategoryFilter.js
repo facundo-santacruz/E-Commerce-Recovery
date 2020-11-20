@@ -1,4 +1,4 @@
-import { GET_CAT_FILTERS,  GET_PRODUCTS_CAT_BY_PRICE,GET_PRODUCTS_CAT_BY_CONDITION } from './constants';
+import { GET_CAT_FILTERS,  GET_PRODUCTS_FILTERS_BY_PRICE,GET_PRODUCTS_FILTERS_BY_CONDITION } from './constants';
 import axios from 'axios';
 
 
@@ -23,45 +23,45 @@ import axios from 'axios';
       payload: category
     }
   }
-  export function getCategoryFilterRequest(filter, id, number) {
+  export function getCategoryFilterRequest(search, number, id) {
     return (dispatch) => {
-      axios.get(`http://localhost:3001/api/filter?${filter}=${id}&&number=${number}`)
-        .then(response => { dispatch(getCategory(response.data)) })
+      axios.get(`http://localhost:3001/api/filter?search=${search}&&id=${id}&&number=${number}`)
+        .then(response => { dispatch(getCategoryFilter(response.data)) })
         .catch(err => { console.log(err) })
     }
 }
 //-------------LLAMADA DESDE ACTIONS PARA BUSCAR POR LIMITE Y PRECIO ASC/DESC------------------------
 
-  export function getByCatPrice(products){
+  export function getByCatFilterPrice(products){
     return {
-        type: GET_PRODUCTS_CAT_BY_PRICE,
+        type: GET_PRODUCTS_FILTERS_BY_PRICE,
         payload: products
     }
 }
 
 
-export function getByCatPriceRequest(id, number, price) {
+export function getByCatFilterPriceRequest(id, number, price) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/sortpricecat?id=${id}&number=${number}&price=${price}`)
-        .then(response => { dispatch(getByCatPrice(response.data))})
+        axios.get(`http://localhost:3001/api/sortpricefilter?id=${id}&number=${number}&price=${price}`)
+        .then(response => { dispatch(getByCatFilterPrice(response.data))})
         .catch(err => {console.log(err)})
     }
 }
 
 //-------------LLAMADA DESDE ACTIONS PARA BUSCAR POR LIMITE Y PRECIO ASC/DESC------------------------
 
-export function getByCatCondition(products){
+export function getByCatFilterCondition(products){
     return {
-        type: GET_PRODUCTS_CAT_BY_CONDITION,
+        type: GET_PRODUCTS_FILTERS_BY_CONDITION,
         payload: products
     }
 }
 
 
-export function getByCatConditionRequest(id, number, condition) {
+export function getByCatFilterConditionRequest(id, number, condition) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/conditioncat?id=${id}&number=${number}&condition=${condition}`)
-        .then(response => { dispatch(getByCatCondition(response.data))})
+        axios.get(`http://localhost:3001/api/conditioncatfilter?id=${id}&number=${number}&condition=${condition}`)
+        .then(response => { dispatch(getByCatFilterCondition(response.data))})
         .catch(err => {console.log(err)})
     }
 }
