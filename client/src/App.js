@@ -31,6 +31,10 @@ function App() {
             <Route exact path="/category/:busqueda/order=:order/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} order={match.params.order} numero={match.params.numero}/>} />
             <Route exact path="/category/:busqueda/condition=:condition/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} condition={match.params.condition} numero={match.params.numero}/>} />
             
+            <Route exact path="/category/:category=:filter/:numero" render ={({match}) => <CatalogCategory search={match.params.category} filter={match.params.filter} numero={match.params.numero}/>} />
+            {/* <Route exact path="/category/:busqueda/order=:order/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} order={match.params.order} numero={match.params.numero}/>} />
+            <Route exact path="/category/:busqueda/condition=:condition/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} condition={match.params.condition} numero={match.params.numero}/>} />
+             */}
         </div>
       </BrowserRouter>
 
