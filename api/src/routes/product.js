@@ -1,4 +1,5 @@
 const app = require('express').Router();
+const axios = require('axios')
 
 const redis = require('redis');
 // make a connection to the local instance of redis
@@ -7,8 +8,11 @@ const client = redis.createClient(6379);
 
 client.on("error", (error) => {
   console.error(error);
- });
+})
 
+ app.get('/', (req, res) => {
+  res.send("Hi World")
+})
 
 // ---------------REALIZA LA PRIMERA BUSQUEDA DE PRODUCTO----------
 app.get('/search', function(req, res) {    
@@ -113,4 +117,5 @@ app.get('/condition', function(req, res) {
     console.log(error)
   }
 });
-  
+
+module.exports = app

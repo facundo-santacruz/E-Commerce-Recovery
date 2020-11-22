@@ -1,11 +1,16 @@
 var express = require('express')
 var http = require('http')
+
+const routes = require('./routes/index.js');
 // Esto sirve para llamar a las rutas creado en otra carpeta
-const routes = require('./routes/index.js')
 
+// const redis = require('redis');
+// // make a connection to the local instance of redis
+// const client = redis.createClient(6379);
 
+const app = express();
+app.name = 'API';
 
-var app = express()
 
 
 http.createServer(app).listen(3001, () => {
@@ -20,6 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/', routes);
 
 // Error catching endware.
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
@@ -30,4 +36,4 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 
-module.exports = server;
+module.exports = app
