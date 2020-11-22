@@ -25,7 +25,7 @@ import axios from 'axios';
   }
   export function getCategoryFilterRequest(search, number, categoria, value) {
     return (dispatch) => {
-      axios.get(`http://localhost:3001/api/filter?search=${search}&categoria=${categoria}&value=${value}&number=${number}`)
+      axios.get(`http://localhost:3001/api/filter/filter?search=${search}&categoria=${categoria}&value=${value}&number=${number}`)
         .then(response => { dispatch(getCategoryFilter(response.data)) })
         .catch(err => { console.log(err) })
     }
@@ -42,7 +42,7 @@ import axios from 'axios';
 
 export function getByCatFilterPriceRequest(id, number, price) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/sortpricefilter?id=${id}&number=${number}&price=${price}`)
+        axios.get(`http://localhost:3001/api/filter/sort_price_filter?id=${id}&number=${number}&price=${price}`)
         .then(response => { dispatch(getByCatFilterPrice(response.data))})
         .catch(err => {console.log(err)})
     }
@@ -60,7 +60,7 @@ export function getByCatFilterCondition(products){
 
 export function getByCatFilterConditionRequest(id, number, condition) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/conditioncatfilter?id=${id}&number=${number}&condition=${condition}`)
+        axios.get(`http://localhost:3001/api/filter/condition_cat_filter?id=${id}&number=${number}&condition=${condition}`)
         .then(response => { dispatch(getByCatFilterCondition(response.data))})
         .catch(err => {console.log(err)})
     }

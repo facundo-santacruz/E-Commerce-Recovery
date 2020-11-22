@@ -44,3 +44,5 @@ app.get('/api/filter', function(req, res) {
         console.log(error)
     }
 });
+
+module.exports = app

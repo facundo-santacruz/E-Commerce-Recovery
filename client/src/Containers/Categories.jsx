@@ -14,7 +14,7 @@ export  function Categories({categories,  getCategories})  {
   useEffect(() => {
     try {
       // getCategories()
-      Axios.get('http://localhost:3001/categories')
+      Axios.get('http://localhost:3001/api/category/categories')
       .then(response => { setCategorias(response.data.data) })
       } catch (error) {
         console.log(error)

@@ -10,7 +10,7 @@ export function getCateg(categorias) {
   }
   export function getCategories() {
     return (dispatch) => {
-      axios.get('http://localhost:3001/categories')
+      axios.get('http://localhost:3001/api/category/categories')
         .then(response => { dispatch(getCateg(response.data)) })
         .catch(err => { console.log(err) })
     }
@@ -25,7 +25,7 @@ export function getCateg(categorias) {
   }
   export function getCategoryRequest(id, number) {
     return (dispatch) => {
-      axios.get(`http://localhost:3001/api/category?id=${id}&number=${number}`)
+      axios.get(`http://localhost:3001/api/category/category?id=${id}&number=${number}`)
         .then(response => { dispatch(getCategory(response.data)) })
         .catch(err => { console.log(err) })
     }
@@ -42,7 +42,7 @@ export function getCateg(categorias) {
 
 export function getByCatPriceRequest(id, number, price) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/sortpricecat?id=${id}&number=${number}&price=${price}`)
+        axios.get(`http://localhost:3001/api/category/sort_price_cat?id=${id}&number=${number}&price=${price}`)
         .then(response => { dispatch(getByCatPrice(response.data))})
         .catch(err => {console.log(err)})
     }
@@ -60,7 +60,7 @@ export function getByCatCondition(products){
 
 export function getByCatConditionRequest(id, number, condition) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/conditioncat?id=${id}&number=${number}&condition=${condition}`)
+        axios.get(`http://localhost:3001/api/category/condition_cat?id=${id}&number=${number}&condition=${condition}`)
         .then(response => { dispatch(getByCatCondition(response.data))})
         .catch(err => {console.log(err)})
     }

@@ -14,7 +14,7 @@ export function getProducts(allproducts) {
 export  function getProductsRequest(search, number) {
     console.log(search)
     return (dispatch) => {
-         axios.get(`http://localhost:3001/api/search?search=${search}&number=${number}`)
+         axios.get(`http://localhost:3001/api/products/search?search=${search}&number=${number}`)
         .then(response => {  dispatch(getProducts(response.data)
              )
             })
@@ -33,7 +33,7 @@ export function getByPrice(products){
 
 export function getByPriceRequest(search, number, price) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/sortprice?search=${search}&number=${number}&price=${price}`)
+        axios.get(`http://localhost:3001/api/products/sortprice?search=${search}&number=${number}&price=${price}`)
         .then(response => { dispatch(getByPrice(response.data))})
         .catch(err => {console.log(err)})
     }
@@ -70,7 +70,7 @@ export function getByConditionRequest(search, number, condition) {
 export function getProductRequest(id){
     console.log(id)
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/product?id=${id}`)
+        axios.get(`http://localhost:3001/api/products/product?id=${id}`)
             .then(response => {dispatch(getProduct(response.data))})
             .catch(err => {console.log(err)})
     }

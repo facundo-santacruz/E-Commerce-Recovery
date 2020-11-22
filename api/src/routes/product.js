@@ -85,7 +85,7 @@ app.get('/search', function(req, res) {
 
 //----------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES Y UN ORDEN ASC/DESC ----------------------------
 
-app.get('/sortprice', function(req, res) {    
+app.get('/sort_price', function(req, res) {    
   console.log(req.query)
   const { search, price, number } = req.query
   try {
