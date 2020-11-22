@@ -1,6 +1,7 @@
 const app = require('express').Router();
 const axios = require('axios')
 
+const { response } = require('express')
 const redis = require('redis');
 // make a connection to the local instance of redis
 const client = redis.createClient(6379);
@@ -10,9 +11,41 @@ client.on("error", (error) => {
   console.error(error);
 })
 
- app.get('/', (req, res) => {
-  res.send("Hi World")
-})
+// //----------------------BUSCAR UN PRODUCTO------------------------------------------------------
+
+app.get('/product', function(req, res) {    
+  const { id } = req.query
+  console.log(id)
+  try {
+    // Check the redis store for the data first
+    client.get(`${id}`, async (err, recipe) => {
+      if (recipe) {
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${id} from the cache`,
+          data: JSON.parse(recipe)
+        })
+      } else { // When the data is not found in the cache then we can make request to the server
+        const recipe = await axios.get(`https://api.mercadolibre.com/products/${id}`);
+        
+        // save the record in the cache for subsequent request
+        client.setex(`${id}`, 14200, JSON.stringify(recipe.data));
+        console.log(response)
+        // return the result to the client
+        return res.status(200).send({
+          error: false,
+          message: `Recipe for query:${id} from the server`,
+          data: recipe.data
+        });
+    }
+  }) 
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+
+
 
 // ---------------REALIZA LA PRIMERA BUSQUEDA DE PRODUCTO----------
 app.get('/search', function(req, res) {    

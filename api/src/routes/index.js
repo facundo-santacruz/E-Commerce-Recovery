@@ -30,11 +30,13 @@
 
 const { Router } = require('express');
 const productRouter = require('./product.js')
+const categoryRouter = require('./category.js')
 const router = Router();
 
 
 
 router.use('/products', productRouter);
+router.use('/category', categoryRouter);
 // router.get('/', (req, res) => {
 //   res.send("Hi World")
 // })
