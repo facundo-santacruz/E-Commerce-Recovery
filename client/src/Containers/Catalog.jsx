@@ -27,8 +27,8 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
   }, [getByPriceRequest, order, numero])
 
   useEffect(() => {
-    if(condition){
-      try {
+    if(condition){ 
+           try {
         getByConditionRequest(search, numero*30, condition);
         
       } catch (error) {
@@ -40,7 +40,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
     
   useEffect(() => {
     if(!condition && !order){
-      try {
+            try {
         getProductsRequest(search, numero*30)
         // console.log(loadStorage({query: search, offset:numero*30})); 
       } catch (error) {
@@ -48,7 +48,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
       }
 
     }
-}, [getProductsRequest, numero, search])
+  }, [getProductsRequest, numero, search])
 
 
     if (products && products.results.length > 0){

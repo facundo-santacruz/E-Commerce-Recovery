@@ -33,7 +33,7 @@ export function getByPrice(products){
 
 export function getByPriceRequest(search, number, price) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/products/sortprice?search=${search}&number=${number}&price=${price}`)
+        axios.get(`http://localhost:3001/api/products/sort_price?search=${search}&number=${number}&price=${price}`)
         .then(response => { dispatch(getByPrice(response.data))})
         .catch(err => {console.log(err)})
     }

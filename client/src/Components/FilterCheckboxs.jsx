@@ -5,7 +5,7 @@ export default function FilterCheckboxs({id, name, results, type,search}) {
     
     return (
         <div>
-                <Link to={`/products/${search}/filter${name}=${id}/0`}>
+                <Link to={encodeURIComponent(`/products/${search}/FA=${name}=${id}/0`)}>
             <label style={{     textUnderlinePosition: "under",  fontSize: "smaller"}}>
                     {/* <input type="checkbox" id={id} value={id}/>  */}
                     {name} ({results})
