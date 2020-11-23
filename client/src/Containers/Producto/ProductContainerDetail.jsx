@@ -24,9 +24,9 @@ export  function ProductContainerDetail({id,  getProductRequest, product})  {
   }
 
 const mapStateToProps = state => {
-  const  product  = state  
+  
   return {
-       product
+       product: state.product
     }
   }
   const mapDispatchToProps = dispatch => {

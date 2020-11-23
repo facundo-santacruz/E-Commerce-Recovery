@@ -8,12 +8,9 @@ import { useState } from 'react';
 import Axios from 'axios';
 export  function Categories({categories,  getCategories})  {
   const [ categorias, setCategorias ] = useState([])
-  // const stableSetter = useCallback(() => getProductsRequest(search), [])
-// const [busqueda, setBusqueda ] = useState(search)
-
   useEffect(() => {
     try {
-      // getCategories()
+      // getCategories()W
       Axios.get('http://localhost:3001/api/category/categories')
       .then(response => { setCategorias(response.data.data) })
       } catch (error) {

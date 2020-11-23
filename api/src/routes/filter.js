@@ -12,7 +12,7 @@ client.on("error", (error) => {
 })
 
 
-app.get('/api/filter', function(req, res) {    
+app.get('/filter', function(req, res) {    
     console.log(req.query);
         try {
         const { search, value, number, categoria } = req.query;

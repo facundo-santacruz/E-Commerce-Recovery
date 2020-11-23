@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 
 
-export  function UsePagination({paging, search, order, condition, text}) {
+export  function UsePagination({paging, search, order, condition, txt}) {
   const [ total, setTotal ] = useState(paging.total<=1000 ? parseInt(paging.total / 30) + 1 : 33)
   const classes = useStyles();
   const { items } = usePagination({
@@ -46,7 +46,7 @@ export  function UsePagination({paging, search, order, condition, text}) {
                 children = '…';
               } else if (type === 'page') {
                 children = (
-                  <NavLink to={`/${text}/${search}/condition=${condition}/${page}`}>
+                  <NavLink to={`/${txt}/${search}/condition=${condition}/${page}`}>
                     <button type="button" style={{ fontWeight: selected ? 'bold' : undefined }} {...item}>
                       {page}
                     </button>
@@ -54,7 +54,7 @@ export  function UsePagination({paging, search, order, condition, text}) {
                 );
               } else {
                 children = (
-                  <NavLink to={`/${text}/${search}/condition=${condition}/${page}`}>
+                  <NavLink to={`/${txt}/${search}/condition=${condition}/${page}`}>
                     <button type="button" {...item}>
                       {type}
                     </button>
@@ -79,7 +79,7 @@ export  function UsePagination({paging, search, order, condition, text}) {
               children = '…';
             } else if (type === 'page') {
               children = (
-                <NavLink to={`/${text}/${search}/order=${order}/${page}`}>
+                <NavLink to={`/${txt}/${search}/order=${order}/${page}`}>
                   <button type="button" style={{ fontWeight: selected ? 'bold' : undefined }} {...item}>
                     {page}
                   </button>
@@ -87,7 +87,7 @@ export  function UsePagination({paging, search, order, condition, text}) {
               );
             } else {
               children = (
-                <NavLink to={`/${text}/${search}/${page}`}>
+                <NavLink to={`/${txt}/${search}/${page}`}>
                   <button type="button" {...item}>
                     {type}
                   </button>
@@ -112,7 +112,7 @@ export  function UsePagination({paging, search, order, condition, text}) {
               children = '…';
             } else if (type === 'page') {
               children = (
-                <NavLink to={`/${text}/${search}/${page}`}>
+                <NavLink to={`/${txt}/${search}/${page}`}>
                   <button type="button" style={{ fontWeight: selected ? 'bold' : undefined }} {...item}>
                     {page}
                   </button>
@@ -120,7 +120,7 @@ export  function UsePagination({paging, search, order, condition, text}) {
               );
             } else {
               children = (
-                <NavLink to={`/${text}/${search}/${page}`}>
+                <NavLink to={`/${txt}/${search}/${page}`}>
                   <button type="button" {...item}>
                     {type}
                   </button>

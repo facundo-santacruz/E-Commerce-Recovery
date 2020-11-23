@@ -15,7 +15,7 @@ client.on("error", (error) => {
 
 app.get('/product', function(req, res) {    
   const { id } = req.query
-  console.log(id)
+  console.log(req.query)
   try {
     // Check the redis store for the data first
     client.get(`${id}`, async (err, recipe) => {
@@ -30,7 +30,6 @@ app.get('/product', function(req, res) {
         
         // save the record in the cache for subsequent request
         client.setex(`${id}`, 14200, JSON.stringify(recipe.data));
-        console.log(response)
         // return the result to the client
         return res.status(200).send({
           error: false,
@@ -40,7 +39,7 @@ app.get('/product', function(req, res) {
     }
   }) 
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 });
 

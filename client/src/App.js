@@ -2,9 +2,7 @@
 import './App.css';
 import SimpleContainer from './Containers/Catalog';
 import Nav from './Containers/Nav';
-import { BrowserRouter, Route } from "react-router-dom";
-// import PermanentDrawerLeft from './Components/LeftBar';
-// import { UsePagination } from './Containers/Pagination';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import CarouselContainer from "./Containers/Carrousel";  
 import { Categories } from './Containers/Categories'
 import ProductContainerDetail  from "./Containers/Producto/ProductContainerDetail";
@@ -19,7 +17,7 @@ function App() {
       
         <Route path="/" component={Nav} />
         <Route exact path="/" component={Categories} />
-        <div >
+        <Switch >
           
             {/* <Route exact path="/products/search=:busqueda" render={({match}) => <SimpleContainer search={match.params.busqueda}/>} /> */}
             
@@ -33,11 +31,11 @@ function App() {
             <Route exact path="/category/:busqueda/order=:order/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} order={match.params.order} numero={match.params.numero}/>} />
             <Route exact path="/category/:busqueda/condition=:condition/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} condition={match.params.condition} numero={match.params.numero}/>} />
             
-            <Route exact path="/products/:busqueda/:category=:id/:numero" render ={({match}) => <CatalogCategoryFilter search={match.params.busqueda} categoria={match.params.category} value={match.params.id} numero={match.params.numero}/>} />
+            <Route exact path="/products/:busqueda/filter:category=:id/:numero" render ={({match}) => <CatalogCategoryFilter search={match.params.busqueda} categoria={match.params.category} value={match.params.id} numero={match.params.numero}/>} />
             {/* <Route exact path="/category/:busqueda/order=:order/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} order={match.params.order} numero={match.params.numero}/>} />
             <Route exact path="/category/:busqueda/condition=:condition/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} condition={match.params.condition} numero={match.params.numero}/>} />
              */}
-        </div>
+        </Switch>
       </BrowserRouter>
 
     </div>

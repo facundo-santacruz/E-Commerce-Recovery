@@ -1,6 +1,6 @@
 const app = require('express').Router();
 const axios = require('axios')
-const cat = require('../models/categories')
+const cat = require('../models/categories.js')
 
 const redis = require('redis');
 // make a connection to the local instance of redis
@@ -48,7 +48,7 @@ app.get('/categories', function(req,res){
 });
 // })
 
-app.get('/', function(req, res) {    
+app.get('/category', function(req, res) {    
       const { id, number } = req.query
       console.log( req.query)
       try {
