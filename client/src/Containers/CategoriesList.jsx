@@ -5,7 +5,7 @@ export default function CategoriesList({filterValues, type, search}) {
     // console.log(values)
     return (
         <div>
-            <h5>{filterValues.name}</h5>
+            <h3>{filterValues.name}</h3>
             {values.map(cat => { 
                 return (
                     <FilterCheckboxs 

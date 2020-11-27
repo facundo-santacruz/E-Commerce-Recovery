@@ -5,7 +5,7 @@ export default function FilterCheckboxs({id, name, filter, type, results, type,s
     
     return (
         <div>
-                <NavLink to={`/products/${search}/${filter}/${id}/${0}`}>
+                <NavLink to={`/categorie/${search}/${filter}/${id}/${0}`}>
             <label style={{     textUnderlinePosition: "under",  fontSize: "smaller"}}>
                     {/* <input type="checkbox" id={id} value={id}/>  */}
                     {name} ({results})

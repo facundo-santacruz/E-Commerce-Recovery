@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
 import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './Pagination';
-import { PermanentDrawerLeft } from '../Components/LeftBar';
+import { PermanentDrawerLeft } from '../Components/LeftBarCategory';
 export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatPriceRequest, getByCatConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
 
   useEffect(() => {
@@ -49,9 +49,7 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatP
     if (products && products.results.length > 0){
       return (
         <div className={style.ContenedorPrincipal}>
-          
-            <PermanentDrawerLeft txt="category" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
-             
+            <PermanentDrawerLeft txt="category" filters={categories.available_filters} filter={filter.available_sorts} price={order}></PermanentDrawerLeft>
           <div className={style.cartas} >
             <div >
               {products.results.map((prod) => {

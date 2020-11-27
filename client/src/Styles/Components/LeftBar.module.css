@@ -32,9 +32,9 @@
     position: fixed;
     height: 100%;
     text-align: initial;
-    min-width: 200px;
+    min-width: 160px;
     overflow: scroll;
-   
+    font-size: smaller;
   }
   
   .listaCategoria{
