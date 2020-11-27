@@ -47,112 +47,21 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
           </ul>
 
         </div>
-        <div>
+        {/* <div>
       
            <h3>Categorias</h3>
             {filters.map((text, index) => (
-            //  <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
-              
+             
             <CategoriesList filterValues={text} type={txt} search={search}/>
 
 
 
 
-
-
-              //  <button key={text} 
-              //  // onClick={changeProductsCondition(text.id)}
-              //  >
-              //    {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
-              //    <ListItemText primary=
-              //    // {<a href={`/products/${search}/${text.id}/${0}`}>
-              //      {text.name}
-              //      // </a>} 
-              //      />
-              //  />
-              
-            //  {/* </NavLink>  */}
            ))}
-         </div>
+         </div> */}
       </div>
     </div>
   )
 
-
-      
-  //   <div className={style.ContenedorPrincipal}>
-      
-  //     <CssBaseline />
-      
-  //     <Drawer className={style.ContenedorPrincipal}
-  //       variant="permanent"
-  //       anchor="left"
-  //     >
-  //       <div />
-        
-  //       <List>
-  //         <h3>Buscar por Precio</h3>
-  //         {filter.map((text, index) => (
-  //           <NavLink to={`/products/${search}/order=${text.id}/${0}`}>
-
-  //             <ListItem button key={text} 
-  //             // onClick={changeProducts(text.id)}
-  //             >
-  //               <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon>
-  //               <ListItemText primary=
-  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
-  //                 {text.name}
-  //                 // </a>} 
-  //                 />
-  //             </ListItem>
-              
-  //           </NavLink> 
-  //         ))}
-  //       </List>
-      
-  //       <List>
-      
-  //         <h3>Buscar por Condición</h3>
-  //         {condition.map((text, index) => (
-  //           <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
-
-  //             <ListItem button key={text}  >
-  //               <ListItemText primary=
-  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
-  //                 {text.name}
-  //                 // </a>} 
-  //                 />
-  //             </ListItem>
-              
-  //           </NavLink> 
-  //         ))}
-  //       </List>
-  //       <List>
-      
-  //         <h3>Categorias</h3>
-  //         {filters.map((text, index) => (
-  //           <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
-
-  //             <ListItem button key={text} 
-  //             // onClick={changeProductsCondition(text.id)}
-  //             >
-  //               {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
-  //               <ListItemText primary=
-  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
-  //                 {text.name}
-  //                 // </a>} 
-  //                 />
-  //             </ListItem>
-              
-  //           </NavLink> 
-  //         ))}
-  //       </List>
-  //     </Drawer>
-  //     <main className={classes.content}>
-  //       <div className={classes.toolbar} />
-        
-  //     </main>
-  //   </div>
-  // );
 }
 
