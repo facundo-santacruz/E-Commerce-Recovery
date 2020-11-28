@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
 import style from '../Styles/Containers/Catalog.module.css'
-import { UsePagination } from './Pagination';
+import { UsePagination } from './PaginationCategory';
 import { PermanentDrawerLeft } from '../Components/LeftBarCategory';
 export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatPriceRequest, getByCatConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
 
@@ -49,7 +49,7 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatP
     if (products && products.results.length > 0){
       return (
         <div className={style.ContenedorPrincipal}>
-            <PermanentDrawerLeft txt="category" filters={categories.available_filters} filter={filter.available_sorts} price={order}></PermanentDrawerLeft>
+            <PermanentDrawerLeft txt="category" search={search} filters={categories.available_filters} filter={filter.available_sorts} price={order}></PermanentDrawerLeft>
           <div className={style.cartas} >
             <div >
               {products.results.map((prod) => {
@@ -68,7 +68,7 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatP
                 )
             })}
             </div>
-            <UsePagination text="category" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
+            <UsePagination  search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
           </div>
 
         </div>

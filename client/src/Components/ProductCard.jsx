@@ -6,7 +6,9 @@ export default function RecipeReviewCard({title, price, id, currency_id, quantit
 
   return (
     // <div className={style.cardProd}  >
-      <NavLink to={`/product/${id}`}className={style.cardProd}>
+      <NavLink 
+        to={`/product/${id}`} 
+        className={style.cardProd}>
         <div style={{width:"160px", height:"160px", marginLeft:"10%"  }}>
           <img src={image} className={`card-img-top ${style.imagen}`} alt={title} />
 

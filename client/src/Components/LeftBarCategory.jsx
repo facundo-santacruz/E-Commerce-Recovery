@@ -49,30 +49,12 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
         </div>
         <div>
       
-           
+{/*            
             {filters.map((text, index) => (
-            //  <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
               
             <CategoriesList filterValues={text} type={txt} search={search}/>
 
-
-
-
-
-
-              //  <button key={text} 
-              //  // onClick={changeProductsCondition(text.id)}
-              //  >
-              //    {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
-              //    <ListItemText primary=
-              //    // {<a href={`/products/${search}/${text.id}/${0}`}>
-              //      {text.name}
-              //      // </a>} 
-              //      />
-              //  />
-              
-            //  {/* </NavLink>  */}
-           ))}
+           ))} */}
          </div>
       </div>
     </div>

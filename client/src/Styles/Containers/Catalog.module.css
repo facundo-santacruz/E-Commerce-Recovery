@@ -1,6 +1,6 @@
 .cartas{
   display: flex;
-  left: 200px;
+  left: 128px;
   position: absolute;
   right: 10%;
   min-width: 300px;
