@@ -24,6 +24,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 1- fork the Repo
+
 2. Open a terminal, select the place to clone the repo
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
