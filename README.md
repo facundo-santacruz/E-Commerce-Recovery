@@ -48,6 +48,16 @@ To get a local copy up and running follow these simple example steps.
      cd api
      npm start
    ```
+   
+6. Open  another terminal
+ ```sh
+    redis-server
+   ```
+   
+7. Open  another terminal
+ ```sh
+    redis-cli
+   ```
 ## Usage
 
 This application is used to search files by category, by search and also by price, all Paged.
