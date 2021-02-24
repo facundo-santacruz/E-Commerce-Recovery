@@ -24,14 +24,12 @@ export  function Categories({categories,  getCategories})  {
         <div className={style.cartas}>
           {categorias.map((cat) => {
             return (
-              <div>
-                <CategoryCard  
-                  key={cat.id}
-                  id={cat.id}
-                  name= {cat.name}
-                  picture= {cat.picture}
-                />
-              </div>
+              <CategoryCard  
+                key={cat.id}
+                id={cat.id}
+                name= {cat.name}
+                picture= {cat.picture}
+              />
             )
           })}
         </div>
@@ -39,10 +37,9 @@ export  function Categories({categories,  getCategories})  {
 
     }else {
       return (
-      <div>
-        <h1>No hay categorias</h1>
-      </div>
-
+        <div>
+          <h1>No hay categorias</h1>
+        </div>
       )
     }
     
