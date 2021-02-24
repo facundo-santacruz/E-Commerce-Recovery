@@ -8,11 +8,11 @@ import { Categories } from './Containers/Categories'
 import ProductContainerDetail  from "./Containers/Producto/ProductContainerDetail";
 import CatalogCategory from './Containers/CatalogCategory';
 import CatalogCategoryFilter from './Containers/CatalogCategoryFilter';
-
+import style from "./App.css";
 
 function App() {  
   return (
-    <div className="App" style={{background: "#ededed"}}>
+    <div className="App">
       <BrowserRouter >
       
         <Route path="/" component={Nav} />

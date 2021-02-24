@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import style from '../Styles/Containers/Categories.module.css'
 
 export default function CategoryCard({ id, picture, name}) {
 
   return (
-    <NavLink to={`/category/${id}/0`}>
+    <Link to={`/category/${id}/0`}>
       <div className={style.cardProd}  >
 
         <div style={{width:"160px", height:"160px", marginLeft:"10%"  }}>
@@ -18,6 +18,6 @@ export default function CategoryCard({ id, picture, name}) {
         </div> 
           
       </div>
-    </NavLink>
+    </Link>
   );
 }

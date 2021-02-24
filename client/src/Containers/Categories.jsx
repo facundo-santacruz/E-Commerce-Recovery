@@ -10,7 +10,6 @@ export  function Categories({categories,  getCategories})  {
   const [ categorias, setCategorias ] = useState([])
   useEffect(() => {
     try {
-      // getCategories()W
       Axios.get('http://localhost:3001/api/category/categories')
       .then(response => { setCategorias(response.data.data) })
       } catch (error) {
@@ -22,15 +21,15 @@ export  function Categories({categories,  getCategories})  {
     },[])
     if (categorias && categorias.length > 0){
       return (
-        <div className={`card-deck ${style.cartas}`}>
+        <div className={style.cartas}>
           {categorias.map((cat) => {
             return (
               <div>
                 <CategoryCard  
-                key={cat.id}
-                id={cat.id}
-                name= {cat.name}
-                picture= {cat.picture}
+                  key={cat.id}
+                  id={cat.id}
+                  name= {cat.name}
+                  picture= {cat.picture}
                 />
               </div>
             )

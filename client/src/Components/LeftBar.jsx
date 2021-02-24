@@ -18,39 +18,37 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
     
     <div className={style.Contenedor}>
       <div className={style.listaCategorias}>
-        <div className="list-group" style={{ width: "100%"}}>
+        {/* <div  style={{ width: "100%"}}> */}
           <h4>Buscar por Orden</h4>
           <ul>
             {filter.map((text, i) => {
               return (
-                <NavLink to={`/${txt}/${search}/order=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+                <Link to={`/${txt}/${search}/order=${text.id}/${0}`} className={style.link} >
                   <li key={`${text}${i}`} className={style.list}>{text.name}</li>      
-                </NavLink>
+                </Link>
                   )
                 })}
 
 
           </ul>
-        </div>
-        <div>
+        {/* </div> */}
+        {/* <div> */}
           <h4>Buscar por Condición</h4>
           <ul>
             {condition.map((text, index) => {
               return (
-                <NavLink to={`/${txt}/${search}/condition=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+                <Link to={`/${txt}/${search}/condition=${text.id}/${0}`} >
                   <li className={style.list}>{text.name}</li>      
-                </NavLink> 
+                </Link> 
               )
             }
             )}
 
           </ul>
 
-        </div>
+        {/* </div> */}
         <div>
-      
-           
-            {filters.map((text, index) => (
+          {filters.map((text, index) => (
             //  <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
               
             <CategoriesList filterValues={text} type={txt} search={search}/>

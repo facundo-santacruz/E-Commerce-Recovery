@@ -25,7 +25,7 @@
       min-width: 300px;
       /* justify-content: space-around; */
       /* width: 100%; */
-      background: radial-gradient(gray, transparent);
+      background: radial-gradient(rgb(236, 231, 231), transparent);
     }
     /*
      .cardProd:hover, .card.flip{  
