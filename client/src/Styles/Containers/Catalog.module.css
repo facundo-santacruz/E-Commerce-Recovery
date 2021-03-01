@@ -1,26 +1,32 @@
+.ContenedorPrincipal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 90%;
+  /* position: ; */
+}
+
+.ContenedorCartasPag{
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  width: 60%;
+
+  /* right: 0; */
+}
+
 .cartas{
   display: flex;
-  left: 128px;
-  position: absolute;
-  right: 10%;
-  min-width: 300px;
-  flex-direction: column;
-  overflow: visible;
-}
-
-
-.ContenedorPrincipal {
   position: relative;
-  display: flex;
-  top: 10px;
-  width: 100%;
-  left: 5%;
-  
+  flex-direction: column;
+  right: 0;
+  /* overflow: visible; */
 }
 
-@media (max-width: 600px) {
+
+
+/* @media (max-width: 600px) {
   .ContenedorPrincipal {
-    left: 1%;
     top: 70px;
   }
-}
+} */

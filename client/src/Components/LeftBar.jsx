@@ -18,33 +18,25 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
     
     <div className={style.Contenedor}>
       <div className={style.listaCategorias}>
-        {/* <div  style={{ width: "100%"}}> */}
-          <h4>Buscar por Orden</h4>
-          <ul>
-            {filter.map((text, i) => {
-              return (
-                <Link to={`/${txt}/${search}/order=${text.id}/${0}`} className={style.link} >
-                  <li key={`${text}${i}`} className={style.list}>{text.name}</li>      
-                </Link>
-                  )
-                })}
-
-
-          </ul>
-        {/* </div> */}
-        {/* <div> */}
-          <h4>Buscar por Condición</h4>
-          <ul>
+        <h4>Buscar por Orden</h4>
+          {filter.map((text, i) => {
+            return (
+              <NavLink to={`/${txt}/${search}/order=${text.id}/${0}`} className={style.list} >
+                <label key={`${text}${i}`} className={style.list}>{text.name}</label>      
+              </NavLink>
+            )
+          })}
+        
+        <h4>Buscar por Condición</h4>
             {condition.map((text, index) => {
               return (
-                <Link to={`/${txt}/${search}/condition=${text.id}/${0}`} >
-                  <li className={style.list}>{text.name}</li>      
+                <Link to={`/${txt}/${search}/condition=${text.id}/${0}`} className={style.list} >
+                  <label className={style.list}>{text.name}</label>      
                 </Link> 
               )
             }
             )}
 
-          </ul>
 
         {/* </div> */}
         <div>

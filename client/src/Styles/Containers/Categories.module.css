@@ -1,52 +1,53 @@
 .Contenedor{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
     
 }
 
 .cartas{
-    /* display: flex; */
-    position: relative;
-    width: 85%;
-    left: 7.5%;
-    min-width: 300px;
-    flex-direction: column;
+  /* display: flex; */
+  position: relative;
+  width: 90%;
+  min-width: 300px;
+  flex-direction: column;
+  left: 5%
 }
 
 
 .cardProd {
-    align-items: center;
-    /* padding-left: 10px; */
-    /* padding-right: 10px; */
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-    height: 220px;
-    border-radius: 20px;
-    border: 1px solid black;
-    min-width: 300px;
-      /* justify-content: space-around; */
-      width: 100%;
-      background: rgb(175, 210, 214);
-      text-decoration: none;
-    }
-    /*
-     .cardProd:hover, .card.flip{  
-    } */
+  align-items: center;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  height: 220px;
+  border-radius: 20px;
+  border: 1px solid black;
+  min-width: 300px;
+    /* justify-content: space-around; */
+    width: 100%;
+    background: rgb(175, 210, 214);
+    text-decoration: none;
+}
+  /*
+    .cardProd:hover, .card.flip{  
+} */
   
 
     .cardProd:hover{
       height: 230px;
-      
      background-color:  blue;
     }
-   .imagen{
-  
-    height: 160px;
-    width: 160px;
-  }
+.imagen{
+  height: 160px;
+  width: 160px;
+}
 
-  .text{
-    margin-left:10%;
-    color: black;
-  }
+.text{
+  margin-left:10%;
+  color: black;
+}
+
+
+  

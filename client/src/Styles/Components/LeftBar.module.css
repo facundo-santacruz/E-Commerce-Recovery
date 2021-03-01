@@ -1,20 +1,17 @@
 /* The side navigation menu */
 .Contenedor{
-    position: fixed;
     height: 100%;
     text-align: initial;
-    min-width: 160px;
-    overflow: scroll;
-    font-size: smaller;
-    
+    /* overflow: scroll; */
+    width: 30%;
+    /* margin-right: 5%; */
   }
   
-  .listaCategoria{
+  .listaCategorias{
     display: flex;
-    z-index: -1;
+    flex-direction: column;
     margin-top: 2%;
     position: fixed;
-    min-width: 100px;
     text-align: justify;
     height: 100%;
   }
@@ -29,8 +26,11 @@
   }
   
   .list{
+    
     color: black;
     text-decoration:none;
+
+    font-size: smaller;
 
   }
   .list:hover {
@@ -39,6 +39,12 @@
   @media (max-width: 600px) {
     .Contenedor {
       width: 7%;
+    }
+  }
+
+  @media (max-width: 500px){
+    .Contenedor {
+      visibility: hidden;
     }
   }
   

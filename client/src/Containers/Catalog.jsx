@@ -55,10 +55,9 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
       return (
         <div className={style.ContenedorPrincipal}>
           
-            <PermanentDrawerLeft txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
-             
-          <div className={style.cartas} >
-            <div >
+          <PermanentDrawerLeft txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
+          <div className={style.ContenedorCartasPag} >
+            <div className={style.cartas}>
               {products.results.map((prod) => {
                 
                 return (
@@ -73,7 +72,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
                       condition= {prod.condition}
                     />
                 )
-            })}
+              })}
             </div>
             <UsePagination txt="products" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
           </div>

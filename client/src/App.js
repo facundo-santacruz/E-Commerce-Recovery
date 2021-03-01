@@ -17,8 +17,7 @@ function App() {
       
         <Route path="/" component={Nav} />
         <Route exact path="/" component={Categories} />
-        <div >
-          
+        
             {/* <Route exact path="/products/search=:busqueda" render={({match}) => <SimpleContainer search={match.params.busqueda}/>} /> */}
             
             {/* <Route  path="/products" render={({match}) => <PermanentDrawerLeft />} /> */}
@@ -35,7 +34,6 @@ function App() {
             {/* <Route exact path="/category/:busqueda/order=:order/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} order={match.params.order} numero={match.params.numero}/>} />
             <Route exact path="/category/:busqueda/condition=:condition/:numero" render={({match}) => <CatalogCategory search={match.params.busqueda} condition={match.params.condition} numero={match.params.numero}/>} />
              */}
-        </div>
       </BrowserRouter>
 
     </div>

@@ -43,44 +43,42 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatP
       }
 
     }
-}, [getCategoryRequest, numero, search])
+  }, [getCategoryRequest, numero, search])
 
 
-    if (products && products.results.length > 0){
-      return (
-        <div className={style.ContenedorPrincipal}>
-            <PermanentDrawerLeft txt="category" search={search} filters={categories.available_filters} filter={filter.available_sorts} price={order}></PermanentDrawerLeft>
-          <div className={style.cartas} >
-            <div >
-              {products.results.map((prod) => {
-                
-                return (
-                    <ProductCard  
-                      key={prod.id}
-                      id={prod.id}
-                      title= {prod.title}
-                      price= {prod.price}
-                      currency_id= {prod.currency_id}
-                      quantity= {prod.available_quantity}
-                      image= {prod.thumbnail}
-                      condition= {prod.condition}
-                    />
-                )
+  if (products && products.results.length > 0){
+    return (
+      <div className={style.ContenedorPrincipal}>
+        <PermanentDrawerLeft txt="category" search={search} filters={categories.available_filters} filter={filter.available_sorts} price={order}></PermanentDrawerLeft>
+        <div  className={style.cartas}>
+          <div >
+            {products.results.map((prod) => {
+              return (
+                <ProductCard  
+                  key={prod.id}
+                  id={prod.id}
+                  title= {prod.title}
+                  price= {prod.price}
+                  currency_id= {prod.currency_id}
+                  quantity= {prod.available_quantity}
+                  image= {prod.thumbnail}
+                  condition= {prod.condition}
+                />
+              )
             })}
-            </div>
-            <UsePagination  search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
           </div>
-
+          <UsePagination  search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
         </div>
-      );
-    }else{
-      return (
-        <div>
-          <h1>No hay productos que mostrar</h1>
-        </div>
-      )
-    }
+      </div>
+    );
+  }else{
+    return (
+      <div>
+        <h1>No hay productos que mostrar</h1>
+      </div>
+    )
   }
+}
 
 const mapStateToProps = state => {
   

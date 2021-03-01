@@ -1,0 +1,12 @@
+.contenedor{
+    font-size: small;
+}
+
+.link{
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.nombre{
+    color: rgb(55, 53, 53);
+}

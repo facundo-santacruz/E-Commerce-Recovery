@@ -9,11 +9,8 @@ export default function RecipeReviewCard({title, price, id, currency_id, quantit
       <NavLink 
         to={`/product/${id}`} 
         className={style.cardProd}>
-        <div style={{width:"160px", height:"160px", marginLeft:"10%"  }}>
-          <img src={image} className={`card-img-top ${style.imagen}`} alt={title} />
-
-        </div>
-        <div className="card-body" style={{marginLeft:"10%",  width: "50%"}} >
+         <img src={image} className={style.imagen} alt={title} />
+        <div className={style.detailProd} style={{marginLeft:"10%",  width: "50%"}} >
           <p className="card-text">{title}</p>
           <div className={style.ContPrecio} style={{display:"flex", alignItems: "center", justifyContent: "space-around"}}>
             <h3 className="card-title">{currency_id} ${price}</h3> 
