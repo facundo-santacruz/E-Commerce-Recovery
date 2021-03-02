@@ -18,12 +18,13 @@
     display: flex;
     flex-direction: row;
     width: 80%;
+    max-width: 1200px;
 }
 
 .text{
     height: 30px;
     width: 70%;
-    min-width: 250px;
+    /* min-width: 250px; */
     margin-left: 10%;
     margin-right: 15px;
     font-family:Georgia, 'Times New Roman', Times, serif;
@@ -53,7 +54,38 @@
         flex-direction: column;
         /* justify-content: space-around; */
     }
+    .img{
+        display: none;
+    }
+    .buscador{
+        width:90%;
+        /* justify-content: center; */
+    }
+
+    .text{
+        margin-left: 0%;
+        width: 100%;
+    }
     /* .Buscador{
 
     } */
+  }
+
+  @media (max-width: 400px) {
+        .principal {
+            height:100px;
+            display: flex;
+            flex-direction: column;
+    }
+    .buscador{
+        flex-direction: column;
+        width: 90%;
+        justify-content: center;
+    }
+
+    .text{
+        width:97%;
+        /* margin-right: 0%; */
+        margin-bottom: 10px;
+    }
   }
