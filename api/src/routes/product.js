@@ -26,7 +26,7 @@ app.get('/product', function(req, res) {
           data: JSON.parse(recipe)
         })
       } else { // When the data is not found in the cache then we can make request to the server
-        const recipe = await axios.get(`https://api.mercadolibre.com/products/${id}`);
+        const recipe = await axios.get(`https://api.mercadolibre.com/items/${id}`);
         
         // save the record in the cache for subsequent request
         client.setex(`${id}`, 14200, JSON.stringify(recipe.data));
