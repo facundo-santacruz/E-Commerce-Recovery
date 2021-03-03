@@ -9,6 +9,7 @@ import ProductCard from '../Components/ProductCard';
 import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './Pagination';
 import { PermanentDrawerLeft } from '../Components/LeftBar';
+import Loading from '../Components/Loading'
 export  function SimpleContainer({search,  getProductsRequest, getByConditionRequest,getByPriceRequest, numero=0, products, paging, order, filter, condition, categories  })  {
   // const [ prod, setProducts ] = useState([])
   // const stableSetter = useCallback(() => getProductsRequest(search), [])
@@ -53,37 +54,40 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
 
     if (products && products.results.length > 0){
       return (
-        <div className={style.ContenedorPrincipal}>
-          
-          <PermanentDrawerLeft txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
-          <div className={style.ContenedorCartasPag} >
-            <div className={style.cartas}>
-              {products.results.map((prod) => {
-                
-                return (
-                    <ProductCard  
-                      key={prod.id}
-                      id={prod.id}
-                      title= {prod.title}
-                      price= {prod.price}
-                      currency_id= {prod.currency_id}
-                      quantity= {prod.available_quantity}
-                      image= {prod.thumbnail}
-                      condition= {prod.condition}
-                    />
-                )
-              })}
+        <div className={style.contenedor}>
+          <div className={style.ContenedorPrincipal}>
+            <div className={style.secundario}>
+              <PermanentDrawerLeft txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
+              <div className={style.ContenedorCartasPag} >
+                <div className={style.cartas}>
+                  {products.results.map((prod) => {
+                    
+                    return (
+                        <ProductCard  
+                          key={prod.id}
+                          id={prod.id}
+                          title= {prod.title}
+                          price= {prod.price}
+                          currency_id= {prod.currency_id}
+                          quantity= {prod.available_quantity}
+                          image= {prod.thumbnail}
+                          condition= {prod.condition}
+                        />
+                    )
+                  })}
+                </div>
+              </div>
+              
             </div>
-            <UsePagination txt="products" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
+
           </div>
+          <UsePagination txt="products" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
 
         </div>
       );
     }else{
       return (
-        <div>
-          <h1>No hay productos que mostrar</h1>
-        </div>
+        <Loading></Loading>
       )
     }
   }

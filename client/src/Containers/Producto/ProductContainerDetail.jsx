@@ -1,32 +1,67 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getProductRequest } from '../../Redux/catalog/actionsSearch';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import style from './Catalog.module.css'
-export  function ProductContainerDetail({id,  getProductRequest, product})  {
- 
-  useEffect(() => {
+import style from '../../Styles/Components/Img.module.css'
+function ProductContainerDetail({id,  getProductRequest, product})  {
+  const [img, setImg] = useState("");
+  useEffect( async() => {
 
     try {
-      getProductRequest(id);
-      
+      await getProductRequest(id);
+      setImg(product.pictures[0].url);
+      console.log(img);
     } catch (error) {
       console.log(error);
     }
     }, [getProductRequest, id])
   
     
-       return (
-              <div>
+    console.log(img)
+    if (product){
+      return (
+        <div className={style.contPrincipal}>
+            <div className={style.contenedor}>
+              <div className={style.imagenes}>
+              {product.pictures.map((imagen, i) => {
+                return (
+                  <img key={`img${i}`} onMouseOverCapture={() => setImg(imagen.url)} className={style.imagen} src={imagen.url} alt="Imagen"/>
+                )
+              } )}
+  
               </div>
-       )
+              <figure className={style.contImgGde}>
+                <img src={img} alt="Imagen" className={style.imgGrande}/>
+              </figure>
+              <div className={style.detail}>
+                <div className={style.detContenido}>
+
+                  <div className={style.detEncabezado}>
+                    {product.condition === "new" ? <label>Nuevo</label> : <label>Usado</label>}
+                    <label > | {product.sold_quantity} vendidos</label>
+                  </div>
+                  <h2>{product.title}</h2>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      )
+
+    }else{
+      return (
+        <div>
+          <h1>El producto no existe</h1>
+        </div>
+      )
+    }
   }
 
 const mapStateToProps = state => {
   
   return {
-       product: state.product
+       product: state.product.data
     }
   }
   const mapDispatchToProps = dispatch => {

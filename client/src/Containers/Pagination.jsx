@@ -1,33 +1,33 @@
 import React from 'react';
 import { usePagination } from '@material-ui/lab/Pagination';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 // import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 // import { getProductsRequest } from '../Redux/actions.js';
-// import style from '../Styles/Components/Pagination.module.css'
+import style from '../Styles/Components/Pagination.module.css'
 
-const useStyles = makeStyles({
-  ul: {
-    listStyle: 'none',
-    display: 'flex',
+// const useStyles = makeStyles({
+//   ul: {
+//     listStyle: 'none',
+//     display: 'flex',
 
-    justifyContent: "center"
+//     justifyContent: "center"
 
-  },
-  nav:{
-    width: '100%',
-    display:'flex'
-  }
+//   },
+//   nav:{
+//     width: '100%',
+//     display:'flex'
+//   }
+  
 
-});
+// });
 
 
 
 export  function UsePagination({paging, search, order, condition, txt}) {
   const [ total, setTotal ] = useState(paging.total<=1000 ? parseInt(paging.total / 30) + 1 : 33)
-  const classes = useStyles();
   const { items } = usePagination({
     count: total
   });
@@ -37,8 +37,8 @@ export  function UsePagination({paging, search, order, condition, txt}) {
   if (condition){
 
       return (
-        <nav style={{display: "flex", justifyContent: "center"}}>
-          <ul className={classes.ul}>
+        <nav className={style.principal}>
+          <ul className={style.ul}>
             {items.map(({ page, type, selected, ...item }, index) => {
               let children = null;
     
@@ -70,8 +70,8 @@ export  function UsePagination({paging, search, order, condition, txt}) {
     }else if(order){
 
     return (
-      <nav>
-        <ul className={classes.ul}>
+      <nav className={style.principal}>
+        <ul className={style.ul}>
           {items.map(({ page, type, selected, ...item }, index) => {
             let children = null;
   
@@ -103,8 +103,8 @@ export  function UsePagination({paging, search, order, condition, txt}) {
   }else{
 
     return (
-      <nav>
-        <ul className={classes.ul}>
+      <nav className={style.principal}>
+        <ul className={style.ul}>
           {items.map(({ page, type, selected, ...item }, index) => {
             let children = null;
   

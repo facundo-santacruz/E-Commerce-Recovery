@@ -4,7 +4,7 @@ export default function CategoriesList({filterValues, type, search}) {
     const [values] =useState(filterValues.values)
     // console.log(values)
     return (
-        <div>
+        <div style={{display:"flex", flexDirection:"column"}}>
             <h3>{filterValues.name}</h3>
             {values.map(cat => { 
                 return (

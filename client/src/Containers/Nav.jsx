@@ -25,25 +25,28 @@ export default function SearchAppBar() {
 
   return (
     <div className={style.principal} >
-      <NavLink to={"/"}>
-        <img src={MercadoLibre} alt="Imagen MercadoLibre" className={style.img}></img>
-      </NavLink>
-      <div className={ style.buscador}>
-        
-        <input
-          type="text"
-          placeholder="Buscar productos, marcas y  más..."
-          value={search}
-          onChange={handleChange}
-          className={style.text}
-        />
-        <NavLink to={`/products/${search}/0`}>
-          <button id="boton" className={style.boton}>
-            Buscar
-          </button>
+      <div className={style.secundario}>
+
+        <NavLink to={"/"}>
+          <img src={MercadoLibre} alt="Imagen MercadoLibre" className={style.img}></img>
         </NavLink>
+        <div className={ style.buscador}>
+          
+          <input
+            type="text"
+            placeholder="Buscar productos, marcas y  más..."
+            value={search}
+            onChange={handleChange}
+            className={style.text}
+          />
+          <NavLink to={`/products/${search}/0`}>
+            <button id="boton" className={style.boton}>
+              Buscar
+            </button>
+          </NavLink>
+        </div>
+      
       </div>
-    
     </div>
   );
 }

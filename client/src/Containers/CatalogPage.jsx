@@ -24,21 +24,19 @@ export  function CatalogPage({search,  getProductsRequest, products})  {
     console.log(products)
     if (products && products.length > 0){
       return (
-        <div className={`card-deck ${style.display}`}>
+        <div className={style.display}>
           {products.map((prod) => {
             return (
-              <div>
-                <ProductCard  
-                key={prod.id}
-                id={prod.id}
-                title= {prod.title}
-                price= {prod.price}
-                currency_id= {prod.currency_id}
-                quantity= {prod.available_quantity}
-                image= {prod.thumbnail}
-                condition= {prod.condition}
-                />
-              </div>
+              <ProductCard  
+              key={prod.id}
+              id={prod.id}
+              title= {prod.title}
+              price= {prod.price}
+              currency_id= {prod.currency_id}
+              quantity= {prod.available_quantity}
+              image= {prod.thumbnail}
+              condition= {prod.condition}
+              />
             )
           })}
         </div>

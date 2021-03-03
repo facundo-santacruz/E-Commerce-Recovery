@@ -1,12 +1,13 @@
 .Contenedor{
   display: flex;
   width: 100%;  
+  background-color: black;
 }
 
 .cartas{
   display: flex;
   /* position: relative; */
-  width: 90%;
+  width: 100%;
   /* min-width: 300px; */
   flex-direction: column;
   justify-content: center;
@@ -39,7 +40,7 @@
 
     .cardProd:hover{
       height: 230px;
-     background-color:  blue;
+      background-color:  blue;
     }
 .imagen{
   height: 160px;

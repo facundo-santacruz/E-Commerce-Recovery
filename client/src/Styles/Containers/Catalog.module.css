@@ -1,7 +1,18 @@
-.ContenedorPrincipal {
+.contenedor{
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+.ContenedorPrincipal{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.secundario {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 90%;
   /* position: ; */
 }
@@ -9,13 +20,14 @@
 .ContenedorCartasPag{
   display: flex;
   flex-direction: column;
-  min-width: 100px;
-  width: 60%;
-
+  min-width: 70px;
+  width: 75%;
+  
   /* right: 0; */
 }
 
 .cartas{
+  width: 100%;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -25,8 +37,21 @@
 
 
 
-/* @media (max-width: 600px) {
+@media (max-width: 350px) {
+  /* .ContenedorPrincipal {
+    width: 100%;
+  } */
+  .ContenedorCartasPag{
+    width: 95%;
+  }
+}
+
+/* 
+@media (max-width: 300px) {
   .ContenedorPrincipal {
-    top: 70px;
+    width: 100%;
+  }
+  .ContenedorCartasPag{
+    width: 100%;
   }
 } */

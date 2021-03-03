@@ -17,20 +17,20 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
   return (
     
     <div className={style.Contenedor}>
-      <div className={style.listaCategorias}>
-        <h4>Buscar por Orden</h4>
+        <h3>Buscar por Orden</h3>
           {filter.map((text, i) => {
+      {/* <div className={style.listaCategorias}> */}
             return (
-              <NavLink to={`/${txt}/${search}/order=${text.id}/${0}`} className={style.list} >
+              <NavLink to={`/${txt}/${search}/order=${text.id}/${0}`} className={style.listarCategorias} >
                 <label key={`${text}${i}`} className={style.list}>{text.name}</label>      
               </NavLink>
             )
           })}
         
-        <h4>Buscar por Condición</h4>
+        <h3>Buscar por Condición</h3>
             {condition.map((text, index) => {
               return (
-                <Link to={`/${txt}/${search}/condition=${text.id}/${0}`} className={style.list} >
+                <Link to={`/${txt}/${search}/condition=${text.id}/${0}`} className={style.listarCategorias} >
                   <label className={style.list}>{text.name}</label>      
                 </Link> 
               )
@@ -39,32 +39,13 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
 
 
         {/* </div> */}
-        <div>
+        
           {filters.map((text, index) => (
-            //  <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
-              
             <CategoriesList filterValues={text} type={txt} search={search}/>
 
-
-
-
-
-
-              //  <button key={text} 
-              //  // onClick={changeProductsCondition(text.id)}
-              //  >
-              //    {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
-              //    <ListItemText primary=
-              //    // {<a href={`/products/${search}/${text.id}/${0}`}>
-              //      {text.name}
-              //      // </a>} 
-              //      />
-              //  />
-              
-            //  {/* </NavLink>  */}
            ))}
-         </div>
-      </div>
+        
+      {/* </div> */}
     </div>
   )
 

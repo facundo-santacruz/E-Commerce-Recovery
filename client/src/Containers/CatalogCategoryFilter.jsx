@@ -53,23 +53,20 @@ export  function CatalogCategoryFilterContainer({search, value, categoria, getCa
             <PermanentDrawerLeft txt="category" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
              
           <div className={style.cartas} >
-            <div >
-              {products.results.map((prod) => {
-                
-                return (
-                    <ProductCard  
-                      key={prod.id}
-                      id={prod.id}
-                      title= {prod.title}
-                      price= {prod.price}
-                      currency_id= {prod.currency_id}
-                      quantity= {prod.available_quantity}
-                      image= {prod.thumbnail}
-                      condition= {prod.condition}
-                    />
-                )
+            {products.results.map((prod) => {
+              return (
+                  <ProductCard  
+                    key={prod.id}
+                    id={prod.id}
+                    title= {prod.title}
+                    price= {prod.price}
+                    currency_id= {prod.currency_id}
+                    quantity= {prod.available_quantity}
+                    image= {prod.thumbnail}
+                    condition= {prod.condition}
+                  />
+              )
             })}
-            </div>
             <UsePagination text="category" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
           </div>
 
