@@ -1,4 +1,4 @@
-import { GET_PRODUCT, GET_PRODUCTS_NAME, GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE,  } from './constants';
+import { GET_PRODUCT, GET_PRODUCTS_NAME, GET_PRODUCTS_BY_CONDITION, GET_PRODUCTS_BY_PRICE, GET_REVIEW,  } from './constants';
 import axios from 'axios';
 
 export function getProducts(allproducts) {
@@ -58,14 +58,14 @@ export function getByConditionRequest(search, number, condition) {
 
 
 
-  // -----------------ACTIONS PARA BUSCAR INFORMACION DE UN PRODUCTO-----------------------------
-  
-  export function getProduct(product) {
-      return {
-          type: GET_PRODUCT,
-          payload: product
-      }
-  }
+// -----------------ACTIONS PARA BUSCAR INFORMACION DE UN PRODUCTO-----------------------------
+
+export function getProduct(product) {
+    return {
+        type: GET_PRODUCT,
+        payload: product
+    }
+}
   
 export function getProductRequest(id){
     console.log(id)
@@ -76,6 +76,25 @@ export function getProductRequest(id){
     }
 }
 
+
+//--- RATING PRODUCTO ------
+export function getRating(review){
+    console.log(review)
+    return {
+        type: GET_REVIEW,
+        payload: review
+    }
+}
+
+
+export function getRatingProductRequest(id){
+    console.log(id)
+    return (dispatch) => {
+        axios.get(`http://localhost:3001/api/products/reviews?id=${id}`)
+            .then(res => {dispatch(getRating(res.data))})
+            .catch(err => console.log(err))
+    }        
+}    
 
 
 

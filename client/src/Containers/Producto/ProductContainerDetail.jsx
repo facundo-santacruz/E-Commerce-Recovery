@@ -4,22 +4,22 @@ import { getProductRequest } from '../../Redux/catalog/actionsSearch';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import style from '../../Styles/Components/Img.module.css'
+import Rating from './Rating';
 function ProductContainerDetail({id,  getProductRequest, product})  {
   const [img, setImg] = useState("");
-  useEffect( async() => {
+  useEffect( () => {
+    const datos = async() =>{
+      try {
+        await getProductRequest(id);
+        setImg(product.pictures[0].url);
+      } catch (error) {
+        console.log(error);
+      }
 
-    try {
-      await getProductRequest(id);
-      setImg(product.pictures[0].url);
-      console.log(img);
-    } catch (error) {
-      console.log(error);
     }
+    datos()
     }, [getProductRequest, id])
-  
-    
-    console.log(img)
-    if (product){
+    if (product && product.pictures){
       return (
         <div className={style.contPrincipal}>
             <div className={style.contenedor}>
@@ -41,7 +41,9 @@ function ProductContainerDetail({id,  getProductRequest, product})  {
                     {product.condition === "new" ? <label>Nuevo</label> : <label>Usado</label>}
                     <label > | {product.sold_quantity} vendidos</label>
                   </div>
-                  <h2>{product.title}</h2>
+                  <h2 style={{ marginBlockEnd: "0"}}>{product.title}</h2>
+                  <Rating valor={product.id}></Rating>
+                  <h2>${product.price}</h2>
                 </div>
               </div>
             </div>
