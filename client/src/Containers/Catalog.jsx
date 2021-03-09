@@ -1,7 +1,4 @@
 import React, { useEffect } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import { getByPriceRequest, getProductsRequest, getByConditionRequest } from '../Redux/catalog/actionsSearch';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -25,7 +22,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
         console.log(error);
       } 
     }
-  }, [getByPriceRequest, order, numero])
+  }, [getByPriceRequest, numero])
 
   useEffect(() => {
     if(condition){ 
@@ -37,7 +34,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
       }
     
     }
-  }, [getByConditionRequest, numero, condition])
+  }, [getByConditionRequest, numero])
     
   useEffect(() => {
     if(!condition && !order){
@@ -49,7 +46,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
       }
 
     }
-  }, [getProductsRequest, numero, search])
+  }, [getProductsRequest, numero])
 
 
     if (products && products.results.length > 0){

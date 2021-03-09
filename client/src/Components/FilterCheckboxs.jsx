@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import  style  from "./../Styles/Components/Filter.module.css";
 export default function FilterCheckboxs({id, name, filter,  results,search}) {
     

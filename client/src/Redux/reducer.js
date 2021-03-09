@@ -1,12 +1,13 @@
 import { GET_CAT_FILTERS,  GET_PRODUCTS_FILTERS_BY_PRICE,GET_PRODUCTS_FILTERS_BY_CONDITION,GET_CATEGORIES, 
     GET_CATEGORY, GET_PRODUCT, GET_PRODUCTS_CAT_BY_PRICE, GET_PRODUCTS_CAT_BY_CONDITION, GET_PRODUCTS_BY_CONDITION, 
-    GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME, GET_REVIEW } from "./catalog/constants";
+    GET_PRODUCTS_BY_PRICE, GET_PRODUCTS_NAME, GET_REVIEW, GET_SELLER } from "./catalog/constants";
 
 const initialState = {
     categories : [],
     products: [],
     product: [],
-    review:{}
+    review:{},
+    seller:{}
 };
 
 const reducer = (state= initialState, action ) => {
@@ -71,6 +72,11 @@ const reducer = (state= initialState, action ) => {
             return {
                 ...state,
                 review: action.payload
+            }
+        case GET_SELLER:
+            return {
+                ...state,
+                seller: action.payload
             }
         default: 
             return state

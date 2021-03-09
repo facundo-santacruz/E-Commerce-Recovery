@@ -71,7 +71,8 @@ export function getProductRequest(id){
     console.log(id)
     return (dispatch) => {
         axios.get(`http://localhost:3001/api/products/product?id=${id}`)
-            .then(response => {dispatch(getProduct(response.data))})
+            .then(response => {
+                dispatch(getProduct(response.data))})
             .catch(err => {console.log(err)})
     }
 }

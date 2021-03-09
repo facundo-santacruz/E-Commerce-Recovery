@@ -2,13 +2,13 @@
 import './App.css';
 import SimpleContainer from './Containers/Catalog';
 import Nav from './Containers/Nav';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 // import CarouselContainer from "./Containers/Carrousel";  
 import { Categories } from './Containers/Categories'
 import ProductContainerDetail  from "./Containers/Producto/ProductContainerDetail";
 import CatalogCategory from './Containers/CatalogCategory';
 import CatalogCategoryFilter from './Containers/CatalogCategoryFilter';
-import style from "./App.css";
+// import style from "./App.css";
 
 function App() {  
   return (
