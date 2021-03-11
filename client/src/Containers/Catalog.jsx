@@ -6,6 +6,7 @@ import ProductCard from '../Components/ProductCard';
 import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './Pagination';
 import { PermanentDrawerLeft } from '../Components/LeftBar';
+import { SelectOrder } from '../Components/SelectOrder';
 import Loading from '../Components/Loading'
 export  function SimpleContainer({search,  getProductsRequest, getByConditionRequest,getByPriceRequest, numero=0, products, paging, order, filter, condition, categories  })  {
   // const [ prod, setProducts ] = useState([])
@@ -16,13 +17,13 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
     if (order){
       let price=order
       try {
-        getByPriceRequest(search, numero*30, price=order, search);
+        getByPriceRequest(search, numero*30, price, search);
         
       } catch (error) {
         console.log(error);
       } 
     }
-  }, [getByPriceRequest, numero])
+  }, [getByPriceRequest, numero, order])
 
   useEffect(() => {
     if(condition){ 
@@ -34,7 +35,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
       }
     
     }
-  }, [getByConditionRequest, numero])
+  }, [getByConditionRequest, numero, condition])
     
   useEffect(() => {
     if(!condition && !order){
@@ -52,6 +53,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
     if (products && products.results.length > 0){
       return (
         <div className={style.contenedor}>
+          <SelectOrder products={products} txt="products" func={getByPriceRequest}/>
           <div className={style.ContenedorPrincipal}>
             <div className={style.secundario}>
               <PermanentDrawerLeft txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>

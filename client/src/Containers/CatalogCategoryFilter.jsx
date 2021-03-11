@@ -13,7 +13,7 @@ export  function CatalogCategoryFilterContainer({search, value, categoria, getCa
     if (order){
       let price=order
       try {
-        getByCatFilterPriceRequest(search, numero*30, price=order, value);
+        getByCatFilterPriceRequest(search, numero*30, price, value);
         
       } catch (error) {
         console.log(error);

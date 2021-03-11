@@ -21,7 +21,7 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
         <h4>Buscar por Orden</h4>
           {filter.map((text, i) => {
             return (
-              <NavLink to={`/${txt}/${search}/order=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+              <NavLink to={`/${txt}/${search}/order=${text.id}/0`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
                 <label key={`${text}${i}`} className={style.list}>{text.name}</label>      
               </NavLink>
                 )
@@ -30,7 +30,7 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
         <h4>Buscar por Condición</h4>
           {condition.map((text, index) => {
             return (
-              <NavLink to={`/${txt}/${search}/condition=${text.id}/${0}`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
+              <NavLink to={`/${txt}/${search}/condition=${text.id}/0`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
                 <label className={style.list}>{text.name}</label>      
               </NavLink> 
             )

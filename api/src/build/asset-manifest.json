@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.577a2777.chunk.css",
+    "main.js": "/static/js/main.eef09c09.chunk.js",
+    "main.js.map": "/static/js/main.eef09c09.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ea7f9f03.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ea7f9f03.js.map",
+    "static/js/2.6eb9880b.chunk.js": "/static/js/2.6eb9880b.chunk.js",
+    "static/js/2.6eb9880b.chunk.js.map": "/static/js/2.6eb9880b.chunk.js.map",
+    "static/js/3.8a5f64ee.chunk.js": "/static/js/3.8a5f64ee.chunk.js",
+    "static/js/3.8a5f64ee.chunk.js.map": "/static/js/3.8a5f64ee.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.577a2777.chunk.css.map": "/static/css/main.577a2777.chunk.css.map",
+    "static/js/2.6eb9880b.chunk.js.LICENSE.txt": "/static/js/2.6eb9880b.chunk.js.LICENSE.txt",
+    "static/media/MercadoLibre1.2d68274d.jpeg": "/static/media/MercadoLibre1.2d68274d.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ea7f9f03.js",
+    "static/js/2.6eb9880b.chunk.js",
+    "static/css/main.577a2777.chunk.css",
+    "static/js/main.eef09c09.chunk.js"
+  ]
+}

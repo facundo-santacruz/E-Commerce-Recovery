@@ -12,25 +12,16 @@ export  function PermanentDrawerLeft({txt, search, filter, filters }) {
   const [ condition ] = useState([{id: "new", name: "Nuevo"}, {id: "used", name: "Usado"}])
   console.log(filter)
 
-
+  
 
   return (
     
     <div className={style.Contenedor}>
-        <h3>Buscar por Orden</h3>
-          {filter.map((text, i) => {
-      {/* <div className={style.listaCategorias}> */}
-            return (
-              <NavLink to={`/${txt}/${search}/order=${text.id}/${0}`} className={style.listarCategorias} >
-                <label key={`${text}${i}`} className={style.list}>{text.name}</label>      
-              </NavLink>
-            )
-          })}
         
         <h3>Buscar por Condición</h3>
             {condition.map((text, index) => {
               return (
-                <Link to={`/${txt}/${search}/condition=${text.id}/${0}`} className={style.listarCategorias} >
+                <Link to={`/${txt}/${search}/condition=${text.id}/0`} className={style.listarCategorias} >
                   <label className={style.list}>{text.name}</label>      
                 </Link> 
               )

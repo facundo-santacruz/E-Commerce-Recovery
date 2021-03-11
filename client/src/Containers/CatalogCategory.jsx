@@ -14,7 +14,7 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatP
     if (order){
       let price=order
       try {
-        getByCatPriceRequest(search, numero*30, price=order, search);
+        getByCatPriceRequest(search, numero*30, price, search);
         
       } catch (error) {
         console.log(error);
