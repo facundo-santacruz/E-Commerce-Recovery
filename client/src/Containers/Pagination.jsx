@@ -32,7 +32,7 @@ export  function UsePagination({paging, search, order, condition, txt}) {
     count: total
   });
   
- console.log(total)
+//  console.log(total)
 
   if (condition){
 

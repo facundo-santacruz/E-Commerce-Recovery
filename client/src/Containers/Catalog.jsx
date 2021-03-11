@@ -53,10 +53,10 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
     if (products && products.results.length > 0){
       return (
         <div className={style.contenedor}>
-          <SelectOrder products={products} txt="products" func={getByPriceRequest}/>
+          <SelectOrder products={products} txt="products" />
           <div className={style.ContenedorPrincipal}>
             <div className={style.secundario}>
-              <PermanentDrawerLeft txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
+              <PermanentDrawerLeft txt="products" products={products}  filter={filter.available_sorts} search={search}></PermanentDrawerLeft>
               <div className={style.ContenedorCartasPag} >
                 <div className={style.cartas}>
                   {products.results.map((prod) => {

@@ -22,6 +22,7 @@ export  function CatalogCategoryFilterContainer({search, value, categoria, getCa
   }, [getByCatFilterPriceRequest, order, numero])
 
   useEffect(() => {
+    console.log(condition)
     if(condition){
       try {
         getByCatFilterConditionRequest(search, numero*30, condition);

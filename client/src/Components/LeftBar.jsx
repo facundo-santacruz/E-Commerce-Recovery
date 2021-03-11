@@ -8,33 +8,45 @@ import { useState } from 'react';
 
 
 
-export  function PermanentDrawerLeft({txt, search, filter, filters }) {
+export  function PermanentDrawerLeft({txt, search, filter,  products }) {
   const [ condition ] = useState([{id: "new", name: "Nuevo"}, {id: "used", name: "Usado"}])
-  console.log(filter)
+  // console.log(filter)
 
-  
+  var { filters, available_filters } = products
 
   return (
     
     <div className={style.Contenedor}>
+      {!filters ? null : 
+        filters.map((item)=> {
+          return (
+            <div>
+              <span>{item.values[0].name}</span>
+              <button> X </button>
+            </div>
+  
+          )
+        })
+      }
+
+      
         
-        <h3>Buscar por Condición</h3>
+        {/* <h3>Buscar por Condición</h3>
             {condition.map((text, index) => {
               return (
                 <Link to={`/${txt}/${search}/condition=${text.id}/0`} className={style.listarCategorias} >
                   <label className={style.list}>{text.name}</label>      
                 </Link> 
               )
-            }
-            )}
+            })} */}
 
 
         {/* </div> */}
         
-          {filters.map((text, index) => (
-            <CategoriesList filterValues={text} type={txt} search={search}/>
+        {available_filters.map((text, index) => (
+          <CategoriesList filterValues={text} type={txt} products={products}/>
 
-           ))}
+          ))}
         
       {/* </div> */}
     </div>
