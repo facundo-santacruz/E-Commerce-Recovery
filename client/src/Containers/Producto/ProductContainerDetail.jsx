@@ -10,10 +10,11 @@ function ProductContainerDetail({id,  getProductRequest, product })  {
   useEffect( () => {
     const datos = async() =>{
       try {
+        console.log(id);
         await getProductRequest(id);
-        console.log(product.pictures[0].url)
+        console.log(product)
         setImg(product.pictures[0].url);
-        console.log(imag);
+        console.log(product.pictures[0].url);
         // await getSellerRequest(product.seller_id)
       } catch (error) {
         console.log(error);
@@ -21,7 +22,7 @@ function ProductContainerDetail({id,  getProductRequest, product })  {
 
     }
     datos()
-    }, [id, getProductRequest])
+    }, [id, getProductRequest, product.id])
     
     if (product){
       return (
@@ -37,7 +38,7 @@ function ProductContainerDetail({id,  getProductRequest, product })  {
     
                 </div>
                 <figure className={style.contImgGde}>
-                  <img src={imag} alt="Imagen" className={style.imgGrande}/>
+                  <img src={imag}  alt="Imagen" className={style.imgGrande}/>
                 </figure>
 
               </div>

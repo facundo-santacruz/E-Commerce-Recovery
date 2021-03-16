@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 function SimpleRating({valor, review, getRatingProductRequest}) {
   const [value, setValue] = React.useState(2);
   const [cant, setCant] = useState(4)
-  console.log(valor)
+  // console.log(valor)
 
   useEffect (() => {
     const data= async() =>{
@@ -16,14 +16,14 @@ function SimpleRating({valor, review, getRatingProductRequest}) {
         await getRatingProductRequest(valor);
         setValue(review.data.rating_average)
         setCant(review.data.paging.total)
-        console.log(review);
+        // console.log(review);
       }catch (error) {
         console.log(error)
       }
     }
     data();
   },[valor, getRatingProductRequest]);
-  console.log(review);
+  // console.log(review);
   if(review){
     return (
         <Box style={{display:"flex", alignItems:"center"}} component="fieldset" mb={3} borderColor="transparent">

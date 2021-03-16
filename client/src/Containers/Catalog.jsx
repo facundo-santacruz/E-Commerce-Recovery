@@ -25,7 +25,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
         console.log(error);
       } 
     }
-  }, [getByPriceRequest, numero, order])
+  }, [getByPriceRequest, numero, order, search])
   useEffect(() => {
     if(condition){ 
       // condition = condition.length === 0 ? [] : condition.split("&").split("0")
@@ -37,7 +37,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
       }
     
     }
-  }, [getByConditionRequest, numero, condition])
+  }, [getByConditionRequest, numero, condition,search])
     
   useEffect(() => {
     if(!condition && !order){
