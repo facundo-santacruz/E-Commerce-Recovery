@@ -2,18 +2,37 @@ import React from 'react';
 import CategoriesList from '../Containers/CategoriesList'
 // import { bindActionCreators } from 'redux';
 import  style  from "../Styles/Components/LeftBar.module.css";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 // import { connect } from 'react-redux';
-import { useState } from 'react';
+import  { useState } from 'react';
 
 
 
 export  function PermanentDrawerLeft({txt, search, filter,  products }) {
-  const [ condition ] = useState([{id: "new", name: "Nuevo"}, {id: "used", name: "Usado"}])
+  const [ texto, setText ] = useState([])
+  const history = useHistory()
   // console.log(filter)
 
   var { filters, available_filters } = products
 
+  function changeText(e) {
+            
+    if( filters.length > 0) {
+      var textoAux = [];
+      for (let i = 0; i < filters.length; i++) {
+          console.log(textoAux.length === 0);
+          if (textoAux.length === 0 && filters[i].id !== e.target.value){
+            textoAux.push(`${filters[i].id}=${filters[i].values[0].id}`)
+          }else if(filters[i].id !== e.target.value){
+            textoAux.push(`&${filters[i].id}=${filters[i].values[0].id}`)
+          }
+          console.log(textoAux);
+        }
+        history.push(`/${txt}/${search}/filter=${textoAux}/0`);
+    } 
+
+    // console.log(texto);
+  }
   return (
     
     <div className={style.Contenedor}>
@@ -23,7 +42,7 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
             <div key={`${item.id}${i}`}>
               <span style={{fontSize: "bold black 2px"}}>{item.name}: </span>
               <span>{item.values[0].name}</span>
-              <button> X </button>
+              <button onClick={changeText} value={item.id}> X </button>
             </div>
   
           )
@@ -53,81 +72,4 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
     </div>
   )
 
-
-      
-  //   <div className={style.ContenedorPrincipal}>
-      
-  //     <CssBaseline />
-      
-  //     <Drawer className={style.ContenedorPrincipal}
-  //       variant="permanent"
-  //       anchor="left"
-  //     >
-  //       <div />
-        
-  //       <List>
-  //         <h3>Buscar por Precio</h3>
-  //         {filter.map((text, index) => (
-  //           <NavLink to={`/products/${search}/order=${text.id}/${0}`}>
-
-  //             <ListItem button key={text} 
-  //             // onClick={changeProducts(text.id)}
-  //             >
-  //               <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon>
-  //               <ListItemText primary=
-  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
-  //                 {text.name}
-  //                 // </a>} 
-  //                 />
-  //             </ListItem>
-              
-  //           </NavLink> 
-  //         ))}
-  //       </List>
-      
-  //       <List>
-      
-  //         <h3>Buscar por Condición</h3>
-  //         {condition.map((text, index) => (
-  //           <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
-
-  //             <ListItem button key={text}  >
-  //               <ListItemText primary=
-  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
-  //                 {text.name}
-  //                 // </a>} 
-  //                 />
-  //             </ListItem>
-              
-  //           </NavLink> 
-  //         ))}
-  //       </List>
-  //       <List>
-      
-  //         <h3>Categorias</h3>
-  //         {filters.map((text, index) => (
-  //           <NavLink to={`/products/${search}/condition=${text.id}/${0}`}>
-
-  //             <ListItem button key={text} 
-  //             // onClick={changeProductsCondition(text.id)}
-  //             >
-  //               {/* <ListItemIcon>{index % 2 === 0 ? <ArrowUpward /> : <ArrowDownward />}</ListItemIcon> */}
-  //               <ListItemText primary=
-  //               // {<a href={`/products/${search}/${text.id}/${0}`}>
-  //                 {text.name}
-  //                 // </a>} 
-  //                 />
-  //             </ListItem>
-              
-  //           </NavLink> 
-  //         ))}
-  //       </List>
-  //     </Drawer>
-  //     <main className={classes.content}>
-  //       <div className={classes.toolbar} />
-        
-  //     </main>
-  //   </div>
-  // );
 }
-
