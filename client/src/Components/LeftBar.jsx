@@ -29,6 +29,9 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
           console.log(textoAux);
         }
         history.push(`/${txt}/${search}/filter=${textoAux}/0`);
+    }else{
+      console.log("hola");
+      history.push(`/${txt}/${search}/0`);
     } 
 
     // console.log(texto);
@@ -36,8 +39,18 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
   return (
     
     <div className={style.Contenedor}>
-      {!filters ? null : 
+      {filters.length === 1 ? 
+          <div key={`${filters[0].id}${0}`}>
+            <span style={{fontSize: "bold black 2px"}}>{filters[0].name}: </span>
+            <span>{filters[0].values[0].name}</span>
+            
+          </div>
+          : 
+        
+
+
         filters.map((item, i)=> {
+          
           return (
             <div key={`${item.id}${i}`}>
               <span style={{fontSize: "bold black 2px"}}>{item.name}: </span>
@@ -50,18 +63,6 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
       }
 
       
-        
-        {/* <h3>Buscar por Condición</h3>
-            {condition.map((text, index) => {
-              return (
-                <Link to={`/${txt}/${search}/condition=${text.id}/0`} className={style.listarCategorias} >
-                  <label className={style.list}>{text.name}</label>      
-                </Link> 
-              )
-            })} */}
-
-
-        {/* </div> */}
         
         {available_filters.map((text, index) => (
           <CategoriesList filterValues={text} type={txt} products={products}/>
