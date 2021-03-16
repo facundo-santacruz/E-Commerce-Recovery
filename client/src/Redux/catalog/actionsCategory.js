@@ -59,7 +59,8 @@ export function getByCatCondition(products){
 
 
 export function getByCatConditionRequest(id, number, condition) {
-    return (dispatch) => {
+    
+  return (dispatch) => {
         axios.get(`http://localhost:3001/api/category/condition_cat?id=${id}&number=${number}&condition=${condition}`)
         .then(response => { dispatch(getByCatCondition(response.data))})
         .catch(err => {console.log(err)})

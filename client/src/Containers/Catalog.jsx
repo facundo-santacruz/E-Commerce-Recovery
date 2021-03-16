@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getByPriceRequest, getProductsRequest, getByConditionRequest } from '../Redux/catalog/actionsSearch';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,9 +9,11 @@ import { PermanentDrawerLeft } from '../Components/LeftBar';
 import { SelectOrder } from '../Components/SelectOrder';
 import Loading from '../Components/Loading'
 export  function SimpleContainer({search,  getProductsRequest, getByConditionRequest,getByPriceRequest, numero=0, products, paging, order, filter, condition, categories  })  {
-  // const [ prod, setProducts ] = useState([])
-  // const stableSetter = useCallback(() => getProductsRequest(search), [])
-// const [busqueda, setBusqueda ] = useState(search)
+  // const [ filtro, setFiltro ] = useState(condition.length === 0 ? [] : 
+  //   condition.split("&").split("0"))
+    // console.log(filtro)
+//     var filtro = condition.split("&").map(cond => cond.replace("=", ":").join()))
+// console.log(JSON.str= ((coingify(filtro))
 
   useEffect(() => {
     if (order){
@@ -24,10 +26,10 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
       } 
     }
   }, [getByPriceRequest, numero, order])
-
   useEffect(() => {
     if(condition){ 
-           try {
+      // condition = condition.length === 0 ? [] : condition.split("&").split("0")
+      try {
         getByConditionRequest(search, numero*30, condition);
         
       } catch (error) {

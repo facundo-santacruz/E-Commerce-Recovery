@@ -10,10 +10,17 @@ const client = redis.createClient(6379);
 client.on("error", (error) => {
   console.error(error);
 })
+ const objeto = (myObj) => {
 
+    for (var key in myObjj) {
+  
+        console.log(key);
+        console.log(myObj[key]);
+      }
+ }
 
 app.get('/filter', function(req, res) {    
-    console.log(req.query);
+    objeto(req.query)
         try {
         const { search, value, number, categoria } = req.query;
         // Check the redis store for the data first

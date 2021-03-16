@@ -50,7 +50,7 @@ export function getByCondition(products){
 
 export function getByConditionRequest(search, number, condition) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/products/condition?search=${search}&number=${number}&condition=${condition}`)
+        axios.get(`http://localhost:3001/api/products/condition?search=${search}&number=${number}&${condition}`)
         .then(response => { dispatch(getByCondition(response.data))})
         .catch(err => {console.log(err)})
     }

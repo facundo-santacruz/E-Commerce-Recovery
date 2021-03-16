@@ -18,15 +18,14 @@ export  function SelectOrder({products, txt, func}) {
     function handleClick(e) {
         history.push(`/${txt}/${query}/order=${e.target.value}/0`);
     }
-    // console.lo
-    console.log(value)
+    
     return (
         <div >
             <span> Ordenar por </span>
-            <select onSelect={value.name} onChange={handleClick}>
+            <select defaultValue={value.name} onChange={handleClick}>
                 {list.map(items => {
                     return (
-                        <option  value={(items.id)}>{items.name}
+                        <option key={`${items.id}`}  value={(items.id)}>{items.name}
                              </option>
                     )
                 })}

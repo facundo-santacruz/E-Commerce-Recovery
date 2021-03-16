@@ -7,7 +7,7 @@ import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './Pagination';
 import { PermanentDrawerLeft } from '../Components/LeftBar';
 export  function CatalogCategoryFilterContainer({search, value, categoria, getCategoryFilterRequest,getByCatFilterPriceRequest, getByCatFilterConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
-
+  console.log(categoria)
   useEffect(() => {
       console.log(search)
     if (order){

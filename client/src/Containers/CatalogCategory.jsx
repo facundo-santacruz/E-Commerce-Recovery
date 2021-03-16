@@ -5,10 +5,10 @@ import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
 import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './PaginationCategory';
-import { PermanentDrawerLeft } from '../Components/LeftBar';
+import { PermanentDrawerLeft } from '../Components/LeftBarCategory';
 import Loading from '../Components/Loading'
 export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatPriceRequest, getByCatConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
-
+  console.log(condition)
   useEffect(() => {
       console.log(search)
     if (order){
@@ -52,7 +52,7 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatP
       <div className={style.contenedor}>
         <div className={style.ContenedorPrincipal}>
           <div className={style.secundario}>
-            <PermanentDrawerLeft txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
+            <PermanentDrawerLeft key={categories.available_filters.id} txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
             <div className={style.ContenedorCartasPag} >
               <div className={style.cartas}>
                 {products.results.map((prod) => {

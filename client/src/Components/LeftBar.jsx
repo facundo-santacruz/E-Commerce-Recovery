@@ -18,9 +18,10 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
     
     <div className={style.Contenedor}>
       {!filters ? null : 
-        filters.map((item)=> {
+        filters.map((item, i)=> {
           return (
-            <div>
+            <div key={`${item.id}${i}`}>
+              <span style={{fontSize: "bold black 2px"}}>{item.name}: </span>
               <span>{item.values[0].name}</span>
               <button> X </button>
             </div>

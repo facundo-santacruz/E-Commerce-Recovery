@@ -99,7 +99,8 @@ app.get('/sort_price', function(req, res) {
         })
       } else { // When the data is not found in the cache then we can make request to the server
         console.log("no existe en la cache");
-        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&sort=${price}&offset=${number}&limit=${30}`);
+        const ruta = (`https://api.mercadolibre.com/sites/MLA/search?q=${search}&sort=${price}&offset=${number}&limit=${30}`)
+        const recipe = await axios.get(ruta);
 
         // save the record in the cache for subsequent request
         client.setex(`${search}${number}${price}`, 1440, JSON.stringify(recipe.data));
@@ -117,11 +118,37 @@ app.get('/sort_price', function(req, res) {
   }
 });
 
+
+const objeto = (myObj) => {
+  var newObj = ""
+  for (var key in myObj) {
+    if (key !== "search" && key !== "number"){
+      newObj+=`&${key}=${myObj[key].replace(",","")}`
+    }
+  }
+  console.log(newObj)
+  return newObj;
+}
+
+const cant = (array) => {
+  const newArray = array.map((elem, i) => {
+    if (elem[1].length===1){
+      return `&${elem[0]}=${elem[1]}`
+    }else{
+      return elem[1].map(sub => `&${elem[0]}=${sub}`)
+    }
+
+  })
+  return newArray
+  }
 //----------------------BUSCAR POR CONDICION (usado o no)------------------------------------------------------
 
-app.get('/condition', function(req, res) {    
-  console.log(req.query)
-  const { search, number, condition } = req.query
+app.get('/condition', function(req, res) {
+  console.log(req.query)    
+  var condition = objeto(req.query)
+  // const condition = cant(filtros)
+  console.log(condition);
+  const { search, number} = req.query
   try {
     // Check the redis store for the data first
     client.get(`${search}${number}${condition}`, async (err, recipe) => {
@@ -132,8 +159,9 @@ app.get('/condition', function(req, res) {
           data: JSON.parse(recipe)
         })
       } else { // When the data is not found in the cache then we can make request to the server
-        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}&condition=${condition}`);
-
+        const ruta = (`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}${condition}`);
+        console.log(ruta)
+        const recipe = await axios.get(ruta)
         // save the record in the cache for subsequent request
         client.setex(`${search}${number}${condition}`, 1440, JSON.stringify(recipe.data));
 

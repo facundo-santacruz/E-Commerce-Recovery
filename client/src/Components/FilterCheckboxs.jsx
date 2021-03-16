@@ -8,16 +8,18 @@ export default function FilterCheckboxs({id, name, type, filter, filters, result
     let history = useHistory();
     useEffect(() => {
         function changeText() {
-            if( filters.length > 0) {
-                setText(filters.map((filtro, i) => {
-                   return i===0 ? `${filtro.id}=${filtro.values[0].id}` : `&${filtro.id}=${filtro.values[0].id}`
-                }))
-            } 
             
+            if( filters.length > 0) {
+                const textoAux = filters.map((filtro, i) => {
+                   return i===0 ? `${filtro.id}=${filtro.values[0].id}` : `&${filtro.id}=${filtro.values[0].id}`
+                })
+                setText(textoAux)
+            } 
         }
         changeText()
-        },[])
-        
+    }, [filters.values])
+    
+    // console.log(text)
     //     setText(...text, `&${filter}=${id}` 
     // }else{
     //     setText(`${filter}=${id}`)
