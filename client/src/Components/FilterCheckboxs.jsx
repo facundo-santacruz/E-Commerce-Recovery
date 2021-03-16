@@ -13,7 +13,8 @@ export default function FilterCheckboxs({id, name, type, filter, filters, result
                 const textoAux = filters.map((filtro, i) => {
                    return i===0 ? `${filtro.id}=${filtro.values[0].id}` : `&${filtro.id}=${filtro.values[0].id}`
                 })
-                setText(textoAux)
+                // console.log(textoAux);
+                setText(textoAux.join("").replace(",", ""))
             } 
         }
         changeText()

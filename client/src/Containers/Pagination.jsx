@@ -7,6 +7,8 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 // import { getProductsRequest } from '../Redux/actions.js';
 import style from '../Styles/Components/Pagination.module.css'
+import { useEffect } from 'react';
+import { Loading } from '../Components/Loading'
 
 // const useStyles = makeStyles({
 //   ul: {
@@ -26,13 +28,17 @@ import style from '../Styles/Components/Pagination.module.css'
 
 
 
-export  function UsePagination({paging, search, order, condition, txt}) {
-  const [ total, setTotal ] = useState(paging.total<=1000 ? parseInt(paging.total / 30) + 1 : 33)
+export  function UsePagination({cant, search, condition, txt}) {
+  const [ total, setTotal ] = useState("")
   const { items } = usePagination({
     count: total
   });
-  
-//  console.log(total)
+
+  useEffect(() => {
+    setTotal(cant <=1000 ? parseInt(cant / 30) : 33)
+  },[cant])
+
+
 
   if (condition){
 
@@ -46,7 +52,7 @@ export  function UsePagination({paging, search, order, condition, txt}) {
                 children = '…';
               } else if (type === 'page') {
                 children = (
-                  <NavLink to={`/${txt}/${search}/condition=${condition}/${page}`}>
+                  <NavLink to={`/${txt}/${search}/filter=${condition}/${page}`}>
                     <button type="button" style={{ fontWeight: selected ? 'bold' : undefined }} {...item}>
                       {page}
                     </button>
@@ -54,7 +60,7 @@ export  function UsePagination({paging, search, order, condition, txt}) {
                 );
               } else {
                 children = (
-                  <NavLink to={`/${txt}/${search}/condition=${condition}/${page}`}>
+                  <NavLink to={`/${txt}/${search}/filter=${condition}/${page}`}>
                     <button type="button" {...item}>
                       {type}
                     </button>
@@ -67,40 +73,9 @@ export  function UsePagination({paging, search, order, condition, txt}) {
           </ul>
         </nav>
       );
-    }else if(order){
-
-    return (
-      <nav className={style.principal}>
-        <ul className={style.ul}>
-          {items.map(({ page, type, selected, ...item }, index) => {
-            let children = null;
-  
-            if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-              children = '…';
-            } else if (type === 'page') {
-              children = (
-                <NavLink to={`/${txt}/${search}/order=${order}/${page}`}>
-                  <button type="button" style={{ fontWeight: selected ? 'bold' : undefined }} {...item}>
-                    {page}
-                  </button>
-                </NavLink>
-              );
-            } else {
-              children = (
-                <NavLink to={`/${txt}/${search}/${page}`}>
-                  <button type="button" {...item}>
-                    {type}
-                  </button>
-                </NavLink>
-              );
-            }
-  
-            return <li key={index}>{children}</li>;
-          })}
-        </ul>
-      </nav>
-    );
-  }else{
+    }
+  // }
+    else{
 
     return (
       <nav className={style.principal}>

@@ -124,7 +124,7 @@ const objeto = (myObj) => {
   for (var key in myObj) {
     if (key !== "search" && key !== "number"){
       console.log(myObj[key][1]);
-      typeof(myObj[key]) === 'string'  ? newObj+=`&${key}=${myObj[key]}` : newObj+=`&${key}=${myObj[key][1]}`
+      typeof(myObj[key]) === 'string'  ? newObj+=`&${key}=${myObj[key].replace(",","")}` : newObj+=`&${key}=${myObj[key][1].replace(","," ")}`
     }
   }
   console.log(newObj)

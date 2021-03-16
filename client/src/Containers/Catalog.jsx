@@ -8,49 +8,48 @@ import { UsePagination } from './Pagination';
 import { PermanentDrawerLeft } from '../Components/LeftBar';
 import { SelectOrder } from '../Components/SelectOrder';
 import Loading from '../Components/Loading'
-export  function SimpleContainer({search,  getProductsRequest, getByConditionRequest,getByPriceRequest, numero=0, products, paging, order, filter, condition, categories  })  {
-  // const [ filtro, setFiltro ] = useState(condition.length === 0 ? [] : 
-  //   condition.split("&").split("0"))
-    // console.log(filtro)
-//     var filtro = condition.split("&").map(cond => cond.replace("=", ":").join()))
-// console.log(JSON.str= ((coingify(filtro))
-
-  useEffect(() => {
-    if (order){
-      let price=order
-      try {
-        getByPriceRequest(search, numero*30, price, search);
+export  function SimpleContainer({search,  getProductsRequest, getByConditionRequest,getByPriceRequest, numero=0, products, paging, filter, condition, categories  })  {
+  const [ text, setText] = useState("")
+  
+  // useEffect(() => {
+  //   if (order){
+  //     let price=order
+  //     try {
+  //       getByPriceRequest(search, numero*30, price, search);
         
-      } catch (error) {
-        console.log(error);
-      } 
-    }
-  }, [getByPriceRequest, numero, order, search])
+  //     } catch (error) {
+  //       console.log(error);
+  //     } 
+  //   }
+  // }, [getByPriceRequest, numero, order, search])
   useEffect(() => {
+    console.log(condition)
     if(condition){ 
       // condition = condition.length === 0 ? [] : condition.split("&").split("0")
       try {
         getByConditionRequest(search, numero*30, condition);
-        
+     
       } catch (error) {
         console.log(error);
       }
-    
+      
     }
   }, [getByConditionRequest, numero, condition,search])
-    
+  
   useEffect(() => {
-    if(!condition && !order){
+    if(!condition){
             try {
-        getProductsRequest(search, numero*30)
-        // console.log(loadStorage({query: search, offset:numero*30})); 
-      } catch (error) {
-        console.log(error);
-      }
-
-    }
-  }, [getProductsRequest, numero])
-
+              getProductsRequest(search, numero*30)
+              // console.log(loadStorage({query: search, offset:numero*30})); 
+            } catch (error) {
+              console.log(error);
+            }
+            
+          }
+        }, [getProductsRequest, numero, search])
+        
+    
+    
 
     if (products && products.results.length > 0){
       return (
@@ -82,7 +81,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
             </div>
 
           </div>
-          <UsePagination txt="products" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
+          <UsePagination txt="products" search={search} cant={products.paging.total} number={numero} condition={condition}></UsePagination>
 
         </div>
       );
