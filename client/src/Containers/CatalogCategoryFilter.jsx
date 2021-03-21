@@ -5,21 +5,23 @@ import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
 import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './Pagination';
-import { PermanentDrawerLeft } from '../Components/LeftBar';
+import { PermanentDrawerLeft } from '../Components/LeftBarCategory';
+import { SelectOrder } from '../Components/SelectOrder';
+import Loading from '../Components/Loading'
 export  function CatalogCategoryFilterContainer({search, value, categoria, getCategoryFilterRequest,getByCatFilterPriceRequest, getByCatFilterConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
   console.log(categoria)
-  useEffect(() => {
-      console.log(search)
-    if (order){
-      let price=order
-      try {
-        getByCatFilterPriceRequest(search, numero*30, price, value);
+  // useEffect(() => {
+  //     console.log(search)
+  //   if (order){
+  //     let price=order
+  //     try {
+  //       getByCatFilterPriceRequest(search, numero*30, price, value);
         
-      } catch (error) {
-        console.log(error);
-      } 
-    }
-  }, [getByCatFilterPriceRequest, order, numero])
+  //     } catch (error) {
+  //       console.log(error);
+  //     } 
+  //   }
+  // }, [getByCatFilterPriceRequest, order, numero])
 
   useEffect(() => {
     console.log(condition)
@@ -47,37 +49,44 @@ export  function CatalogCategoryFilterContainer({search, value, categoria, getCa
 }, [getCategoryFilterRequest, numero, search, value])
 
 
-    if (products && products.results.length > 0){
-      return (
+  
+  if (products && products.results.length > 0){
+    return (
+      <div className={style.contenedor}>
+        <SelectOrder condition={condition} products={products} txt="products" />
         <div className={style.ContenedorPrincipal}>
-          
-            <PermanentDrawerLeft txt="category" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
-             
-          <div className={style.cartas} >
-            {products.results.map((prod) => {
-              return (
-                  <ProductCard  
-                    key={prod.id}
-                    id={prod.id}
-                    title= {prod.title}
-                    price= {prod.price}
-                    currency_id= {prod.currency_id}
-                    quantity= {prod.available_quantity}
-                    image= {prod.thumbnail}
-                    condition= {prod.condition}
-                  />
-              )
-            })}
-            <UsePagination text="category" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
+          <div className={style.secundario}>
+          <PermanentDrawerLeft txt="category" products={products}  filter={filter.available_sorts}></PermanentDrawerLeft>
+              <div className={style.ContenedorCartasPag} >
+                <div className={style.cartas}>
+                  {products.results.map((prod) => {
+                    
+                    return (
+                        <ProductCard  
+                          key={prod.id}
+                          id={prod.id}
+                          title= {prod.title}
+                          price= {prod.price}
+                          currency_id= {prod.currency_id}
+                          quantity= {prod.available_quantity}
+                          image= {prod.thumbnail}
+                          condition= {prod.condition}
+                        />
+                    )
+                  })}
+                </div>
+              </div>
+              
+            </div>
+
           </div>
+          <UsePagination txt="products" cant={products.paging.total} number={numero} condition={condition}></UsePagination>
 
         </div>
       );
     }else{
       return (
-        <div>
-          <h1>No hay productos que mostrar</h1>
-        </div>
+        <Loading></Loading>
       )
     }
   }

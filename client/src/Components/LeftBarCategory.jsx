@@ -1,52 +1,76 @@
 import React from 'react';
-import CategoriesList from '../Containers/CategoriesList'
+import CategoriesList from '../Containers/CategoriesListCat'
 // import { bindActionCreators } from 'redux';
 import  style  from "../Styles/Components/LeftBar.module.css";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 // import { connect } from 'react-redux';
-import { useState } from 'react';
+import  { useState } from 'react';
 
 
 
-export  function PermanentDrawerLeft({txt, search, filter, filters }) {
-  const [ condition ] = useState([{id: "new", name: "Nuevo"}, {id: "used", name: "Usado"}])
-  console.log(filter)
+export  function PermanentDrawerLeft({txt, search, filter,  products }) {
+  const [ texto, setText ] = useState([])
+  const history = useHistory()
+  // console.log(filter)
 
+  var { filters, available_filters } = products
 
+  function changeText(e) {
+            
+    if( filters.length > 0) {
+      var textoAux = [];
+      for (let i = 0; i < filters.length; i++) {
+          console.log(textoAux.length === 0);
+          if (textoAux.length === 0 && filters[i].id !== e.target.value){
+            textoAux.push(`${filters[i].id}=${filters[i].values[0].id}`)
+          }else if(filters[i].id !== e.target.value){
+            textoAux.push(`&${filters[i].id}=${filters[i].values[0].id}`)
+          }
+          console.log(textoAux);
+        }
+        history.push(`/${txt}/filter=${textoAux}/0`);
+    }else{
+      console.log("hola");
+      history.push(`/${txt}/filter=${search}/0`);
+    } 
 
+    // console.log(texto);
+  }
   return (
     
     <div className={style.Contenedor}>
-      <div className={style.listaCategorias}>
-        <h4>Buscar por Orden</h4>
-          {filter.map((text, i) => {
-            return (
-              <NavLink to={`/${txt}/${search}/order=${text.id}/0`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
-                <label key={`${text}${i}`} className={style.list}>{text.name}</label>      
-              </NavLink>
-                )
-              })}
-
-        <h4>Buscar por Condición</h4>
-          {condition.map((text, index) => {
-            return (
-              <NavLink to={`/${txt}/${search}/condition=${text.id}/0`} style={{listStyle:"none"}} className="list-group-item list-group-item-action">
-                <label className={style.list}>{text.name}</label>      
-              </NavLink> 
-            )
-          }
-          )}
+      {filters.length === 1 ? 
+          <div key={`${filters[0].id}${0}`}>
+            <span style={{fontSize: "bold black 2px"}}>{filters[0].name}: </span>
+            <span>{filters[0].values[0].name}</span>
+            
+          </div>
+          : 
+        
 
 
-      </div>
-    </div>    
-  )     
+        filters.map((item, i)=> {
+          
+          return (
+            <div key={`${item.id}${i}`}>
+              <span style={{fontSize: "bold black 2px"}}>{item.name}: </span>
+              <span>{item.values[0].name}</span>
+              <button onClick={changeText} value={item.id}> X </button>
+            </div>
+  
+          )
+        })
+      }
+
+      
+        
+        {available_filters.map((text, index) => (
+          <CategoriesList filterValues={text} type={txt} products={products}/>
+
+          ))}
+        
+      {/* </div> */}
+    </div>
+  )
+
 }
-{/*            
-            {filters.map((text, index) => (
-              
-            <CategoriesList filterValues={text} type={txt} search={search}/>
-
-           ))} */}
-         
-

@@ -111,30 +111,46 @@ app.get('/category', function(req, res) {
       }
     });
     
+
+    const objeto = (myObj) => {
+      var newObj = ""
+      for (var key in myObj) {
+        if (key !== "number"){
+          console.log(myObj[key][1]);
+          typeof(myObj[key]) === 'string'  ? newObj+=`&${key}=${myObj[key].replace(",","")}` : newObj+=`&${key}=${myObj[key][1].replace(","," ")}`
+        }
+      }
+      console.log(newObj)
+      return newObj;
+    }
+
     //----------------------BUSCAR POR CONDICION (usado o no) POR CATEGORIA------------------------------------------------------
     
     app.get('/condition_cat', function(req, res) {    
-      console.log(req.query)
-      const { id, number, condition } = req.query
+      console.log(req.query)    
+      var condition = objeto(req.query)
+      // const condition = cant(filtros)
+      console.log(condition);
+      const { number} = req.query
       try {
         // Check the redis store for the data first
-        client.get(`${id}${number}${condition}`, async (err, recipe) => {
+        client.get(`${number}${condition}`, async (err, recipe) => {
           if (recipe) {
             return res.status(200).send({
               error: false,
-              message: `Recipe for query:${id} offset:${number} condition:${condition} from the cache`,
+              message: `Recipe for query: offset:${number} condition:${condition} from the cache`,
               data: JSON.parse(recipe)
             })
           } else { // When the data is not found in the cache then we can make request to the server
-            const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&offset=${number}&limit=${30}&condition=${condition}`);
+            const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?offset=${number}&limit=${30}${condition}`);
     
             // save the record in the cache for subsequent request
-            client.setex(`${id}${number}${condition}`, 1440, JSON.stringify(recipe.data));
+            client.setex(`${number}${condition}`, 1440, JSON.stringify(recipe.data));
     
             // return the result to the client
             return res.status(200).send({
               error: false,
-              message: `Recipe for query:${id} offset:${number} condition:${condition} from the server`,
+              message: `Recipe for query: offset:${number} condition:${condition} from the server`,
               data: recipe.data
             });
         }

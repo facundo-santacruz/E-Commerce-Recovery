@@ -27,7 +27,7 @@ export  function SelectOrder({products, txt, condition}) {
                     `sort=${event.target.value}` : elem).join("&")
 
             console.log(other);
-            return  history.push(`/${txt}/${query}/filter=${other}/0`);
+            return  history.push(`/${txt}/filter=${other}/0`);
         }
     
     

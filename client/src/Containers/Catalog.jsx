@@ -11,17 +11,6 @@ import Loading from '../Components/Loading'
 export  function SimpleContainer({search,  getProductsRequest, getByConditionRequest,getByPriceRequest, numero=0, products, paging, filter, condition, categories  })  {
   const [ text, setText] = useState("")
   
-  // useEffect(() => {
-  //   if (order){
-  //     let price=order
-  //     try {
-  //       getByPriceRequest(search, numero*30, price, search);
-        
-  //     } catch (error) {
-  //       console.log(error);
-  //     } 
-  //   }
-  // }, [getByPriceRequest, numero, order, search])
   useEffect(() => {
     console.log(condition)
     if(condition){ 

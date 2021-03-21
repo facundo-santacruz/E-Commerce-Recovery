@@ -7,35 +7,24 @@ import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './PaginationCategory';
 import { PermanentDrawerLeft } from '../Components/LeftBarCategory';
 import Loading from '../Components/Loading'
-export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatPriceRequest, getByCatConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
-  console.log(condition)
-  useEffect(() => {
-      console.log(search)
-    if (order){
-      let price=order
-      try {
-        getByCatPriceRequest(search, numero*30, price, search);
-        
-      } catch (error) {
-        console.log(error);
-      } 
-    }
-  }, [getByCatPriceRequest, order, numero])
+import { SelectOrder } from '../Components/SelectOrder';
+export  function CatalogCategoryContainer({search,  getCategoryRequest, getByCatConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
+  
 
   useEffect(() => {
     if(condition){
       try {
-        getByCatConditionRequest(search, numero*30, condition);
+        getByCatConditionRequest(numero*30, condition);
         
       } catch (error) {
         console.log(error);
       }
     
     }
-  }, [getByCatConditionRequest, numero, condition])
+  }, [getByCatConditionRequest, numero, condition, search])
     
   useEffect(() => {
-    if(!condition && !order){
+    if(!condition){
       try {
         getCategoryRequest(search, numero*30)
         // console.log(loadStorage({query: search, offset:numero*30})); 
@@ -50,9 +39,10 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatP
   if (products && products.results.length > 0){
     return (
       <div className={style.contenedor}>
+        <SelectOrder condition={condition} products={products} txt="category" />
         <div className={style.ContenedorPrincipal}>
           <div className={style.secundario}>
-            <PermanentDrawerLeft key={categories.available_filters.id} txt="products" filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
+            <PermanentDrawerLeft key={categories.available_filters.id} txt="category" products={products} filters={categories.available_filters} filter={filter.available_sorts} search={search} price={order}></PermanentDrawerLeft>
             <div className={style.ContenedorCartasPag} >
               <div className={style.cartas}>
                 {products.results.map((prod) => {
@@ -76,7 +66,7 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest,getByCatP
           </div>
 
         </div>
-        <UsePagination txt="products" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
+        <UsePagination txt="category" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
 
       </div>
     );
