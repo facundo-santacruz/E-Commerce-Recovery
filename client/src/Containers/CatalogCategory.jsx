@@ -7,14 +7,14 @@ import style from '../Styles/Containers/Catalog.module.css'
 import { UsePagination } from './PaginationCategory';
 import { PermanentDrawerLeft } from '../Components/LeftBarCategory';
 import Loading from '../Components/Loading'
-import { SelectOrder } from '../Components/SelectOrder';
+import { SelectOrder } from '../Components/SelectorderCategory';
 export  function CatalogCategoryContainer({search,  getCategoryRequest, getByCatConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
   
 
   useEffect(() => {
     if(condition){
       try {
-        getByCatConditionRequest(numero*30, condition);
+        getByCatConditionRequest(numero, condition);
         
       } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest, getByCat
   useEffect(() => {
     if(!condition){
       try {
-        getCategoryRequest(search, numero*30)
+        getCategoryRequest(search, numero)
         // console.log(loadStorage({query: search, offset:numero*30})); 
       } catch (error) {
         console.log(error);

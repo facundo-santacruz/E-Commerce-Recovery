@@ -63,7 +63,7 @@ app.get('/search', function(req, res) {
         })
       } else { // When the data is not found in the cache then we can make request to the server
         console.log("no existe en la cache");
-        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}`);
+        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${(number-1)*30}&limit=${30}`);
 
         // save the record in the cache for subsequent request
         client.setex(`${search}${number}`, 20000, JSON.stringify(recipe.data));
@@ -160,7 +160,7 @@ app.get('/condition', function(req, res) {
           data: JSON.parse(recipe)
         })
       } else { // When the data is not found in the cache then we can make request to the server
-        const ruta = (`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${number}&limit=${30}${condition}`);
+        const ruta = (`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${(number-1)*30}&limit=${30}${condition}`);
         console.log(ruta)
         const recipe = await axios.get(ruta)
         // save the record in the cache for subsequent request

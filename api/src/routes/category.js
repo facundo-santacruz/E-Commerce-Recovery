@@ -60,7 +60,7 @@ app.get('/category', function(req, res) {
               data: JSON.parse(recipe)
             })
           } else { // When the data is not found in the cache then we can make request to the server
-            const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&offset=${number}&limit=${30}`);
+            const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&offset=${(number-1)*30}&limit=${30}`);
             
             // save the record in the cache for subsequent request
             client.setex(`${id}${number}`, 14200, JSON.stringify(recipe.data));
@@ -77,40 +77,7 @@ app.get('/category', function(req, res) {
       }
     });
     
-    
-    app.get('/sort_price_cat', function(req, res) {    
-      console.log(req.query)
-      const { id, price, number } = req.query
-      try {
-        // Check the redis store for the data first
-        client.get(`${id}${number}${price}`, async (err, recipe) => {
-          if (recipe) {
-            console.log("si existe en la cache");
-            return res.status(200).send({
-              error: false,
-              message: `Recipe for query:${id} offset:${number} orderby:${price} from the cache`,
-              data: JSON.parse(recipe)
-            })
-          } else { // When the data is not found in the cache then we can make request to the server
-            console.log("no existe en la cache");
-            const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&sort=${price}&offset=${number}&limit=${30}`);
-    
-            // save the record in the cache for subsequent request
-            client.setex(`${id}${number}${price}`, 1440, JSON.stringify(recipe.data));
-    
-            // return the result to the client
-            return res.status(200).send({
-              error: false,
-              message: `Recipe for query:${id} offset:${number} orderby:${price} from the server`,
-              data: recipe.data
-            });
-        }
-      }) 
-      } catch (error) {
-        console.log(error)
-      }
-    });
-    
+ 
 
     const objeto = (myObj) => {
       var newObj = ""
@@ -131,7 +98,7 @@ app.get('/category', function(req, res) {
       var condition = objeto(req.query)
       // const condition = cant(filtros)
       console.log(condition);
-      const { number} = req.query
+      const { number} = req.query;
       try {
         // Check the redis store for the data first
         client.get(`${number}${condition}`, async (err, recipe) => {
@@ -142,7 +109,7 @@ app.get('/category', function(req, res) {
               data: JSON.parse(recipe)
             })
           } else { // When the data is not found in the cache then we can make request to the server
-            const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?offset=${number}&limit=${30}${condition}`);
+            const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?offset=${(number-1)*30}&limit=${30}${condition}`);
     
             // save the record in the cache for subsequent request
             client.setex(`${number}${condition}`, 1440, JSON.stringify(recipe.data));

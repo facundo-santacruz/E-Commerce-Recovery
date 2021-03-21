@@ -16,7 +16,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
     if(condition){ 
       // condition = condition.length === 0 ? [] : condition.split("&").split("0")
       try {
-        getByConditionRequest(search, numero*30, condition);
+        getByConditionRequest(search, numero, condition);
      
       } catch (error) {
         console.log(error);
@@ -28,7 +28,7 @@ export  function SimpleContainer({search,  getProductsRequest, getByConditionReq
   useEffect(() => {
     if(!condition){
             try {
-              getProductsRequest(search, numero*30)
+              getProductsRequest(search, numero)
               // console.log(loadStorage({query: search, offset:numero*30})); 
             } catch (error) {
               console.log(error);

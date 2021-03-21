@@ -1,7 +1,7 @@
 import React from 'react';
 import CategoriesList from '../Containers/CategoriesList'
 // import { bindActionCreators } from 'redux';
-import  style  from "../Styles/Components/LeftBar.module.css";
+import  style  from "../Styles/Components/SelectOrder.module.css";
 import { useHistory } from 'react-router-dom';
 // import { connect } from 'react-redux';
 import { useState } from 'react';
@@ -27,12 +27,12 @@ export  function SelectOrder({products, txt, condition}) {
                     `sort=${event.target.value}` : elem).join("&")
 
             console.log(other);
-            return  history.push(`/${txt}/${query}/filter=${other}/0`);
+            return  history.push(`/${txt}/${query}/filter=${other}/1`);
         }
     
     
     return (
-        <div >
+        <div className={style.contenedor}>
             <span> Ordenar por </span>
             <select defaultValue={value.name} onChange={handleClick}>
                 {list.map(items => {

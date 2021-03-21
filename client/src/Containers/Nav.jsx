@@ -39,7 +39,7 @@ export default function SearchAppBar() {
             onChange={handleChange}
             className={style.text}
           />
-          <NavLink to={`/products/${search}/0`}>
+          <NavLink to={`/products/${search}/1`}>
             <button id="boton" className={style.boton}>
               Buscar
             </button>

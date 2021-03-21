@@ -22,7 +22,7 @@ export default function FilterCheckboxs({id, name, type, filter, filters, result
     
     if(text){
         return (
-            <Link to={`/${type}/${search}/filter=${text}&${filter}=${id}/0`} className={style.contenedor} key={id}>
+            <Link to={`/${type}/${search}/filter=${text}&${filter}=${id}/1`} className={style.contenedor} key={id}>
                 <label   className={style.nombre}>
                     {/* <input type="checkbox" id={id} value={id}/>  */}
                     {name} 
@@ -33,7 +33,7 @@ export default function FilterCheckboxs({id, name, type, filter, filters, result
 
     }else{
         return (
-            <Link to={`/${type}/${search}/filter=${filter}=${id}/0`} className={style.contenedor} key={id}>
+            <Link to={`/${type}/${search}/filter=${filter}=${id}/1`} className={style.contenedor} key={id}>
                 <label   className={style.nombre}>
                     {/* <input type="checkbox" id={id} value={id}/>  */}
                     {name} 
