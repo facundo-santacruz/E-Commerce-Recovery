@@ -7,6 +7,7 @@ import style from '../../Styles/Components/Img.module.css'
 import CartaProducto from './CartaProducto';
 function ProductContainerDetail({id,  getProductRequest, product })  {
   const [imag, setImg] = useState("");
+  console.log(id);
   useEffect( () => {
     const datos = async() =>{
       try {

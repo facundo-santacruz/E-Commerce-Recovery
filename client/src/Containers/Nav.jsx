@@ -13,18 +13,15 @@ export default function SearchAppBar() {
 
  
   function handleChange(e) {
-    if (e.keyCode === 13 && !e.shiftKey) {
-      e.preventDefault();
-      var boton = document.getElementById("boton");
-      boton.click();
-  }
     setSearch(e.target.value)
-    
-    
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefaukt()
   }
 
   return (
-    <div className={style.principal} >
+    <form onSubmit={handleSubmit} className={style.principal} >
       <div className={style.secundario}>
 
         <NavLink to={"/"}>
@@ -47,6 +44,6 @@ export default function SearchAppBar() {
         </div>
       
       </div>
-    </div>
+    </form>
   );
 }
