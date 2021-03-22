@@ -29,8 +29,7 @@ export  function SelectOrder({products, txt, condition}) {
     
     
     return (
-        <div >
-            <span> Ordenar por </span>
+        <div className={style.contenedor}>
             <select defaultValue={value.name} onChange={handleClick}>
                 {list.map(items => {
                     return (

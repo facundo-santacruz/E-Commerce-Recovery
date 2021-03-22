@@ -66,7 +66,7 @@ export  function CatalogCategoryContainer({search,  getCategoryRequest, getByCat
           </div>
 
         </div>
-        <UsePagination txt="category" search={search} paging={paging.paging} order={order} condition={condition}></UsePagination>
+        <UsePagination txt="category" search={search} cant={products.paging.total} number={numero} condition={condition}></UsePagination>
 
       </div>
     );

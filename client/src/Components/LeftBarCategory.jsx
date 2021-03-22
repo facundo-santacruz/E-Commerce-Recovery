@@ -33,7 +33,7 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
     <div className={style.Contenedor}>
       {filters.length === 1 ? 
           <div key={`${filters[0].id}${0}`}>
-            <span style={{fontSize: "bold black 2px"}}>{filters[0].name}: </span>
+            <span>{filters[0].name}: </span>
             <span>{filters[0].values[0].name}</span>
             
           </div>
@@ -44,10 +44,12 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
         filters.map((item, i)=> {
           
           return (
-            <div key={`${item.id}${i}`}>
-              <span style={{fontSize: "bold black 2px"}}>{item.name}: </span>
-              <span>{item.values[0].name}</span>
-              <button onClick={changeText} value={item.id}> X </button>
+            <div key={`${item.id}${i}`}className={style.filter}>
+              <div>
+                <span >{item.name}: </span>
+                <span>{item.values[0].name}</span>
+              </div>
+              <button onClick={changeText} value={item.id} className={style.filterBoton}> X </button>
             </div>
   
           )
