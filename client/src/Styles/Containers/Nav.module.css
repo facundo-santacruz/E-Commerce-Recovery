@@ -47,9 +47,15 @@
     border-radius: 15px;
     color:  rgb(154, 147, 147);
     font-weight: bold;
+    transition: all 2s ease;
     /* padding-right: 15px;
     padding-left: 15px; */
     
+}
+
+.boton:hover{
+    background: black;
+    color: blanchedalmond;
 }
 
 .ToolBar{

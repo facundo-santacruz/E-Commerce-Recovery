@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.3f2573ca.chunk.css",
-    "main.js": "/static/js/main.ddf42f4a.chunk.js",
-    "main.js.map": "/static/js/main.ddf42f4a.chunk.js.map",
+    "main.css": "/static/css/main.b97a4d08.chunk.css",
+    "main.js": "/static/js/main.83e76043.chunk.js",
+    "main.js.map": "/static/js/main.83e76043.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.649c834b.js",
     "runtime-main.js.map": "/static/js/runtime-main.649c834b.js.map",
     "static/js/2.0590ad1f.chunk.js": "/static/js/2.0590ad1f.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.defab46a.chunk.js": "/static/js/3.defab46a.chunk.js",
     "static/js/3.defab46a.chunk.js.map": "/static/js/3.defab46a.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.3f2573ca.chunk.css.map": "/static/css/main.3f2573ca.chunk.css.map",
+    "static/css/main.b97a4d08.chunk.css.map": "/static/css/main.b97a4d08.chunk.css.map",
     "static/js/2.0590ad1f.chunk.js.LICENSE.txt": "/static/js/2.0590ad1f.chunk.js.LICENSE.txt",
     "static/media/MercadoLibre1.2d68274d.jpeg": "/static/media/MercadoLibre1.2d68274d.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.649c834b.js",
     "static/js/2.0590ad1f.chunk.js",
-    "static/css/main.3f2573ca.chunk.css",
-    "static/js/main.ddf42f4a.chunk.js"
+    "static/css/main.b97a4d08.chunk.css",
+    "static/js/main.83e76043.chunk.js"
   ]
 }

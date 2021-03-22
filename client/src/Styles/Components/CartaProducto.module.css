@@ -1,5 +1,5 @@
 .detail {
-    min-width: 100px;
+    min-width: 80px;
     width: 30%;
     height: initial;
     border: 1px gray;
@@ -10,11 +10,12 @@
     /* min-height: 500px; */
     text-align: initial;
     margin-block-start: 1.3%;
-    margin-block-end: 1%;
+    /* margin-block-end: 1%; */
 }
 
 .detContenido{
     padding: 4% 2% 4% 2%;
+    font-size: 90%;
 }
 
 .detEncabezado {
@@ -22,7 +23,7 @@
 }
 
 .precio{
-   font-size: 2rem; 
+   font-size: 1.5rem; 
    margin-block-start: 0em;
     margin-block-end: 0em;
 }
@@ -35,6 +36,5 @@
 @media(max-width:861.33px){
     .detail{
         width: 100%;
-        min-width: 200px;
     }
 }

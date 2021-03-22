@@ -60,7 +60,7 @@
     cursor: zoom-in;
     height: auto;
     object-fit: contain;
-    width: 100%;
+    width: 95%;
     height: 100%;
 }
 
@@ -81,7 +81,5 @@
         margin-right: 0px;
     }
 
-    .imagen{
-        margin-left: 10px;
-    }
+    
 }

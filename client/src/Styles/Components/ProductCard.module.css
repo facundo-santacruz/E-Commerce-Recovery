@@ -17,13 +17,14 @@
   color: black;
   margin-bottom: 15px;
   min-width: 150px;
+  transition: all 2s ease;
 }
   /*
    .cardProd:hover, .card.flip{  
   } */
 
 .cardProd:hover {
-  background-color: rgb(150, 145, 145);
+  background-color: rgb(177, 170, 170);
 }
 
  .imagen{
@@ -33,7 +34,6 @@
 
 .detailProd{
   width: 50%;
-  margin-left: 10%;
 }
 
 @media (max-width: 600px) {

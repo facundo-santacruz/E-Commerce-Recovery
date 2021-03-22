@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import { getRatingProductRequest } from '../../Redux/catalog/actionsSearch';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import style from "../../Styles/Components/Rating.css";
 
 function SimpleRating({valor, review, getRatingProductRequest}) {
   const [value, setValue] = React.useState(2);
@@ -26,7 +27,8 @@ function SimpleRating({valor, review, getRatingProductRequest}) {
   // console.log(review);
   if(review){
     return (
-        <Box style={{display:"flex", alignItems:"center"}} component="fieldset" mb={3} borderColor="transparent">
+        <Box className={style.Contenedor}
+          component="fieldset" mb={3} borderColor="transparent">
           <Rating name="read-only" value={value} readOnly />
           <span style={{color:"gray"}}>{cant} opiniones</span>
         </Box>

@@ -33,6 +33,27 @@
 .list:hover{
   color: royalblue;
 }
+.filter{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: auto;
+  margin-bottom: 2%;
+  font-size: 70%;
+}
+
+.filterBoton{
+  max-width: 24.91px;
+  max-height: 21px;
+  align-self: center;
+}
+
+.filterBoton:hover {
+  background: black;
+  color: white;
+  border-radius: 5px;
+}
+
+
 @media (max-width: 600px) {
   
 }

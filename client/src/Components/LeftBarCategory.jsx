@@ -17,24 +17,16 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
 
   function changeText(e) {
             
-    if( filters.length > 0) {
-      var textoAux = [];
-      for (let i = 0; i < filters.length; i++) {
-          console.log(textoAux.length === 0);
-          if (textoAux.length === 0 && filters[i].id !== e.target.value){
-            textoAux.push(`${filters[i].id}=${filters[i].values[0].id}`)
-          }else if(filters[i].id !== e.target.value){
-            textoAux.push(`&${filters[i].id}=${filters[i].values[0].id}`)
-          }
-          console.log(textoAux);
-        }
-        history.push(`/${txt}/filter=${textoAux}/0`);
-    }else{
-      console.log("hola");
-      history.push(`/${txt}/filter=${search}/0`);
-    } 
-
-    // console.log(texto);
+    var textoAux = [];
+    for (let i = 0; i < filters.length; i++) {
+      console.log(textoAux.length === 0);
+      if (textoAux.length === 0 && filters[i].id !== e.target.value){
+        textoAux.push(`${filters[i].id}=${filters[i].values[0].id.replace(",", "")}`)
+      }else if(filters[i].id !== e.target.value){
+        textoAux.push(`&${filters[i].id}=${filters[i].values[0].id.replace(",", "")}`)
+      }
+    }
+    history.push(`/${txt}/filter=${textoAux}/1`);
   }
   return (
     
