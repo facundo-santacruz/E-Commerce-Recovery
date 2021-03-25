@@ -2,14 +2,11 @@ const app = require('express').Router();
 const axios = require('axios')
 
 const { response } = require('express')
-const redis = require('redis');
 // make a connection to the local instance of redis
-const client = redis.createClient(6379);
+// const redis = require('redis');
 
-
-client.on("error", (error) => {
-  console.error(error);
-})
+const  client = require('../redis')
+console.log(client);
 
 // //----------------------BUSCAR UN PRODUCTO------------------------------------------------------
 
@@ -29,7 +26,7 @@ app.get('/product', function(req, res) {
         const recipe = await axios.get(`https://api.mercadolibre.com/items/${id}`);
         
         // save the record in the cache for subsequent request
-        client.setex(`${id}`, 14200, JSON.stringify(recipe.data));
+        client.set(`${id}`, 14200, JSON.stringify(recipe.data));
         // return the result to the client
         return res.status(200).send({
           error: false,
@@ -66,7 +63,7 @@ app.get('/search', function(req, res) {
         const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${(number-1)*30}&limit=${30}`);
 
         // save the record in the cache for subsequent request
-        client.setex(`${search}${number}`, 20000, JSON.stringify(recipe.data));
+        client.set(`${search}${number}`, 20000, JSON.stringify(recipe.data));
 
         // return the result to the client
         return res.status(200).send({
@@ -103,7 +100,7 @@ app.get('/sort_price', function(req, res) {
         const recipe = await axios.get(ruta);
 
         // save the record in the cache for subsequent request
-        client.setex(`${search}${number}${price}`, 1440, JSON.stringify(recipe.data));
+        client.set(`${search}${number}${price}`, 1440, JSON.stringify(recipe.data));
 
         // return the result to the client
         return res.status(200).send({
@@ -164,7 +161,7 @@ app.get('/condition', function(req, res) {
         console.log(ruta)
         const recipe = await axios.get(ruta)
         // save the record in the cache for subsequent request
-        client.setex(`${search}${number}${condition}`, 1440, JSON.stringify(recipe.data));
+        client.set(`${search}${number}${condition}`, 1440, JSON.stringify(recipe.data));
 
         // return the result to the client
         return res.status(200).send({

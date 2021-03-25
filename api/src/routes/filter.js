@@ -2,24 +2,21 @@ const app = require('express').Router();
 const axios = require('axios')
 const cat = require('../models/categories')
 
-const redis = require('redis');
+// const redis = require('redis');
 // make a connection to the local instance of redis
-const client = redis.createClient(6379);
+const  client = require('../redis')
 
 
-client.on("error", (error) => {
-  console.error(error);
-})
  const objeto = (myObj) => {
 
     for (var key in myObjj) {
-  
+
         console.log(key);
         console.log(myObj[key]);
       }
  }
 
-app.get('/filter', function(req, res) {    
+app.get('/filter', function(req, res) {
     objeto(req.query)
         try {
         const { search, value, number, categoria } = req.query;
@@ -46,13 +43,13 @@ app.get('/filter', function(req, res) {
                 data: recipe.data
             });
         }
-        }) 
+        })
     } catch (error) {
         console.log(error)
     }
 });
 
-app.get('/filtercat', function(req, res) {    
+app.get('/filtercat', function(req, res) {
     console.log(req.query);
         try {
         const { search, value, number, categoria } = req.query;
@@ -79,7 +76,7 @@ app.get('/filtercat', function(req, res) {
                 data: recipe.data
             });
         }
-        }) 
+        })
     } catch (error) {
         console.log(error)
     }

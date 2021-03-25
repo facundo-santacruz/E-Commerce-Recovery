@@ -2,18 +2,10 @@ const app = require('express').Router();
 const axios = require('axios')
 const cat = require('../models/categories.js')
 
-const redis = require('redis');
-// make a connection to the local instance of redis
-const Ioredis = require('ioredis');
 
-// const client = redis.createClient(6379);
-const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
-// client.on("error", (error) => {
-//   console.error(error);
-// })
+const  client = require('../redis')
 
-console.log(client)
-
+console.log(client);
 // //------------------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES----------------------------
 // //------------------Y LO GUARDA EN LA CACHE SI NO SE HIZO LA PETICION-----------------------
 
@@ -33,7 +25,7 @@ app.get('/categories', function(req,res){
         // const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/categories`);
 
         // save the record in the cache for subsequent request
-        client.setex(`categories`, 2000, JSON.stringify(cat));
+        client.set(`categories`, 2000, JSON.stringify(cat));
 
         // return the result to the client
         return res.status(200).send({
@@ -65,7 +57,7 @@ app.get('/category', function(req, res) {
             const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&offset=${(number-1)*30}&limit=${30}`);
             
             // save the record in the cache for subsequent request
-            client.setex(`${id}${number}`, 14200, JSON.stringify(recipe.data));
+            client.set(`${id}${number}`, 14200, JSON.stringify(recipe.data));
             // return the result to the client
             return res.status(200).send({
               error: false,
@@ -114,7 +106,7 @@ app.get('/category', function(req, res) {
             const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?offset=${(number-1)*30}&limit=${30}${condition}`);
     
             // save the record in the cache for subsequent request
-            client.setex(`${number}${condition}`, 1440, JSON.stringify(recipe.data));
+            client.set(`${number}${condition}`, 1440, JSON.stringify(recipe.data));
     
             // return the result to the client
             return res.status(200).send({
