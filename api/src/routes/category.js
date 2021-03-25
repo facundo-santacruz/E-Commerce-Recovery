@@ -3,8 +3,18 @@ const axios = require('axios')
 const cat = require('../models/categories.js')
 
 
-const  client = require('../redis')
-
+// const  client = require('../redis')
+const redis = require('ioredis');
+// const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
+// const client = new redis("redis://admin:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6379");
+const client = new redis({
+  host: process.env.HOST,
+  port: process.env.PORT,
+  user: process.env.USER,
+  password: process.env.PASSWORD});
+client.on("error", (error) => {
+  console.error(error);
+})
 console.log(client);
 // //------------------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES----------------------------
 // //------------------Y LO GUARDA EN LA CACHE SI NO SE HIZO LA PETICION-----------------------
@@ -22,7 +32,7 @@ app.get('/categories', function(req,res){
         })
       } else { // When the data is not found in the cache then we can make request to the server
         console.log("no existe en la cache");
-        // const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/categories`);
+        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/categories`);
 
         // save the record in the cache for subsequent request
         client.set(`categories`, 2000, JSON.stringify(cat));

@@ -12,13 +12,13 @@ app.set('port', process.env.PORT || 5000);
 app.use(cors())
 app.use(morgan('dev')); //muestra msj en consola del estado de la peticion
 app.use(express.json()); // cada vez que llega un dato al servidor, este comprueba si el dato es un json
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
-    res.header('Access-Control-Allow-Origin', process.env.PORT || 5000);
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
+//     res.header('Access-Control-Allow-Origin', process.env.PORT || 5000);
+//     res.header('Access-Control-Allow-Credentials', 'true');
+//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//     next();
+// });
 
 // Routes
 app.use('/api',require('./routes/index'))
