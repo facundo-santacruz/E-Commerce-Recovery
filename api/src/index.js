@@ -36,11 +36,11 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 
 // Starting
 
-app.use(express.static(path.join(__dirname, '../../client/build')));
 
 app.listen(app.get('port'), () => {
-    console.log(`Server on port ${app.get('port')}`);
+  console.log(`Server on port ${app.get('port')}`);
 });
+app.use(express.static(path.join(__dirname, '../../client/build')));
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../../client/build'));
