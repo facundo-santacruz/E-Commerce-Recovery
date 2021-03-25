@@ -12,7 +12,7 @@ const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
 //   console.error(error);
 // })
 
-
+console.log(client)
 
 // //------------------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES----------------------------
 // //------------------Y LO GUARDA EN LA CACHE SI NO SE HIZO LA PETICION-----------------------
