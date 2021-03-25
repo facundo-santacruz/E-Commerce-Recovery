@@ -4,11 +4,13 @@ const cat = require('../models/categories.js')
 
 const redis = require('redis');
 // make a connection to the local instance of redis
-const client = redis.createClient(6379);
+const Ioredis = require('ioredis');
 
-client.on("error", (error) => {
-  console.error(error);
-})
+// const client = redis.createClient(6379);
+const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
+// client.on("error", (error) => {
+//   console.error(error);
+// })
 
 
 
