@@ -10,7 +10,7 @@ export  function Categories({categories,  getCategories})  {
   const [ categorias, setCategorias ] = useState([])
   useEffect(() => {
     try {
-      Axios.get('http://localhost:3001/api/category/categories')
+      Axios.get('/api/category/categories')
       .then(response => { setCategorias(response.data.data) })
       } catch (error) {
         console.log(error)
