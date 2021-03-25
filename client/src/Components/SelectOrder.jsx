@@ -19,16 +19,16 @@ export  function SelectOrder({products, txt, condition}) {
         // condition += `&sort=${e.target.value}`
         // console.log(condition);
         // if (e.target.value !== value.id){
-            console.log(condition);
-            var newArr =  condition.split("&").findIndex(elem => elem.slice(0,4) === "sort" )
-            // console.log(e)
-            var other = newArr === -1 ? `${condition}&sort=${event.target.value}` :
-                condition.split("&").map(elem => elem.slice(0,4) === "sort" ? 
-                    `sort=${event.target.value}` : elem).join("&")
+        console.log(condition);
+        var newArr =  condition.split("&").findIndex(elem => elem.slice(0,4) === "sort" )
+        // console.log(e)
+        var other = newArr === -1 ? `${condition}&sort=${event.target.value}` :
+            condition.split("&").map(elem => elem.slice(0,4) === "sort" ? 
+                `sort=${event.target.value}` : elem).join("&")
 
-            console.log(other);
-            return  history.push(`/${txt}/${query}/filter=${other}/1`);
-        }
+        console.log(other);
+        return  history.push(`/${txt}/${query}/filter=${other}/1`);
+    }
     
     
     return (

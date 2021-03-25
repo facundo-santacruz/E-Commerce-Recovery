@@ -14,7 +14,7 @@ export function getProducts(allproducts) {
 export  function getProductsRequest(search, number) {
     console.log(search)
     return (dispatch) => {
-         axios.get(`http://localhost:3001/api/products/search?search=${search}&number=${number}`)
+         axios.get(`/api/products/search?search=${search}&number=${number}`)
         .then(response => {  dispatch(getProducts(response.data)
              )
             })
@@ -33,7 +33,7 @@ export function getByPrice(products){
 
 export function getByPriceRequest(search, number, price) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/products/sort_price?search=${search}&number=${number}&price=${price}`)
+        axios.get(`/api/products/sort_price?search=${search}&number=${number}&price=${price}`)
         .then(response => { dispatch(getByPrice(response.data))})
         .catch(err => {console.log(err)})
     }
@@ -50,7 +50,7 @@ export function getByCondition(products){
 
 export function getByConditionRequest(search, number, condition) {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/products/condition?search=${search}&number=${number}&${condition}`)
+        axios.get(`/api/products/condition?search=${search}&number=${number}&${condition}`)
         .then(response => { dispatch(getByCondition(response.data))})
         .catch(err => {console.log(err)})
     }
@@ -70,7 +70,7 @@ export function getProduct(product) {
 export function getProductRequest(id){
     console.log(id)
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/products/product?id=${id}`)
+        axios.get(`/api/products/product?id=${id}`)
             .then(response => {
                 dispatch(getProduct(response.data))})
             .catch(err => {console.log(err)})
@@ -91,7 +91,7 @@ export function getRating(review){
 export function getRatingProductRequest(id){
     console.log(id)
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/products/reviews?id=${id}`)
+        axios.get(`/api/products/reviews?id=${id}`)
             .then(res => {dispatch(getRating(res.data))})
             .catch(err => console.log(err))
     }        

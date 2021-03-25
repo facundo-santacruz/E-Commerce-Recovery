@@ -9,19 +9,7 @@ import { PermanentDrawerLeft } from '../Components/LeftBarCategory';
 import { SelectOrder } from '../Components/SelectOrder';
 import Loading from '../Components/Loading'
 export  function CatalogCategoryFilterContainer({search, value, categoria, getCategoryFilterRequest,getByCatFilterPriceRequest, getByCatFilterConditionRequest, numero=0, products, paging, order, filter, condition, categories  })  {
-  console.log(categoria)
-  // useEffect(() => {
-  //     console.log(search)
-  //   if (order){
-  //     let price=order
-  //     try {
-  //       getByCatFilterPriceRequest(search, numero*30, price, value);
-        
-  //     } catch (error) {
-  //       console.log(error);
-  //     } 
-  //   }
-  // }, [getByCatFilterPriceRequest, order, numero])
+  
 
   useEffect(() => {
     console.log(condition)

@@ -1,0 +1,24 @@
+{
+  "name": "mercado-libre-api",
+  "version": "1.0.0",
+  "description": "Durante este proyecto interactuaremos con una API de Mercado Libre para poder buscar productos.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facundo-santacruz/Mercado-Libre-Api.git"
+  },
+  "engines": {
+    "node": "12.19.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd api && npm install && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facundo-santacruz/Mercado-Libre-Api/issues"
+  },
+  "homepage": "https://github.com/facundo-santacruz/Mercado-Libre-Api#readme"
+}
