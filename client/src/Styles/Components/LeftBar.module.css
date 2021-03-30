@@ -4,8 +4,14 @@
   text-align: initial;
   position: relative;
   /* overflow: scroll; */
-  width: 30%;
-  margin-right: 5%;
+  width: 34%;
+  margin-right: 1%;
+  background: white;
+  border-radius: 20px;
+  /* margin-top: 5px; */
+  padding-left: 1%;
+  padding-top: 2%;
+  border: 1px black solid;
 }
   
 .listarCategorias{

@@ -14,8 +14,8 @@ export default function RecipeReviewCard({title, price, id, currency_id, quantit
           <p >{title}</p>
           <div className={style.ContPrecio} >
             <h3>{currency_id} ${price}</h3> 
-            {condition === "new" ? <span style={{backgroundColor:"green", color:"white"}}>  Nuevo  </span> :
-            <span style={{backgroundColor:"orange", color:"white"}}> Usado</span>  }
+            {condition === "new" ? <span className={style.nuevo}>  Nuevo  </span> :
+            <span className={style.usado}> Usado</span>  }
           </div>
         {quantity > 0 ? <p style={{textAlign: "center"}}><small>Disponibilidad: {quantity} unidad/es</small></p> : 
         <h3 style={{backgroundColor:"gray", color:"white"}}> Sin Stock</h3>}

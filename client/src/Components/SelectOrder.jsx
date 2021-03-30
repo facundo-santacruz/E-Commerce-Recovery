@@ -27,6 +27,8 @@ export  function SelectOrder({products, txt, condition}) {
     
     return (
         <div className={style.contenedor}>
+             <span>Búsqueda: {query} ({products.paging.total})</span>
+            <div>
             <span> Ordenar por </span>
             <select defaultValue={value.name} onChange={handleClick}>
                 {list.map(items => {
@@ -36,6 +38,7 @@ export  function SelectOrder({products, txt, condition}) {
                     )
                 })}
             </select>
+            </div>
         </div> 
   )
 }     
