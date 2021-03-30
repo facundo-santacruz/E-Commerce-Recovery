@@ -1,51 +1,23 @@
 const app = require('express').Router();
 const axios = require('axios')
-const cat = require('../models/categories.js')
 
+// const redis = require('ioredis');
+// // const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
+// // const client = new redis("redis://admin:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6379");
+// const client = new redis("rediss://stackhero:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6380");
 
-// const  client = require('../redis')
-const redis = require('ioredis');
-// const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
-// const client = new redis("redis://admin:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6379");
-const client = new redis("rediss://stackhero:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6380");
-client.on("error", (error) => {
-  console.error(error);
-})
-console.log(client);
+// client.on("error", (error) => {
+//   console.error(error);
+// })
+
+const  { getCategoriesRedis} = require('../redis')
+
 // //------------------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES----------------------------
 // //------------------Y LO GUARDA EN LA CACHE SI NO SE HIZO LA PETICION-----------------------
 
 app.get('/categories', function(req,res){
-  try {
-    // Check the redis store for the data first
-    client.get(`categories`, async (err, recipe) => {
-      if (recipe) {
-        console.log("si existe en la cache");
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for categories from the cache`,
-          data: cat
-        })
-      } else { // When the data is not found in the cache then we can make request to the server
-        console.log("no existe en la cache");
-        const recipe = cat;
-        console.log(cat)
-        // save the record in the cache for subsequent request
-        client.set(`categories`, 2000, JSON.stringify(cat));
-
-        // return the result to the client
-        return res.status(200).send({
-          error: false,
-          message: `Recipe  categories from the server`,
-          data: cat
-        });
-    }
-  }) 
-} catch (error) {
-    console.log(error)
-}
+  return getCategoriesRedis("categories", res)
 });
-// })
 
 app.get('/category', function(req, res) {    
       const { id, number } = req.query

@@ -2,16 +2,12 @@ const app = require('express').Router();
 const axios = require('axios')
 
 const { response } = require('express')
-// const  client = require('../redis')
-const redis = require('ioredis');
-// const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
-// const client = new redis("redis://admin:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6379");
-const client = new redis("rediss://stackhero:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6380");
-
-client.on("error", (error) => {
-  console.error(error);
-})
-
+const  {client} = require('../redis')
+// const redis = require('ioredis');
+// const client = new redis(process.env.STACKHERO_REDIS_URL_TLS);
+// client.on("error", (error) => {
+//   console.error(error);
+// })
 
 // client.get(`ram1`, function (err, result) {
 //   if (err) {
