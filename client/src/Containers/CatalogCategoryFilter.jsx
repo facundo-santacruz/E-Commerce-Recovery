@@ -41,7 +41,7 @@ export  function CatalogCategoryFilterContainer({search, value, categoria, getCa
   if (products && products.results.length > 0){
     return (
       <div className={style.contenedor}>
-        <SelectOrder condition={condition} products={products} txt="products" />
+        <SelectOrder condition={condition} products={products} txt="products" query={search}/>
         <div className={style.ContenedorPrincipal}>
           <div className={style.secundario}>
           <PermanentDrawerLeft txt="category" products={products}  filter={filter.available_sorts}></PermanentDrawerLeft>

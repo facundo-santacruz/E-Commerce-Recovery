@@ -1,4 +1,5 @@
 import { GET_CATEGORIES, GET_CATEGORY, GET_PRODUCTS_CAT_BY_CONDITION } from './constants';
+import axios from 'axios';
 
 
 export function getCateg(categorias) {

@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 
 
-export  function SelectOrder({products, txt, condition}) {
+export  function SelectOrder({products, txt, condition, query}) {
     const [ list ] = useState([{name: "Más relevantes", id:"relevant"}, 
                             {name: "Menor Precio", id:"price_asc"}, {name: "Mayor Precio", id:"price_desc"}])
     const [ value ] = useState(products.sort)
@@ -13,12 +13,15 @@ export  function SelectOrder({products, txt, condition}) {
 
     function handleClick(event) {
         event.preventDefault()
-        var newArr =  condition.split("&").findIndex(elem => elem.slice(0,4) === "sort" )
-        // console.log(e)
-        var other = newArr === -1 ? `${condition}&sort=${event.target.value}` :
-            condition.split("&").map(elem => elem.slice(0,4) === "sort" ? 
-                `sort=${event.target.value}` : elem).join("&")
-        return  history.push(`/${txt}/filter=${other}/1`);
+        if (condition){
+            var newArr =  condition.split("&").findIndex(elem => elem.slice(0,4) === "sort" )
+            var other = newArr === -1 ? `${condition}&sort=${event.target.value}` :
+                condition.split("&").map(elem => elem.slice(0,4) === "sort" ? 
+                    `sort=${event.target.value}` : elem).join("&")
+            return  history.push(`/${txt}/filter=${other}/1`);
+        }else{
+            return  history.push(`/${txt}/filter=category=${query}&sort=${event.target.value}/1`);
+        }
     }
     
     

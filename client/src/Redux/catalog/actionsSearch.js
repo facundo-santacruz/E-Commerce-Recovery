@@ -45,7 +45,6 @@ export function getProduct(product) {
 }
   
 export function getProductRequest(id){
-    console.log(id)
     return (dispatch) => {
         axios.get(`/api/products/product?id=${id}`)
             .then(response => {
@@ -64,7 +63,6 @@ export function getRating(review){
 }
 
 export function getRatingProductRequest(id){
-    console.log(id)
     return (dispatch) => {
         axios.get(`/api/products/reviews?id=${id}`)
             .then(res => {dispatch(getRating(res.data))})

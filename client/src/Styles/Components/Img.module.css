@@ -3,8 +3,9 @@
     justify-content: center;
     display: flex;
     background-color: white;
-    
+    transition: all 2s ease;
 }
+
 
 .contenedor {
     width: 90%;
@@ -15,9 +16,14 @@
     min-height: 300px;
     max-width: 1200px;
     justify-content: space-between;
+    transition: all 2s ease;
     /* margin-bottom: 2%; */
 }
 
+.contenedor{
+    background-color: rgb(26, 49, 56);
+    color: seashell;
+}
 .imagenes{
     display: table-column-group;
     flex-direction: column;
@@ -70,6 +76,7 @@
     }
     .contImgGde{
         width: 100%;
+        max-height: none;
     }
     .segContenedor{
         width: 100%;

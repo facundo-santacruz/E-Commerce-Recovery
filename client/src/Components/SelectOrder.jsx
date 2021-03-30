@@ -1,11 +1,7 @@
 import React from 'react';
-// import { bindActionCreators } from 'redux';
 import  style  from "../Styles/Components/SelectOrder.module.css";
 import { useHistory } from 'react-router-dom';
-// import { connect } from 'react-redux';
 import { useState } from 'react';
-
-
 
 export  function SelectOrder({products, txt, condition}) {
     const [ list ] = useState([{name: "Más relevantes", id:"relevant"}, 
@@ -15,6 +11,7 @@ export  function SelectOrder({products, txt, condition}) {
     var { query } = products
 
      function handleClick(event) {
+        event.preventDefault();
         if (condition){
             var newArr =  condition.split("&").findIndex(elem => elem.slice(0,4) === "sort" )
             // console.log(e)

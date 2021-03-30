@@ -24,8 +24,8 @@ const Cartaproducto = ({product, seller, getSellerRequest}) => {
       <div className={style.detail}>
           <div className={style.detContenido}>
             <div className={style.detEncabezado}>
-            {product.condition === "new" ? <label>Nuevo</label> : <label>Usado</label>}
-            <label > | {product.sold_quantity} vendidos</label>
+              {product.condition === "new" ? <label>Nuevo</label> : <label>Usado</label>}
+              <label > | {product.sold_quantity} vendidos</label>
             </div>
             <h2 style={{ marginBlockEnd: "0"}}>{product.title}</h2>
             <Rating valor={product.id}></Rating>

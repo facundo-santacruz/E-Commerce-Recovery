@@ -17,21 +17,19 @@ function SimpleRating({valor, review, getRatingProductRequest}) {
     }
     data();
   },[valor]);
-  // console.log(review);
   if(review){
-    // const  rating  = review.data.rating_average
     return (
-        <Box className={style.Contenedor}
-          component="fieldset" mb={3} borderColor="transparent">
-          <Rating name="read-only" value={review.rating_average} readOnly />
-          <span style={{color:"gray"}}>{review.paging.total} opiniones</span>
-        </Box>
+      <div style={    {display: "grid", justifyContent:"center", textAlign:"center"}}>
+        <Rating name="read-only" value={review.rating_average} readOnly />
+        <span style={{color:"gray"}}>{review.paging.total} opiniones</span>
+
+      </div>
     );
 
   }else{
     return (
       <div>
-        <h1>No hay resultados</h1>
+         <Rating name="read-only" value={0} readOnly />
       </div>
 
     )

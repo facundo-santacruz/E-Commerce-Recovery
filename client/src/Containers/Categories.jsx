@@ -6,6 +6,7 @@ import style from '../Styles/Containers/Categories.module.css'
 import CategoryCard from '../Components/CategoryCard';
 import { useState } from 'react';
 import Axios from 'axios';
+import Loading from "../Components/Loading"
 export  function Categories({categories,  getCategories})  {
   const [ categorias, setCategorias ] = useState([])
   useEffect(() => {
@@ -38,7 +39,7 @@ export  function Categories({categories,  getCategories})  {
     }else {
       return (
         <div>
-          <h1>No hay categorias</h1>
+          <Loading></Loading>
         </div>
       )
     }
