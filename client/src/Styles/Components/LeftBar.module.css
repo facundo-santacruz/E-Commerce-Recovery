@@ -11,7 +11,7 @@
   /* margin-top: 5px; */
   padding-left: 1%;
   padding-top: 2%;
-  border: 1px black solid;
+  border: 1px rgb(138, 134, 134) solid;
 }
   
 .listarCategorias{
@@ -21,7 +21,7 @@
   text-decoration: none;
 }
 .link{
-  color: rgb(55, 53, 53);
+  color: rgb(116, 113, 113);
   text-decoration:none;
 
 }
@@ -38,16 +38,20 @@
 }
 .list:hover{
   color: royalblue;
+  cursor: pointer;
 }
 .filter{
   display: flex;
   justify-content: space-between;
-  margin-bottom: auto;
   margin-bottom: 2%;
-  font-size: 70%;
+  font-size: 75%;
+  width:90%;
+  align-items: center;
+  border-bottom: rgb(230, 88, 88) solid 1px;
 }
 
 .filterBoton{
+  background-color: rgb(230, 88, 88);
   max-width: 24.91px;
   max-height: 21px;
   align-self: center;
