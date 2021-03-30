@@ -1,7 +1,8 @@
 .contenedor{
   display: flex;
   flex-direction: column;
-
+  width: 100%;
+  /* max-width: 1200px; */
   justify-content: center;
 }
 .ContenedorPrincipal{
@@ -14,6 +15,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 90%;
+  max-width: 1200px;
   /* position: ; */
 }
 

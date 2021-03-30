@@ -26,7 +26,19 @@
 .cardProd:hover {
   background-color: rgb(56, 67, 70);
 }
+.nuevo{
+  background-color: green;
+  color: white;
+  padding: 2%;
+  border-radius: 5px;
+}
 
+.usado{
+  background-color: green;
+  color: white;
+  padding: 2%;
+  border-radius: 5px;
+}
  .imagen{
   width: 160px;
   height: 160px;
