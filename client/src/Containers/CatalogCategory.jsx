@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getByCatConditionRequest, getByCatPriceRequest, getCategoryRequest } from '../Redux/catalog/actionsCategory';
+import { getByCatConditionRequest,  getCategoryRequest } from '../Redux/catalog/actionsCategory';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ProductCard from '../Components/ProductCard';
@@ -89,7 +89,7 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
       dispatch,
-      ...bindActionCreators({ getCategoryRequest, getByCatConditionRequest, getByCatPriceRequest }, dispatch)
+      ...bindActionCreators({ getCategoryRequest, getByCatConditionRequest }, dispatch)
     }
   
   }

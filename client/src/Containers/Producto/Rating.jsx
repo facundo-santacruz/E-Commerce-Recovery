@@ -11,10 +11,6 @@ function SimpleRating({valor, review, getRatingProductRequest}) {
     const data= async() =>{
       try {
         await getRatingProductRequest(valor);
-        console.log(review);
-        // setValue(review.data.rating_average)
-        // setCant(review.data.paging.total)
-        // console.log(review);
       }catch (error) {
         console.log(error)
       }
