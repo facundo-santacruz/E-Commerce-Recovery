@@ -1,5 +1,4 @@
 const app = require('express').Router();
-const axios = require('axios')
 
 const  {getProductsRedis } = require('../redis')
 // //----------------------BUSCAR UN PRODUCTO------------------------------------------------------

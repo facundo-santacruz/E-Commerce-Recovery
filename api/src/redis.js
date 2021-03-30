@@ -11,8 +11,6 @@ client.on("error", (error) => {
   console.error(error);
 })
 
-console.log(client)
-
 const getCategoriesRedis = (text, res) => {
   try {
     client.get(text, async (err, recipe) => {
@@ -34,15 +32,12 @@ const getCategoriesRedis = (text, res) => {
         });
       }
     }) 
-
   }catch (error) {
     res.status(404)
   }
 }
 
 const getProductsRedis = (text, res, route, type) => {
-  client.del(text)
-  console.log(route)
   try {
     // Check the redis store for the data first
     client.get(text, async (err, recipe) => {
