@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import style from '../../Styles/Components/Img.module.css'
 import CartaProducto from './CartaProducto';
+import Loading from '../../Components/Loading'
+
 function ProductContainerDetail({id,  getProductRequest, product })  {
   const [imag, setImg] = useState("");
   
@@ -49,9 +51,7 @@ function ProductContainerDetail({id,  getProductRequest, product })  {
 
     }else{
       return (
-        <div>
-          <h1>El producto no existe</h1>
-        </div>
+        <Loading></Loading>
       )
     }
   }
