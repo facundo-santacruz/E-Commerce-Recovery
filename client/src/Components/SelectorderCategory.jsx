@@ -1,7 +1,6 @@
 import React from 'react';
 import  style  from "../Styles/Components/SelectOrder.module.css";
 import { useHistory } from 'react-router-dom';
-// import { connect } from 'react-redux';
 import { useState } from 'react';
 
 
@@ -9,7 +8,7 @@ import { useState } from 'react';
 export  function SelectOrder({products, txt, condition}) {
     const [ list ] = useState([{name: "Más relevantes", id:"relevant"}, 
                             {name: "Menor Precio", id:"price_asc"}, {name: "Mayor Precio", id:"price_desc"}])
-    const [ value, setValue] = useState(products.sort)
+    const [ value ] = useState(products.sort)
     let history = useHistory();
 
     function handleClick(event) {
@@ -19,8 +18,6 @@ export  function SelectOrder({products, txt, condition}) {
         var other = newArr === -1 ? `${condition}&sort=${event.target.value}` :
             condition.split("&").map(elem => elem.slice(0,4) === "sort" ? 
                 `sort=${event.target.value}` : elem).join("&")
-
-        console.log(other);
         return  history.push(`/${txt}/filter=${other}/1`);
     }
     

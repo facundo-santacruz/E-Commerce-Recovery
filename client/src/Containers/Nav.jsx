@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import {  makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
 import { NavLink } from 'react-router-dom';
 import MercadoLibre from '../Styles/Imagenes/MercadoLibre1.jpeg'
 import  style  from "../Styles/Containers/Nav.module.css";

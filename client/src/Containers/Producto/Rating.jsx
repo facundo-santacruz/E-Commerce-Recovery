@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import { getRatingProductRequest } from '../../Redux/catalog/actionsSearch';
@@ -7,10 +7,6 @@ import { connect } from 'react-redux';
 import style from "../../Styles/Components/Rating.css";
 
 function SimpleRating({valor, review, getRatingProductRequest}) {
-  const [value, setValue] = React.useState();
-  const [cant, setCant] = useState()
-  // console.log(valor)
-
   useEffect (() => {
     const data= async() =>{
       try {

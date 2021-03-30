@@ -1,17 +1,10 @@
 import React from 'react';
 import CategoriesList from '../Containers/CategoriesList'
-// import { bindActionCreators } from 'redux';
 import  style  from "../Styles/Components/LeftBar.module.css";
-import { Link, NavLink, useHistory } from 'react-router-dom';
-// import { connect } from 'react-redux';
-import  { useState } from 'react';
-
-
+import { useHistory } from 'react-router-dom';
 
 export  function PermanentDrawerLeft({txt, search, filter,  products }) {
-  const [ texto, setText ] = useState([])
-  const history = useHistory()
-  // console.log(filter)
+  const history = useHistory();
 
   var { filters, available_filters } = products
 
@@ -25,7 +18,6 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
       }else if(filters[i].id !== e.target.value){
         textoAux.push(`&${filters[i].id}=${filters[i].values[0].id.replace(",", "")}`)
       }
-      console.log(textoAux);
     }
     history.push(`/${txt}/${search}/filter=${textoAux}/1`);
   
@@ -37,15 +29,12 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
     
     <div className={style.Contenedor}>
       {filters.length === 1 ? 
-          <div key={`${filters[0].id}${0}`}>
-            <span>{filters[0].name}: </span>
-            <span>{filters[0].values[0].name}</span>
-            
-          </div>
-          : 
-        
-
-
+        <div key={`${filters[0].id}${0}`}>
+          <span>{filters[0].name}: </span>
+          <span>{filters[0].values[0].name}</span>
+          
+        </div>
+        : 
         filters.map((item, i)=> {
           
           return (
@@ -60,16 +49,9 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
           )
         })
       }
-
-      
-        
-        {available_filters.map((text, index) => (
-          <CategoriesList filterValues={text} type={txt} products={products}/>
-
-          ))}
-        
-      {/* </div> */}
+      {available_filters.map((text, index) => (
+        <CategoriesList filterValues={text} type={txt} products={products}/>
+      ))}
     </div>
   )
-
 }

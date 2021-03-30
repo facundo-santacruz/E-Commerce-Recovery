@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import  style  from "./../Styles/Components/Filter.module.css";
 export default function FilterCheckboxs({id, name, type, filter, filters, results,search}) {
     // console.log(results)
     const [ text, setText] = useState("")
-    let history = useHistory();
     useEffect(() => {
         function changeText() {
             if( filters.length > 0) {
