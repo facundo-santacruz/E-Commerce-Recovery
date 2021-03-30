@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import FilterCheckboxs from "../Components/FilterCheckboxs";
 export default function CategoriesList({products, type, filterValues}) {
     // console.log(values)
-    var {available_filters , query, filters } = products
+    var { query, filters } = products
     // console.log(available_filters);
     return (
         <div style={{display:"flex", flexDirection:"column"}}>

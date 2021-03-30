@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { getByPriceRequest, getProductsRequest, getByConditionRequest } from '../Redux/catalog/actionsSearch';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,7 +9,6 @@ import { PermanentDrawerLeft } from '../Components/LeftBar';
 import { SelectOrder } from '../Components/SelectOrder';
 import Loading from '../Components/Loading'
 export  function SimpleContainer({search,  getProductsRequest, getByConditionRequest,getByPriceRequest, numero=0, products, paging, filter, condition, categories  })  {
-  const [ text, setText] = useState("")
   
   useEffect(() => {
     console.log(condition)

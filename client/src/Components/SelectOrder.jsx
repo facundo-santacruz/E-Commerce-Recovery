@@ -1,5 +1,4 @@
 import React from 'react';
-import CategoriesList from '../Containers/CategoriesList'
 // import { bindActionCreators } from 'redux';
 import  style  from "../Styles/Components/SelectOrder.module.css";
 import { useHistory } from 'react-router-dom';
@@ -16,18 +15,18 @@ export  function SelectOrder({products, txt, condition}) {
     var { query } = products
 
      function handleClick(event) {
-        // condition += `&sort=${e.target.value}`
-        // console.log(condition);
-        // if (e.target.value !== value.id){
-        console.log(condition);
-        var newArr =  condition.split("&").findIndex(elem => elem.slice(0,4) === "sort" )
-        // console.log(e)
-        var other = newArr === -1 ? `${condition}&sort=${event.target.value}` :
-            condition.split("&").map(elem => elem.slice(0,4) === "sort" ? 
-                `sort=${event.target.value}` : elem).join("&")
-
-        console.log(other);
-        return  history.push(`/${txt}/${query}/filter=${other}/1`);
+        if (condition){
+            var newArr =  condition.split("&").findIndex(elem => elem.slice(0,4) === "sort" )
+            // console.log(e)
+            var other = newArr === -1 ? `${condition}&sort=${event.target.value}` :
+                condition.split("&").map(elem => elem.slice(0,4) === "sort" ? 
+                    `sort=${event.target.value}` : elem).join("&")
+    
+            console.log(other);
+            return  history.push(`/${txt}/${query}/filter=${other}/1`);
+        }else{
+            return  history.push(`/${txt}/${query}/filter=sort=${event.target.value}/1`);
+        }
     }
     
     

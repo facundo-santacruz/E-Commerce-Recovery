@@ -1,7 +1,5 @@
 import React from 'react';
-import CategoriesList from '../Containers/CategoriesList'
-// import { bindActionCreators } from 'redux';
-import  style  from "../Styles/Components/LeftBar.module.css";
+import  style  from "../Styles/Components/SelectOrder.module.css";
 import { useHistory } from 'react-router-dom';
 // import { connect } from 'react-redux';
 import { useState } from 'react';
@@ -13,7 +11,6 @@ export  function SelectOrder({products, txt, condition}) {
                             {name: "Menor Precio", id:"price_asc"}, {name: "Mayor Precio", id:"price_desc"}])
     const [ value, setValue] = useState(products.sort)
     let history = useHistory();
-    var { query } = products
 
     function handleClick(event) {
         event.preventDefault()

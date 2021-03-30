@@ -12,7 +12,8 @@ function ProductContainerDetail({id,  getProductRequest, product })  {
     const datos = async() =>{
       try {
         await getProductRequest(id);
-        setImg(product.pictures[0].url)
+        // setImg(product.pictures[0].url)
+        // console.log(product.pictures[0].url);
         // await getSellerRequest(product.seller_id)
       } catch (error) {
         console.log(error);
@@ -20,7 +21,7 @@ function ProductContainerDetail({id,  getProductRequest, product })  {
 
     }
     datos()
-    }, [getProductRequest, product.pictures[0].url])
+    }, [id])
     
     if (product){
       return (
@@ -36,7 +37,7 @@ function ProductContainerDetail({id,  getProductRequest, product })  {
     
                 </div>
                 <figure className={style.contImgGde}>
-                  <img src={imag} alt="Imagen" className={style.imgGrande}/>
+                  <img src={!!imag ? imag : product.pictures[0].url} alt="Imagen" className={style.imgGrande}/>
                 </figure>
 
               </div>

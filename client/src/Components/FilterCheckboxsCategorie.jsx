@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 import  style  from "./../Styles/Components/Filter.module.css";
 export default function FilterCheckboxs({id, name, type, filter, filters, results,search}) {
     // console.log(results)
@@ -8,12 +7,10 @@ export default function FilterCheckboxs({id, name, type, filter, filters, result
     let history = useHistory();
     useEffect(() => {
         function changeText() {
-            console.log(filters.length);
             if( filters.length > 0) {
                 const textoAux = filters.map((filtro, i) => {
                    return i===0 ? `${filtro.id}=${filtro.values[0].id}` : `&${filtro.id}=${filtro.values[0].id}`
                 })
-                // console.log(textoAux);
                 setText(textoAux.join("").replace(",", ""))
             }
         }

@@ -1,32 +1,9 @@
 import React from 'react';
 import { usePagination } from '@material-ui/lab/Pagination';
-import { makeStyles, StylesProvider } from '@material-ui/core/styles';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-// import { getProductsRequest } from '../Redux/actions.js';
 import style from '../Styles/Components/Pagination.module.css'
 import { useEffect } from 'react';
-import { Loading } from '../Components/Loading'
-
-// const useStyles = makeStyles({
-//   ul: {
-//     listStyle: 'none',
-//     display: 'flex',
-
-//     justifyContent: "center"
-
-//   },
-//   nav:{
-//     width: '100%',
-//     display:'flex'
-//   }
-  
-
-// });
-
-
 
 export  function UsePagination({cant, search, condition, txt}) {
   const [ total, setTotal ] = useState("")

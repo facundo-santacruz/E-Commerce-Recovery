@@ -36,11 +36,18 @@ export default function SearchAppBar() {
             onChange={handleChange}
             className={style.text}
           />
-          <NavLink to={`/products/${search}/1`}>
-            <button id="boton" className={style.boton}>
+          {search.length > 1 ? 
+            <NavLink to={`/products/${search}/1`}>
+              <button id="boton" className={style.boton}>
+                Buscar
+              </button>
+            </NavLink> : 
+            <div>
+              <button id="boton" disabled={!search} className={style.boton}>
               Buscar
             </button>
-          </NavLink>
+          </div> 
+          }
         </div>
       
       </div>
