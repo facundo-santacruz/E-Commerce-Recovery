@@ -2,7 +2,7 @@ const app = require('express').Router();
 const axios = require('axios')
 
 const { response } = require('express')
-const  {client} = require('../redis')
+const  {getProductsRedis } = require('../redis')
 // const redis = require('ioredis');
 // const client = new redis(process.env.STACKHERO_REDIS_URL_TLS);
 // client.on("error", (error) => {
@@ -20,32 +20,9 @@ const  {client} = require('../redis')
 
 app.get('/product', function(req, res) {    
   const { id } = req.query
-  console.log(req.query)
-  try {
-    // Check the redis store for the data first
-    client.get(`${id}`, async (err, recipe) => {
-      if (recipe) {
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${id} from the cache`,
-          data: JSON.parse(recipe)
-        })
-      } else { // When the data is not found in the cache then we can make request to the server
-        const recipe = await axios.get(`https://api.mercadolibre.com/items/${id}`);
-        
-        // save the record in the cache for subsequent request
-        client.set(`${id}`, 14200, JSON.stringify(recipe.data));
-        // return the result to the client
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${id} from the server`,
-          data: recipe.data
-        });
-    }
-  }) 
-  } catch (error) {
-    console.log(error);
-  }
+  const route = `https://api.mercadolibre.com/items/${id}`
+  return getProductsRedis(`${id}`, res, route, "query")
+  
 });
 
 
@@ -54,74 +31,9 @@ app.get('/product', function(req, res) {
 // ---------------REALIZA LA PRIMERA BUSQUEDA DE PRODUCTO----------
 app.get('/search', function(req, res) {    
   console.log(req.query);
-  try {
-    const { search, number } = req.query;
-    console.log(`${search}${number}`);
-    // Check the redis store for the data first
-    client.get(`${search}${number}`, async (err, recipe) => {
-      if (recipe) {
-        console.log("si existe en la cache");
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${search} offset:${number} from the cache`,
-          data: JSON.parse(recipe)
-        })
-      } else { // When the data is not found in the cache then we can make request to the server
-        console.log("no existe en la cache");
-        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${(number-1)*30}&limit=${30}`);
-
-        // save the record in the cache for subsequent request
-        client.set(`${search}${number}`, 20000, JSON.stringify(recipe.data));
-
-        // return the result to the client
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${search} offset:${number} from the server`,
-          data: recipe.data
-        });
-        
-    }
-  }) 
-} catch (error) {
-    console.log(error)
-}
-});
-
-
-//----------BUSCA UNA QUERY CON UN LIMITE DE 30 UNIDADES Y UN ORDEN ASC/DESC ----------------------------
-
-app.get('/sort_price', function(req, res) {    
-  console.log(req.query)
-  const { search, price, number } = req.query
-  try {
-    // Check the redis store for the data first
-    client.get(`${search}${number}${price}`, async (err, recipe) => {
-      if (recipe) {
-        console.log("si existe en la cache");
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${search} offset:${number} orderby:${price} from the cache`,
-          data: JSON.parse(recipe)
-        })
-      } else { // When the data is not found in the cache then we can make request to the server
-        console.log("no existe en la cache");
-        const ruta = (`https://api.mercadolibre.com/sites/MLA/search?q=${search}&sort=${price}&offset=${number}&limit=${30}`)
-        const recipe = await axios.get(ruta);
-
-        // save the record in the cache for subsequent request
-        client.set(`${search}${number}${price}`, 1440, JSON.stringify(recipe.data));
-
-        // return the result to the client
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${search} offset:${number} orderby:${price} from the server`,
-          data: recipe.data
-        });
-    }
-  }) 
-  } catch (error) {
-    console.log(error)
-  }
+  const { search, number } = req.query;
+  const route = `https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${(number-1)*30}&limit=${30}`;
+  return getProductsRedis(`${search}${number}`, res, route, "query")
 });
 
 
@@ -156,92 +68,23 @@ app.get('/condition', function(req, res) {
   // const condition = cant(filtros)
   console.log(condition);
   const { search, number} = req.query
-  try {
-    // Check the redis store for the data first
-    client.get(`${search}${number}${condition}`, async (err, recipe) => {
-      if (recipe) {
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${search} offset:${number} condition:${condition} from the cache`,
-          data: JSON.parse(recipe)
-        })
-      } else { // When the data is not found in the cache then we can make request to the server
-        const ruta = (`https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${(number-1)*30}&limit=${30}${condition}`);
-        console.log(ruta)
-        const recipe = await axios.get(ruta)
-        // save the record in the cache for subsequent request
-        client.set(`${search}${number}${condition}`, 1440, JSON.stringify(recipe.data));
-
-        // return the result to the client
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${search} offset:${number} condition:${condition} from the server`,
-          data: recipe.data
-        });
-    }
-  }) 
-  } catch (error) {
-    console.log(error)
-  }
+  const route = `https://api.mercadolibre.com/sites/MLA/search?q=${search}&offset=${(number-1)*30}&limit=${30}${condition}`
+  return getProductsRedis(`${search}${number}${condition}`, res, route, "query")
+  
 });
 
 //-------------------BUSCAAR REVIEW  -----------------------
 app.get('/reviews', function(req, res) {    
   const { id } = req.query
   console.log(req.id)
-  try {
-    // Check the redis store for the data first
-    console.log('hi')
-    client.get(`review${id}`, async (err, recipe) => {
-      if (recipe) {
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${id} from the cache`,
-          data: JSON.parse(recipe)
-        })
-      } else { // When the data is not found in the cache then we can make request to the server
-        const recipe = await axios.get(`https://api.mercadolibre.com/reviews/item/${id}`);
-        
-        // save the record in the cache for subsequent request
-        client.setex(`review${id}`, 14200, JSON.stringify(recipe.data));
-        // return the result to the client
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query:${id} from the server`,
-          data: recipe.data
-        });
-    }
-  }) 
-  } catch (error) {
-    console.log(error);
-  }
+  const route = `https://api.mercadolibre.com/reviews/item/${id}`
+  return getProductsRedis(`review${id}`, res, route, "query")
 });
 
 app.get('/seller', function(req, res) {    
   const { id } = req.query;
-  try {
-    // Check the redis store for the data first
-    client.get(`seller${id}`, async (err, recipe) => {
-      if (recipe) {
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query: seller${id} from the cache`,
-          data: JSON.parse(recipe)
-        })
-      } else { // When the data is not found in the cache then we can make request to the server
-        const recipe = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?seller_id=${id}`);
-        client.setex(`seller${id}`, 14200, JSON.stringify(recipe.data));
-        // return the result to the client
-        return res.status(200).send({
-          error: false,
-          message: `Recipe for query: seller${id} from the server`,
-          data: recipe.data
-        });
-    }
-  }) 
-  } catch (error) {
-    console.log(error);
-  }
+  const route = `https://api.mercadolibre.com/sites/MLA/search?seller_id=${id}`;
+  return getProductsRedis(`seler${id}`, res, route, "query")
 });
 
 
