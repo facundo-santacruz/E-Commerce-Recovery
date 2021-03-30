@@ -6,14 +6,20 @@ const { response } = require('express')
 const redis = require('ioredis');
 // const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
 // const client = new redis("redis://admin:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6379");
-const client = new redis({
-  host: process.env.HOST,
-  port: process.env.PORT,
-  user: process.env.USER,
-  password: process.env.PASSWORD});
+const client = new redis("rediss://stackhero:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6380");
+
 client.on("error", (error) => {
   console.error(error);
 })
+
+
+// client.get(`ram1`, function (err, result) {
+//   if (err) {
+//     console.error(err);
+//   } else {
+//     console.log(result); // Promise resolves to "bar"
+//   }
+// });
 // //----------------------BUSCAR UN PRODUCTO------------------------------------------------------
 
 app.get('/product', function(req, res) {    
@@ -77,6 +83,7 @@ app.get('/search', function(req, res) {
           message: `Recipe for query:${search} offset:${number} from the server`,
           data: recipe.data
         });
+        
     }
   }) 
 } catch (error) {

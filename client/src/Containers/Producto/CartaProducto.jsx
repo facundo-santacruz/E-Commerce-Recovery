@@ -11,8 +11,7 @@ const Cartaproducto = ({product, seller, getSellerRequest}) => {
     useEffect( () => {
         const datos = async() =>{
           try {
-              await getSellerRequest(product.seller_id)
-              console.log(seller)
+            await getSellerRequest(product.seller_id);
           } catch (error) {
             console.log(error);
           }

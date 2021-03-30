@@ -13,7 +13,7 @@ const cat = [
     {"id": "MLA1144","name": "Consolas y Videojuegos", "picture": "http://resources.mlstatic.com/category/images/9712b6d0-1570-4edc-aea6-c1c13c9a4bfa.png"},
     {"id": "MLA1276","name": "Deportes y Fitness","picture": "http://resources.mlstatic.com/category/images/b39de702-b427-4c05-b659-c6db6b87b53f.png"},
     {"id": "MLA5726","name": "Electrodomésticos y Aires Ac.","picture": "http://resources.mlstatic.com/category/images/104bbc6d-bf5c-4e84-8e17-93b8e6d16553.png"},
-    {"id": "MLA1000","name": "Electrónica, Audio y Video", "picture": "http://resources.mlstatic.com/category/images/943ec641-717e-49cb-8a34-2f40ba367f5a.png"},
+    {"id": "MLA1000","name": "Electrónica, Audio y Video", "picture": "https://http2.mlstatic.com/D_902568-MLA42331257668_062020-O.jpg"},
     {"id": "MLA2547","name": "Entradas para Eventos","picture": "http://resources.mlstatic.com/category/images/537b9145-ac07-43ec-a281-b5bdb442192c.png"},
     {"id": "MLA407134","name": "Herramientas y Construcción", "picture": "http://resources.mlstatic.com/category/images/783e7f75-e58d-4020-a165-827ec39c21ec.png"},
     {"id": "MLA1574","name": "Hogar, Muebles y Jardín","picture": "http://resources.mlstatic.com/category/images/5194ee98-9095-4ef6-b9a5-c78073fa60af.png"},
