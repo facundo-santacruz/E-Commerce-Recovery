@@ -40,21 +40,17 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
                 <span >{item.name}: </span>
                 <span>{item.values[0].name}</span>
               </div>
+              {item.name !== "Categorías" ? 
               <button onClick={changeText} value={item.id} className={style.filterBoton}> X </button>
+              : null }
             </div>
   
           )
         })
       }
-
-      
-        
-        {available_filters.map((text, index) => (
-          <CategoriesList filterValues={text} type={txt} products={products}/>
-
-          ))}
-        
-      {/* </div> */}
+      {available_filters.map((text, index) => (
+        <CategoriesList filterValues={text} type={txt} products={products}/>
+      ))}
     </div>
   )
 

@@ -1,16 +1,9 @@
 .detail {
-    min-width: 80px;
-    width: 30%;
-    height: initial;
-    border: 1px gray;
-    border: double;
-    border-radius: 6px;
-    align-self: baseline;
-    text-align: initial;
-    margin-block-start: 1.3%;
+    
     /* color: rgb(13, 176, 38); */
     transition: all 2s ease;
-    margin-right: 1%;
+    align-items: center;
+    border-left: 2px solid whitesmoke;
 }
 
 .detail:hover{
@@ -42,10 +35,8 @@
 @media(max-width:861.33px){
     .detail{
         width: 100%;
-        border-top: double;
         border-left: none;
-        border-radius: 0px;
-        border-right: 0px;
+        border-top: 2px solid whitesmoke;
     }
     
 }

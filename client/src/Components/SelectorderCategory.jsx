@@ -27,16 +27,22 @@ export  function SelectOrder({products, txt, condition, query}) {
     
     return (
         <div className={style.contenedor}>
-            <div className={style.contSecundario}>
-                <span> Ordenar por </span>  
-                <select defaultValue={value.name} onChange={handleClick}>
-                    {list.map(items => {
-                        return (
-                            <option key={`${items.id}`}  value={(items.id)}>{items.name}
-                                </option>
-                        )
-                    })}
-                </select>
+            <div className={style.contSec}>
+                <div className={style.resultados}>
+                    <span>Resultados: <span>{products.paging.total}</span></span>
+                </div>   
+                <div className={style.sort}>
+                    <span> Ordenar por </span>
+                    <select defaultValue={value.name} onChange={handleClick}>
+                        {list.map(items => {
+                            return (
+                                <option key={`${items.id}`}  value={(items.id)}>{items.name}
+                                    </option>
+                            )
+                        })}
+                    </select>
+
+                </div>
             </div>
         </div> 
   )

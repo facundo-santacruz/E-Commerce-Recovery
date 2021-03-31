@@ -20,10 +20,6 @@ export  function PermanentDrawerLeft({txt, search, filter,  products }) {
       }
     }
     history.push(`/${txt}/${search}/filter=${textoAux}/1`);
-  
-    
-
-    // console.log(texto);
   }
   return (
     

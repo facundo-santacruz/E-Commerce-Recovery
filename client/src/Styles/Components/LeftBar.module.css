@@ -1,6 +1,6 @@
 /* The side navigation menu */
 .Contenedor{
-  height: 100%;
+  height: fit-content;
   text-align: initial;
   position: relative;
   /* overflow: scroll; */
@@ -12,6 +12,8 @@
   padding-left: 1%;
   padding-top: 2%;
   border: 1px rgb(138, 134, 134) solid;
+  padding-bottom: 2%;
+  padding-right: 1%;
 }
   
 .listarCategorias{
