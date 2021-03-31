@@ -23,7 +23,7 @@ export default function CircularIndeterminate() {
   return (
 
       <div className={classes.root}>
-        <CircularProgress color="fifth" size="25%"/>
+        <CircularProgress color="second" size="25%"/>
       </div>
     
   );
