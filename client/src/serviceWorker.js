@@ -34,10 +34,9 @@ const isLocalhost = Boolean(
   
       window.addEventListener('load', () => {
         const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-        console.log(process)
         if (isLocalhost) {
           // This is running on localhost. Let's check if a service worker still exists or not.
-          checkValidServiceWorker(swUrl, config);
+          checkValidServiceWorker("swUrl", config);
   
           // Add some additional logging to localhost, pointing developers to the
           // service worker/PWA documentation.
@@ -56,8 +55,9 @@ const isLocalhost = Boolean(
   }
   
   function registerValidSW(swUrl, config) {
+    console.log(swUrl);
     navigator.serviceWorker
-      .register(swUrl)
+      .register("swUrl")
       .then(registration => {
         registration.onupdatefound = () => {
           const installingWorker = registration.installing;

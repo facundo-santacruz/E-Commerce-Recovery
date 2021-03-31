@@ -3,11 +3,9 @@ const axios = require('axios')
 const dotenv = require('dotenv');
 dotenv.config()
 
-const cat = require('./models/categories.js')
-// const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
+const cat = require('./models/categories.js');
 const client = new redis(process.env.STACKHERO_REDIS_URL_TLS);
-console.log((process.env.STACKHERO_REDIS_URL_TLS));
-// const client = new redis(process.env.STACKHERO_REDIS_URL_TLS);
+
 client.on("error", (error) => {
   console.error(error);
 })
