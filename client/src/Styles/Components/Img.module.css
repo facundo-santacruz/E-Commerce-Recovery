@@ -48,7 +48,8 @@
     width: 65%;
 }
 .imagen:hover{
-    border: rgb(86, 86, 201) 5px solid;
+    border: rgb(86, 86, 201) 1px solid;
+    opacity: 50%;
 }
 
 .contImgGde {
@@ -63,11 +64,11 @@
 }
 
 .imgGrande {
-    cursor: -webkit-zoom-in;
-    cursor: zoom-in;
+    /* cursor: zoom-in; */
     height: auto;
     object-fit: contain;
     width: 95%;
+    max-height: 400px;
     height: 100%;
 }
 
@@ -76,8 +77,6 @@
         flex-direction: column;
     }
     .contImgGde{
-        width: 100%;
-        max-height: none;
     }
     .segContenedor{
         width: 100%;
@@ -90,4 +89,10 @@
     }
 
     
+}
+
+@media(max-width:450px){
+    .contenedor{
+        width: 100%;
+    }
 }

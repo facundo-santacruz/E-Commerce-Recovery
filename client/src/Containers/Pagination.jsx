@@ -12,7 +12,7 @@ export  function UsePagination({cant, search, condition, txt}) {
   });
 
   useEffect(() => {
-    setTotal(cant <=1000 ? parseInt(cant / 30) : 33)
+    setTotal(cant <=1000 ? parseInt(cant / 30) + 1 : 33)
   },[cant])
 
 
