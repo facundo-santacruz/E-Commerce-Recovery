@@ -1,8 +1,11 @@
 # Api Rest Mercado Libre
-Este proyecto abarca la búsqueda de productos utilizando la API de Mercado Libre, los cuáles tienen diferentes tipos de filtros (como ser categorias, y diferentes atributos que posee una búsqueda como lo realiza MELI). Una vez que se realiza una determida consulta, esta queda guardada en una cache que proporciona redis. 
 
-Link= https://meli-app-facundo-santacruz.herokuapp.com/
 
+This project covers the search for products using the Mercado Libre API, the results have different types of filters (such as categories, and different attributes that have a search as performed by MELI). Once a specific query is made, it is stored in a cache provided by redis.
+
+Link = https://meli-app-facundo-santacruz.herokuapp.com/
+
+To run the project locally these are the instructions.
 
 ### Built With
 
