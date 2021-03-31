@@ -4,7 +4,7 @@ const axios = require('axios')
 
 const cat = require('./models/categories.js')
 // const client = new Ioredis(process.env.STACKHERO_REDIS_URL_TLS)
-const client = new redis("stackhero://admin:pqGoqZ8qSguOohMYoXxKZrK5omkzxH0fb4UMsmg8knPcVOMt4QL8q3I2vpZa7wDY@r98enr.stackhero-network.com:6379");
+const client = new redis(process.env.STACKHERO_REDIS_URL_TLS);
 console.log((process.env.STACKHERO_REDIS_URL_TLS));
 // const client = new redis(process.env.STACKHERO_REDIS_URL_TLS);
 client.on("error", (error) => {
